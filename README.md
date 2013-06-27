@@ -34,7 +34,7 @@ Usage
 
 $ ghc -F -pgmF ./preprocess.sh file.hs
 
-This generates "file.o", "file.i" and the executable "file". The executable can be run by typing:
+This generates "file.o", "file.hi" and the executable "file". The executable can be run by typing:
 
 $ ./file
 

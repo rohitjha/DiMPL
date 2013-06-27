@@ -14,7 +14,7 @@ This language has been implemented in Haskell, which lends itself easily to math
 5. Linear Algebra
 6. Combinatorics
 
-Apart from aiding mathematicians and physicists, the developed DSL is useful in studying and describing objects and problems in branches of computer science, such as algorithms, programming languages, cryptography, automated theorem proving, and software development.
+Apart from aiding mathematicians and physicists, the developed DSL is useful in studying and describing objects and problems in branches of computer science, such as algorithms, programming languages, cryptography, automated theorem proving, and software development. A technical paper for this DSL is published in the International Journal of Computer Applications (IJCA) and can be found here: http://www.ijcaonline.org/archives/volume70/number15/12036-7257
 
 Installation
 ------------
@@ -38,20 +38,4 @@ This generates "file.o", "file.i" and the executable "file". The executable can 
 
 $ ./file
 
-The library can be used even in GHCi. For example to use logical implication (==>):
-
-$ ghci
-GHCi, version 7.6.3: http://www.haskell.org/ghc/  :? for help
-Loading package ghc-prim ... linking ... done.
-Loading package integer-gmp ... linking ... done.
-Loading package base ... linking ... done.
-Prelude> :m +MPL.Logic.Logic 
-Prelude MPL.Logic.Logic> True ==> False
-Loading package array-0.4.0.1 ... linking ... done.
-Loading package deepseq-1.3.0.1 ... linking ... done.
-Loading package old-locale-1.0.0.5 ... linking ... done.
-Loading package time-1.4.0.1 ... linking ... done.
-Loading package random-1.0.1.1 ... linking ... done.
-Loading package MPL-0.1.0.0 ... linking ... done.
-False
-Prelude MPL.Logic.Logic>
+The library can even be used in GHCi (without the preprocessor) just like any other package.

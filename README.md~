@@ -38,7 +38,7 @@ This generates "file.o", "file.i" and the executable "file". The executable can 
 
 $ ./file
 
-The library can be used even in GHCi. For example to use logical implication (==>):
+The library can be used even in GHCi. For example:
 
 $ ghci
 GHCi, version 7.6.3: http://www.haskell.org/ghc/  :? for help

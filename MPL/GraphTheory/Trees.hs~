@@ -1,0 +1,74 @@
+module MPL.GraphTheory.Tree
+
+import qualified Data.List as T
+
+-- Binary tree representation
+data BinTree a = Leaf | Node a (BinTree a) (BinTree a) deriving (Show, Eq)
+
+--tree1 :: BinTree  --tree consisting only of leaf node
+tree1 = Leaf
+
+--tree2 :: BinTree
+tree2 =
+	Node 4
+	 (Node 2
+	   (Node 1 Leaf Leaf)
+	   (Node 3 Leaf Leaf))
+	 (Node 7
+	   (Node 5
+	     Leaf
+	    (Node 6 Leaf Leaf))
+	    (Node 8 Leaf Leaf))
+
+
+-- Tree traversal
+
+inorder :: BinTree a -> [a]
+inorder Leaf = []
+inorder (Node x t1 t2) = inorder t1 ++ [x] ++ inorder t2
+
+preorder :: BinTree a -> [a]
+preorder Leaf = []
+preorder (Node x t1 t2) = [x] ++ preorder t1 ++ preorder t2
+
+postorder :: BinTree a -> [a]
+postorder Leaf = []
+postorder (Node x t1 t2) = postorder t1 ++ postorder t2 ++ [x]
+
+--Binary tree search
+
+singleton :: a -> BinTree a --tree with a single node
+singleton x = Node x Leaf Leaf
+
+treeInsert :: ( Ord a ) => a -> BinTree a -> BinTree a --function to insert element in tree 'a'
+treeInsert x Leaf = singleton x
+treeInsert x ( Node a left right )
+	| x == a = Node x left right --the element is equal to root node
+	| x < a  = Node a ( treeInsert x left ) right --element smaller than root node, inserted on it's left
+	| x > a  = Node a left ( treeInsert x right ) --element smaller than root node, inserted on it's right
+
+
+treeElem :: ( Ord a ) => a -> BinTree a -> Bool
+treeElem x Leaf = False 
+treeElem x ( Node a left right ) -- to check elements in the trees
+	| x == a = True
+	| x < a = treeElem x left
+	| x > a = treeElem x right
+
+
+reflect :: BinTree a -> BinTree a
+reflect Leaf = Leaf
+reflect (Node n l r) = Node n (reflect r) (reflect l)
+
+height :: BinTree a -> Integer
+height Leaf = 0
+height (Node x t1 t2) = 1 + max (height t1) (height t2)
+
+
+size :: BinTree a -> Int
+size Leaf = 0
+size (Node x t1 t2) = 1 + size t1 + size t2
+
+balanced :: BinTree a -> Bool
+balanced Leaf = True
+balanced (Node x t1 t2) = balanced t1 && balanced t2 && (height t1 == height t2)

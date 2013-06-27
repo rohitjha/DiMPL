@@ -1,0 +1,190 @@
+{-
+---------------------------------
+| Vectors Module for MPL |
+---------------------------------
+
+Functionality for:
+	-> Vectors
+		-> Vector addition
+		-> Vector subtraction
+		-> Vector multiplication
+		-> Scalar product (dot product)
+		-> Vector product (cross product)
+		-> Scalar triple product
+		-> Vector triple product
+		-> Vector equality
+		-> Null vector
+		-> Vector dimension / order
+		-> Vector magnitude
+		-> Angle between two vectors
+	-> Matrices
+		-> 
+
+Author: Rohit Jha
+Version: 0.0.1
+Date: 22 Dec 2012
+-}
+
+module MPL.LinearAlgebra where
+
+import Data.List as L
+
+
+-- Vector dimension / order
+{-
+	Usage:
+		vDim [1,1,6.5]
+		=> 3
+		vDim [0,0]
+		=> 2
+-}
+vDim :: [a] -> Int
+vDim vector = length vector
+
+
+-- Vector magnitude
+{-
+	Usage:
+		mag [1,1]
+		=> 1.4142135623730951
+		mag [0,0,2]
+		2.0
+-}
+vMag :: Floating a => [a] -> a
+vMag [] = 0
+vMag v = (sum [x*x | x <- v]) ** 0.5
+
+
+-- Vector addition
+{-
+	Usage:
+		vAdd [1,2] [2,3]
+		=> [3,5]
+		vAdd [1,2.5] [2,3,4]
+		=> [3.0,5.5,4.0]
+-}
+vAdd :: Num a => [a] -> [a] -> [a]
+vAdd [] [] = []
+vAdd (a:as) (b:bs)
+	| (length as == length bs) = (a+b) : vAdd as bs
+	| (length as < length bs) = (a+b) : vAdd (as ++ [0]) bs
+	| (length as > length bs) = (a+b) : vAdd as (bs ++ [0])
+
+
+-- Vector subtraction
+{-
+	Usage:
+		vSub [1,2] [2,3,4]
+		=> [-1,-1,-4]
+		vSub [2,3] [0,1]
+		=> [2,2]
+-}
+vSub :: Num a => [a] -> [a] -> [a]
+vSub [] [] = []
+vSub (a:as) (b:bs)
+	| (length as == length bs) = (a-b) : vSub as bs
+	| (length as < length bs) = (a-b) : vSub (as ++ [0]) bs
+	| (length as > length bs) = (a-b) : vSub as (bs ++ [0])
+
+
+-- Inner product / Dot product
+{-
+	Usage:
+		innerProd [1,2] [2,7]
+		=> 16
+		dotProd [1,2] [2,7,3]
+		=> 16
+-}
+innerProd :: Num a => [a] -> [a] -> a
+innerProd [] [] = 0
+innerProd (a:as) (b:bs)
+	| (length as == length bs) = (a*b) + innerProd as bs
+	| (length as < length bs) = (a*b) + innerProd (as ++ [0]) bs
+	| (length as > length bs) = (a*b) + innerProd as (bs ++ [0])
+
+dotProd = innerProd
+
+
+-- Angle between two vectors
+{-
+	Usage:
+		ang [1,1] [2,2]
+		=> 2.1073424255447017e-8
+		ang [1,1] [2,2,3]
+		=> 0.814826916370989
+-}
+vAngle :: Floating a => [a] -> [a] -> a
+vAngle [] [] = 0
+vAngle v1 v2 = acos ((innerProd v1 v2) / ( (vMag v1) * (vMag v2) ))
+
+
+-- Scalar product
+{-
+	Usage:
+		scalarProd 3 [1,1]
+		=> [3.0,3.0]
+		scalarProd 2.5 [1,2,4.33]
+		=> [2.5,5.0,10.825]
+-}
+scalarProd :: Floating a => a -> [a] -> [a]
+scalarProd scalar vector = map (* scalar) vector
+
+
+-- Null vector checking
+{-
+	Usage:
+		isNullVector [0,0]
+		=> True
+		isNullVector [0,0,0]
+		=> True
+		isNullVector [0,0,1]
+		=> False
+-}
+isNullVector :: Floating a => [a] -> Bool
+isNullVector v
+	| vMag v == 0 = True
+	| otherwise = False
+
+
+-- Cross Product
+{-
+	Usage:
+		crossProd [1,1,1] [1,1,1]
+		=> [0,0,0]
+		crossProd [1,1] [2,5.3,6]
+		=> [6.0,-6.0,3.3]
+		crossProd [1,1] [1,1,2,2]
+		=> *** Exception: Order of vectors must not exceed 3.
+-}
+crossProd :: Num a => [a] -> [a] -> [a]
+crossProd a b
+	| (length a < 3) = crossProd (a ++ [0]) b
+	| (length b < 3) = crossProd a (b ++ [0])
+	| (length a == 3) && (length b == 3) = [ ( (a!!1 * b!!2) - (a!!2 * b!!1) ), ( (a!!2 * b!!0) - (a!!0 * b!!2) ), ( (a!!0 * b!!1) - (a!!1 * b!!0) ) ]
+	| (length a > 3) || (length b > 3) = error "Order of vectors must not exceed 3.\n"
+
+
+-- Scalar triple product
+{-
+	Usage:
+		scalarTripleProd [1,2,3] [4,5,6] [7,8,9]
+		=> 0
+		scalarTripleProd [1,1,1] [2,3,4] [1,2,0]
+		=> -3
+		scalarTripleProd [0] [0] [0]
+		=> 0
+-}
+--scalarTripleProd :: Num a => [a] -> [a] -> [a] -> a
+scalarTripleProd a b c = dotProd a (crossProd b c)
+
+
+-- Vector triple product
+{-
+	Usage:
+		vectorTripleProd [1,1] [2,3] [4,5,6]
+		=> [-2,2,-30]
+		vectorTripleProd [0,0,0] [1.3,2.8] [4]
+		=> [-0.0,0.0,0.0
+-}
+vectorTripleProd :: Num a => [a] -> [a] -> [a] -> [a]
+vectorTripleProd a b c = crossProd a (crossProd b c)

@@ -224,7 +224,7 @@ vSubL v = foldl1 (vSub) v
 		(Vector [1,1,1]) <.> (Vector [1..10])
 		>>> 6
 -}
-innerProd :: Num a => Vector a -> Vector a -> Scalar a
+innerProd :: Num a => Vector a -> Vector a -> a
 innerProd (Vector []) (Vector []) = 0
 innerProd (Vector []) (Vector a) = 0
 innerProd (Vector a) (Vector []) = 0
@@ -297,7 +297,7 @@ scalarMult scalar (Vector vector) = Vector $ map (* scalar) vector
 		isNullVector $ scalarMult 0 (Vector [1,5])
 		>>> True
 -}
-isNullVector :: Floating a => Vector a -> Bool
+isNullVector :: (Eq a, Floating a) => Vector a -> Bool
 isNullVector (Vector v)
 	| vMag (Vector v) == 0 = True
 	| otherwise = False
@@ -404,7 +404,7 @@ extractRange a b (Vector vector) = Vector [ extract i (Vector vector) | i <- [a.
 		areOrthogonal (Vector [1,0,0]) (Vector [0,1.576,0])
 		>>> True
 -}
-areOrthogonal :: Num a => Vector a -> Vector a -> Bool
+areOrthogonal :: (Eq a, Num a) => Vector a -> Vector a -> Bool
 areOrthogonal (Vector v1) (Vector v2) = (innerProd (Vector v1) (Vector v2)) == 0
 
 

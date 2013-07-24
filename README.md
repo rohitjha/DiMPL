@@ -25,9 +25,9 @@ $ cabal configure
 $ cabal build
 $ cabal install
 
-The package requires the "random" package to be installed priorly. Install any other dependencies which may be displayed while configuring.
+The package requires the "random" package to be installed as a dependency. Though a remote possibility, while configuring, you may have to install other packages which may be displayed as dependencies.
 
-The Preprocessor is simply the file "preprocess.sh", which uses the file "script", so these can be added to PATH in order to be used for all programs. Both "preprocess.sh" and "script" can be found in the "Preprocessor" directory.
+The Preprocessor is simply the file "preprocess.sh", which uses sed scripts written in the file "script", so these can be added to PATH in order to be used for all programs. Both "preprocess.sh" and "script" can be found in the "Preprocessor" directory.
 
 Usage
 -----

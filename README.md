@@ -3,7 +3,7 @@ MPL
 
 Mathematical Programming Language - A Domain-Specific Language for Discrete Mathematics.
 
-Current Version: 0.1.0
+Current Version: 0.2.0
 
 This language has been implemented in Haskell, which lends itself easily to mathematical programming. The language has a syntax closer to the mathematical notation. This is achieved by applying the custom preprocessor, "preprocess.sh", while compiling with GHC (version >= 7.0). Additionally, the Domain-Specific Language (DSL) has a library which is installed by running the "Setup.hs" file. This library covers the areas of:
 
@@ -32,7 +32,7 @@ The Preprocessor is simply the file "preprocess.sh", which uses the file "script
 Usage
 -----
 
-$ ghc -F -pgmF ./preprocess.sh file.hs
+$ ghc -F -pgmF preprocess.sh file.hs
 
 This generates "file.o", "file.hi" and the executable "file". The executable can be run by typing:
 

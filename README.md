@@ -5,7 +5,9 @@ Mathematical Programming Language - A Domain-Specific Language for Discrete Math
 
 Current Version: 0.2.0
 
-This language has been implemented in Haskell, which lends itself easily to mathematical programming. The language has a syntax closer to the mathematical notation. This is achieved by applying the custom preprocessor, "preprocess.sh", while compiling with GHC (version >= 7.0). Additionally, the Domain-Specific Language (DSL) has a library which is installed by running the "Setup.hs" file. This library covers the areas of:
+This language (MPL) is implemented in Haskell, which lends itself easily to mathematical programming. The language has a syntax closer to the mathematical notation. This is achieved by applying the custom preprocessor, "preprocess.sh", while compiling with GHC (Glasgow Haskell Compiler). Additionally, the Domain-Specific Language (DSL) has a library which is installed by running the "Setup.hs" file. The installation instructions can be found in the next section.
+
+This library covers the areas of:
 
 1. Mathematical Logic
 2. Set Theory
@@ -39,3 +41,8 @@ This generates "file.o", "file.hi" and the executable "file". The executable can
 $ ./file
 
 The library can even be used in GHCi (without the preprocessor) just like any other package.
+
+Help
+----
+
+E-mail: rohit305jha@gmail.com

@@ -332,8 +332,8 @@ powerList (x:xs) = L.sort $ (powerList xs) ++ (map (x:) (powerList xs))
 		(cartProduct (Set [1,2]) (Set [3,4])) == (cartProduct (Set [3,4]) (Set [1,2]))
 		>>> False
 -}
-cartProduct :: Ord a => Set a -> Set a -> [(Element a,Element a)]
-cartProduct (Set set1) (Set set2) = [(x,y) | x <- set1', y <- set2']
+cartProduct :: Ord a => Set a -> Set a -> Set (Element a,Element a)
+cartProduct (Set set1) (Set set2) = Set $ [(x,y) | x <- set1', y <- set2']
 	where	set1' = (L.sort . L.nub) set1
 		set2' = (L.sort . L.nub) set2
 

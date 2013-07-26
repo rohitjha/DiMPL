@@ -24,8 +24,12 @@ Installation
 Run these commands from the command line to install the DSL library:
 
 $ cabal configure
+
 $ cabal build
+
 $ cabal install
+
+$ cabal clean (optional)
 
 The package requires the "random" package to be installed as a dependency. Though a remote possibility, while configuring, you may have to install other packages which may be displayed as dependencies.
 

@@ -94,7 +94,7 @@ primesTo :: Integer -> [Integer]
 primesTo 0 = []
 primesTo 1 = []
 primesTo 2 = [2]
-primesTo m = 2 : 3 : sieve [3,5..m]
+primesTo m = 2 : sieve [3,5..m]
 
 
 -- Generate all primes between two numbers (upper limit inclusive)

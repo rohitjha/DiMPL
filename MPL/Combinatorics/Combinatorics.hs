@@ -11,8 +11,8 @@ Functionality for:
 	-> Generating random permutation
 
 Author: Rohit Jha
-Version: 0.1
-Date: 25 Feb 2013
+Version: 0.1.1
+Date: 30 Mar 2014
 -}
 
 module MPL.Combinatorics.Combinatorics
@@ -45,8 +45,8 @@ import Control.Applicative
 -}
 factorial :: Integer -> Integer
 factorial n
-	| (n == 0) = 1
-	| (n > 0) = product [1..n]
+	| (n == 0) or (n == 1) = 1
+	| (n > 1) = product [2..n]
 	| (n < 0) = error "Usage - factorial n, where 'n' is non-negative."
 
 

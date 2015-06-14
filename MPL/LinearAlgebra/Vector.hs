@@ -55,6 +55,8 @@ module MPL.LinearAlgebra.Vector
 )
 where
 
+import Prelude hiding ((<*>))
+
 import qualified Data.List as L
 
 

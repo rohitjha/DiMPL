@@ -45,7 +45,8 @@ import Control.Applicative
 -}
 factorial :: Integer -> Integer
 factorial n
-	| (n == 0) or (n == 1) = 1
+	| (n == 0) = 1
+	| (n == 1) = 1
 	| (n > 1) = product [2..n]
 	| (n < 0) = error "Usage - factorial n, where 'n' is non-negative."
 

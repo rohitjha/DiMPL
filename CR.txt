@@ -1,16 +1,2 @@
-In Combinatorics.hs:
--> try to parallelize factorial
--> error handling for all functions
-
-In Tree.hs:
--> try to parallelize inorder, preorder and postorder, height, size, isBalanced
-
 In Modular.hs:
--> try to parallelize modAdd, modSub, modMult, modExp
 -> error handling in all functions
-
-In Primes.hs:
--> error handling in primesTo, primesBetween
-
-In Vector.hs:
--> try to parallelize vAngle

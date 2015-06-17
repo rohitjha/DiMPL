@@ -11,8 +11,8 @@ Functionality for:
 	-> Generating random permutation
 
 Author: Rohit Jha
-Version: 0.1.1
-Date: 30 Mar 2014
+Version: 0.1.2
+Date: 17 Jun 2015
 -}
 
 module MPL.Combinatorics.Combinatorics
@@ -61,10 +61,13 @@ factorial n
 		>>> 43758
 -}
 c :: Integer -> Integer -> Integer
-c n r = (factorial a) `div` ( (factorial b) * (factorial (a-b)) )
-	where
-	a = max n r
-	b = min n r
+c n r
+	| (n < 1) = error "Usage - c n r, where 'n' is positive."
+	| (r < 1) = error "Usage - c n r, where 'r' is positive."
+	| otherwise =	(factorial a) `div` ( (factorial b) * (factorial (a-b)) )
+				where
+				a = max n r
+				b = min n r
 
 
 -- nPr
@@ -77,10 +80,13 @@ c n r = (factorial a) `div` ( (factorial b) * (factorial (a-b)) )
 		>>> 1764322560
 -}
 p :: Integer -> Integer -> Integer
-p n r = (factorial a) `div` (factorial (a-b))
-	where
-	a = max n r
-	b = min n r
+p n r
+	| (n < 1) = error "Usage - p n r, where 'n' is positive."
+	| (r < 1) = error "Usage - p n r, where 'r' is positive."
+	| otherwise =	(factorial a) `div` (factorial (a-b))
+				where
+				a = max n r
+				b = min n r
 
 
 -- Permutation generation function
@@ -134,8 +140,8 @@ shuffle l = shuffle' l []
 		combination 2 ["a","b","c"]
 		>>> ["aa","ab","ac","ba","bb","bc","ca","cb","cc"]
 
-		combination 3 ["a","b","c"]
-		>>> ["aaa","aab","aac","aba","abb","abc","aca","acb","acc","baa","bab","bac","bba","bbb","bbc","bca","bcb","bcc","caa","cab","cac","cba","cbb","cbc","cca","ccb","ccc"]
+		combination 2 [[1],[2],[3]]
+		>>> [[1,1],[1,2],[1,3],[2,1],[2,2],[2,3],[3,1],[3,2],[3,3]]
 -}
 prod as bs = (++) <$> as <*> bs
 

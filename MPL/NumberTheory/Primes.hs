@@ -11,8 +11,8 @@ Functionality for:
 	-> Prime factorization
 
 Author: Rohit Jha
-Version: 0.1
-Date: 31 Dec 2012
+Version: 0.2
+Date: 17 Jun 2015
 -}
 
 module MPL.NumberTheory.Primes
@@ -28,10 +28,12 @@ module MPL.NumberTheory.Primes
 	isMillerRabinPrime,
 	isPrime,
 	nextPrime,
-	primeFactors
+	primeFactors,
+	uniquePrimeFactors
 )
 where
 
+import Data.List (nub)
 
 -- internal functions ----------------------
 d `divides` n = n `mod` d == 0
@@ -91,10 +93,11 @@ sieve (p:xs)
 		=> [2,3,5,7,11,13,17,19,23,29,31,37,41,43,47,53,59,61,67,71,73]
 -}
 primesTo :: Integer -> [Integer]
-primesTo 0 = []
-primesTo 1 = []
-primesTo 2 = [2]
-primesTo m = 2 : sieve [3,5..m]
+primesTo m
+	| (m < 0) = error "Usage - primesTo m, where 'm' is non-negative."
+	| (m < 2) = []
+	| (m == 2) = [2]
+	| otherwise = 2 : sieve [3,5..m]
 
 
 -- Generate all primes between two numbers (upper limit inclusive)
@@ -105,9 +108,14 @@ primesTo m = 2 : sieve [3,5..m]
 
 		primesBetween 10 25
 		>>> [11,13,17,19,23]
+
+		primesBetween 5 2
+		>>> [2,3,5]
 -}
 primesBetween :: Integer -> Integer -> [Integer]
 primesBetween m n
+	| (m > n) = primesBetween n m
+	| ((m < 0) || (n < 0)) = error "Usage - primesBetween m n, where m and n are non-negative."
 	| (m <= 2) = primesTo n
 	| otherwise = (primesTo n) `minus` (primesTo m)--(nextPrime m) : sieve [((nextPrime m)+1) .. n]
 
@@ -206,7 +214,9 @@ isPrime n
 		=> 3894347
 -}
 nextPrime :: Integer -> Integer
-nextPrime n = head [p | p <- [n..], isPrime p]
+nextPrime n
+	| (n > 0) = head [p | p <- [n..], isPrime p]
+	| (n < 2) = 2
 
 
 -- Prime factorization of a number
@@ -218,5 +228,21 @@ nextPrime n = head [p | p <- [n..], isPrime p]
 		=> [19,89,161573]
 -}
 primeFactors :: Integer -> [Integer]
-primeFactors n = concat (map (\(p,a) -> replicate a p) (primePowerFactors n))
+primeFactors n
+	| (n < 1) = error "Usage - primeFactors n, where n is a positive integer."
+	| (isPrime n) = [n]
+	| otherwise = concat (map (\(p,a) -> replicate a p) (primePowerFactors n))
 
+
+-- Unique prime factors of a number
+{-
+ 	Usage:
+		uniquePrimeFactors 10000000
+		>>> [2,5]
+		uniquePrimeFactors 123456789
+		>>> [3,3607,3803]
+-}
+uniquePrimeFactors :: Integer -> [Integer]
+uniquePrimeFactors n
+	| (n < 1) = error "Usage - uniquePrimeFactors n, where n is a positive number."
+	| otherwise = nub $ primeFactors n 

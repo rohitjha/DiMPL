@@ -1,2 +1,0 @@
-In Modular.hs:
--> error handling in all functions

@@ -97,6 +97,7 @@ primesTo m
 	| (m < 0) = error "Usage - primesTo m, where 'm' is non-negative."
 	| (m < 2) = []
 	| (m == 2) = [2]
+	| (m < 5) = [2,3]
 	| otherwise = 2 : sieve [3,5..m]
 
 

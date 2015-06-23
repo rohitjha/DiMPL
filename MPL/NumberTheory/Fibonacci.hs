@@ -8,8 +8,8 @@ Functionality for:
 	-> Generating Fibonacci Series with n terms
 
 Author: Rohit Jha
-Version: 0.1
-Date: 31 Dec 2012
+Version: 0.2
+Date: 23 June 2015
 -}
 
 
@@ -37,7 +37,7 @@ fib :: Integer -> Integer
 fib n = round $ phi ** fromIntegral n / sq5
 	where
 		sq5 = sqrt 5 :: Double
-		phi = (1 + sq5) / 2
+		phi = ((1 + sq5) / 2) :: Double
 
 
 -- Generate Fibonacci Series with n terms

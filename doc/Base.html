@@ -1,0 +1,36 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Base</title><link href="ocean.css" rel="stylesheet" type="text/css" title="Ocean" /><script src="haddock-util.js" type="text/javascript"></script><script type="text/javascript">//<![CDATA[
+window.onload = function () {pageLoad();setSynopsis("mini_Base.html");};
+//]]>
+</script></head><body><div id="package-header"><ul class="links" id="page-menu"><li><a href="index.html">Contents</a></li><li><a href="doc-index.html">Index</a></li></ul><p class="caption empty">&nbsp;</p></div><div id="content"><div id="module-header"><table class="info"><tr><th>Copyright</th><td>(c) Rohit Jha, 2015</td></tr><tr><th>License</th><td>BSD2</td></tr><tr><th>Maintainer</th><td>rohit305jha@gmail.com</td></tr><tr><th>Stability</th><td>Stable</td></tr><tr><th>Safe Haskell</th><td>Safe</td></tr></table><p class="caption">Base</p></div><div id="description"><p class="caption">Description</p><div class="doc"><p>Functionality for:
+	* Converting decimal numbers to any base/radix
+	* Converting numbers from any base<em>radix to decimal base</em>radix</p></div></div><div id="synopsis"><p id="control.syn" class="caption expander" onclick="toggleSection('syn')">Synopsis</p><ul id="section.syn" class="hide" onclick="toggleSection('syn')"><li class="src short"><a href="#v:toBase">toBase</a> :: Int -&gt; Int -&gt; [Int]</li><li class="src short"><a href="#v:fromBase">fromBase</a> :: Int -&gt; [Int] -&gt; Int</li><li class="src short"><a href="#v:toAlphaDigits">toAlphaDigits</a> :: [Int] -&gt; String</li><li class="src short"><a href="#v:fromAlphaDigits">fromAlphaDigits</a> :: String -&gt; [Int]</li></ul></div><div id="interface"><h1>Documentation</h1><div class="top"><p class="src"><a name="v:toBase" class="def">toBase</a> :: Int -&gt; Int -&gt; [Int]</p><div class="doc"><p>The <code><a href="Base.html#v:toBase">toBase</a></code> function converts a number from decimal base to a specified base in the form of digits.
+  	The function takes two arguments, both of type Int.</p><p>Below are a few examples:</p><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>toBase 8 37
+</code></strong>[4,5]
+</pre><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>toBase 100 233243
+</code></strong>[23,32,43]
+</pre><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>toBase 9 233243
+</code></strong>[3,8,4,8,4,8]
+</pre><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>toBase 35 233243
+</code></strong>[5,15,14,3]
+</pre></div></div><div class="top"><p class="src"><a name="v:fromBase" class="def">fromBase</a> :: Int -&gt; [Int] -&gt; Int</p><div class="doc"><p>The <code><a href="Base.html#v:fromBase">fromBase</a></code> function converts a number from a specified base to decimal in the form of a list of digits.
+  	The function takes two arguments, the first of type Int and the second of type [Int].</p><p>Below are a few examples:</p><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>fromBase 16 [15,15,15]
+</code></strong>4095
+</pre><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>fromBase 100 [21,12,1]
+</code></strong>211201
+</pre><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>fromBase 2 [1,0,1]
+</code></strong>5
+</pre></div></div><div class="top"><p class="src"><a name="v:toAlphaDigits" class="def">toAlphaDigits</a> :: [Int] -&gt; String</p><div class="doc"><p>The <code><a href="Base.html#v:toAlphaDigits">toAlphaDigits</a></code> function converts a number from a list of Int to corresponding String representation.
+  	The function takes one argument of type [Int], which contains the list of digits.</p><p>Below are a few examples:</p><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>toAlphaDigits $ toBase 16 23432
+</code></strong>&quot;5b88&quot;
+</pre><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>toAlphaDigits $ toBase 16 255
+</code></strong>&quot;ff&quot;
+</pre><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>toAlphaDigits [38,12,1]
+</code></strong>&quot;}c1&quot;
+</pre><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>toAlphaDigits [21,12,1]
+</code></strong>&quot;lc1&quot;
+</pre></div></div><div class="top"><p class="src"><a name="v:fromAlphaDigits" class="def">fromAlphaDigits</a> :: String -&gt; [Int]</p><div class="doc"><p>The 'from AlphaDigits' function converts a String to list of Int digits.
+	The function takes only one argument of type String.</p><p>Below are a few examples:</p><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>fromAlphaDigits &quot;j43hbrh&quot;
+</code></strong>[19,4,3,17,11,27,17]
+</pre><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>fromAlphaDigits &quot;ffff&quot;
+</code></strong>[15,15,15,15]
+</pre></div></div></div></div><div id="footer"><p>Produced by <a href="http://www.haskell.org/haddock/">Haddock</a> version 2.16.0</p></div></body></html>

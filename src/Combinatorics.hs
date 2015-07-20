@@ -7,7 +7,7 @@ Maintainer: rohit305jha@gmail.com
 Stability: Stable
 
 Functionality for:
-	* Factorial
+    * Factorial
 	* Finding number of combinations
 	* Finding number of permutations
 	* Generating permutations and combinations
@@ -32,19 +32,19 @@ import Control.Applicative
 
 
 {-|
-  The 'factorial' function returns the factorial of an integer.
-  It takes one argument, of type 'Integer'.
+    The 'factorial' function returns the factorial of an integer.
+    It takes one argument, of type 'Integer'.
 
-  Three examples are given below:
+    Below are a few examples:
   
-  >>> factorial 5
-  120
+    >>> factorial 5
+    120
 		
-  >>> factorial 25
-  15511210043330985984000000
+    >>> factorial 25
+    15511210043330985984000000
 	
-  >>> factorial (-1)
-  *** Exception: Usage - factorial n, where 'n' is non-negative.
+    >>> factorial (-1)
+    *** Exception: Usage - factorial n, where 'n' is non-negative.
  -}
 factorial :: Integer -> Integer
 factorial n
@@ -55,17 +55,17 @@ factorial n
 
 
 {-|
-  The 'c' function returns the number of combinations.
-  It takes two arguments, both of type 'Integer'.
-  When called as c n r, where 'n' and 'r' are arguments, it returns the number of possible combinations of 'r' objects from a set of 'n' objects.
+    The 'c' function returns the number of combinations.
+    It takes two arguments, both of type 'Integer'.
+    When called as c n r, where 'n' and 'r' are arguments, it returns the number of possible combinations of 'r' objects from a set of 'n' objects.
 
-  Two examples are given below:
+    Below are a few examples:
   
-  >>> c 10 5
-  252
+    >>> c 10 5
+    252
 		
-  >>> 18 `c` 8
-  43758
+    >>> 18 `c` 8
+    43758
 -}
 c :: Integer -> Integer -> Integer
 c n r
@@ -78,17 +78,17 @@ c n r
 
 
 {-|
-  The 'p' function returns the number of permutations.
-  It takes two arguments, both of type 'Integer'.
-  When called as p n r, where 'n' and 'r' are arguments, it returns the number of possible permutations of 'r' objects from a set of 'n' objects.
+    The 'p' function returns the number of permutations.
+    It takes two arguments, both of type 'Integer'.
+    When called as p n r, where 'n' and 'r' are arguments, it returns the number of possible permutations of 'r' objects from a set of 'n' objects.
 
-  Two examples are given below:
+    Below are a few examples:
   
-  >>> p 10 5
-  30240
+    >>> p 10 5
+    30240
 		
-  >>> 18 `p` 8
-  1764322560
+    >>> 18 `p` 8
+    1764322560
 -}
 p :: Integer -> Integer -> Integer
 p n r
@@ -101,44 +101,44 @@ p n r
 
 
 {-|
-  The 'permutation' function returns all possible permutations of a list.
-  It takes one argument, which can be a list or string.
+    The 'permutation' function returns all possible permutations of a list.
+    It takes one argument, which can be a list or string.
 
-  Two examples are given below:
+    Below are a few examples:
   
-  >>> permutation "abc"
-  ["abc","bac","cba","bca","cab","acb"]
+    >>> permutation "abc"
+    ["abc","bac","cba","bca","cab","acb"]
 		
-  >>> permutation [1,2]
-  [[1,2],[2,1]]
+    >>> permutation [1,2]
+    [[1,2],[2,1]]
 -}
 permutation :: [a] -> [[a]]
 permutation x = L.permutations x
 
 
 {-|
-  The 'shuffle' function generates a random permutation.
-  The function takes a list as argument and returns a shuffled list using the Fisher-Yates shuffle algorithm.
+    The 'shuffle' function generates a random permutation.
+    The function takes a list as argument and returns a shuffled list using the Fisher-Yates shuffle algorithm.
 
-  Six examples are given below:
+    Below are a few examples:
 
-  >>> shuffle [1..10]
-  [6,10,1,7,4,8,9,3,2,5]
+    >>> shuffle [1..10]
+    [6,10,1,7,4,8,9,3,2,5]
 		
-  >>> shuffle [2,4..10]
-  [8,4,10,2,6]
+    >>> shuffle [2,4..10]
+    [8,4,10,2,6]
 		
-  >>> shuffle [2,3,5,7]
-  [3,7,5,2]
+    >>> shuffle [2,3,5,7]
+    [3,7,5,2]
 		
-  >>> shuffle ["abc", "xys"]
-  ["abc","xys"]
+    >>> shuffle ["abc", "xys"]
+    ["abc","xys"]
 		
-  >>> shuffle ["abc", "xys", "fdvdfv"]
-  ["abc","fdvdfv","xys"]
+    >>> shuffle ["abc", "xys", "fdvdfv"]
+    ["abc","fdvdfv","xys"]
 		
-  >>> shuffle [[1,2], [3,4], [5,6]]
-  [[3,4],[1,2],[5,6]]
+    >>> shuffle [[1,2], [3,4], [5,6]]
+    [[3,4],[1,2],[5,6]]
 -}
 shuffle :: [a] -> IO [a]
 shuffle l = shuffle' l []
@@ -152,17 +152,17 @@ shuffle l = shuffle' l []
 
 
 {-|
-  The 'combination' function generates all possible combinations.
-  The function takes two arguments, the first of type Integer and the second as a list of lists.
-  The function generates a combination of 'n' elements at a time, where 'n' is the first argument.
+    The 'combination' function generates all possible combinations.
+    The function takes two arguments, the first of type Integer and the second as a list of lists.
+    The function generates a combination of 'n' elements at a time, where 'n' is the first argument.
 
-  Three examples are given below:
+    Below are a few examples:
 
-  >>> combination 2 ["a","b","c"]
-  ["aa","ab","ac","ba","bb","bc","ca","cb","cc"]
+    >>> combination 2 ["a","b","c"]
+    ["aa","ab","ac","ba","bb","bc","ca","cb","cc"]
 
-  >>> combination 2 [[1],[2],[3]]
-  [[1,1],[1,2],[1,3],[2,1],[2,2],[2,3],[3,1],[3,2],[3,3]]
+    >>> combination 2 [[1],[2],[3]]
+    [[1,1],[1,2],[1,3],[2,1],[2,2],[2,3],[3,1],[3,2],[3,3]]
 -}
 combination n as = foldr1 prod $ replicate n as
 		where

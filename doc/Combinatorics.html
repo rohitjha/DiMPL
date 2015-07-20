@@ -2,36 +2,36 @@
 window.onload = function () {pageLoad();setSynopsis("mini_Combinatorics.html");};
 //]]>
 </script></head><body><div id="package-header"><ul class="links" id="page-menu"><li><a href="index.html">Contents</a></li><li><a href="doc-index.html">Index</a></li></ul><p class="caption empty">&nbsp;</p></div><div id="content"><div id="module-header"><table class="info"><tr><th>Copyright</th><td>(c) Rohit Jha, 2015</td></tr><tr><th>License</th><td>BSD2</td></tr><tr><th>Maintainer</th><td>rohit305jha@gmail.com</td></tr><tr><th>Stability</th><td>Stable</td></tr><tr><th>Safe Haskell</th><td>Safe</td></tr></table><p class="caption">Combinatorics</p></div><div id="description"><p class="caption">Description</p><div class="doc"><p>Functionality for:
-	* Factorial
+    * Factorial
 	* Finding number of combinations
 	* Finding number of permutations
 	* Generating permutations and combinations
 	* Generating random permutation (shuffle)</p></div></div><div id="synopsis"><p id="control.syn" class="caption expander" onclick="toggleSection('syn')">Synopsis</p><ul id="section.syn" class="hide" onclick="toggleSection('syn')"><li class="src short"><a href="#v:factorial">factorial</a> :: Integer -&gt; Integer</li><li class="src short"><a href="#v:c">c</a> :: Integer -&gt; Integer -&gt; Integer</li><li class="src short"><a href="#v:p">p</a> :: Integer -&gt; Integer -&gt; Integer</li><li class="src short"><a href="#v:permutation">permutation</a> :: [a] -&gt; [[a]]</li><li class="src short"><a href="#v:shuffle">shuffle</a> :: [a] -&gt; IO [a]</li><li class="src short"><a href="#v:combination">combination</a> :: Applicative f =&gt; Int -&gt; f [a] -&gt; f [a]</li></ul></div><div id="interface"><h1>Documentation</h1><div class="top"><p class="src"><a name="v:factorial" class="def">factorial</a> :: Integer -&gt; Integer</p><div class="doc"><p>The <code><a href="Combinatorics.html#v:factorial">factorial</a></code> function returns the factorial of an integer.
-  It takes one argument, of type <code>Integer</code>.</p><p>Three examples are given below:</p><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>factorial 5
+    It takes one argument, of type <code>Integer</code>.</p><p>Below are a few examples:</p><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>factorial 5
 </code></strong>120
 </pre><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>factorial 25
 </code></strong>15511210043330985984000000
 </pre><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>factorial (-1)
 </code></strong>*** Exception: Usage - factorial n, where 'n' is non-negative.
 </pre></div></div><div class="top"><p class="src"><a name="v:c" class="def">c</a> :: Integer -&gt; Integer -&gt; Integer</p><div class="doc"><p>The <code><a href="Combinatorics.html#v:c">c</a></code> function returns the number of combinations.
-  It takes two arguments, both of type <code>Integer</code>.
-  When called as c n r, where <code>n</code> and <code>r</code> are arguments, it returns the number of possible combinations of <code>r</code> objects from a set of <code>n</code> objects.</p><p>Two examples are given below:</p><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>c 10 5
+    It takes two arguments, both of type <code>Integer</code>.
+    When called as c n r, where <code>n</code> and <code>r</code> are arguments, it returns the number of possible combinations of <code>r</code> objects from a set of <code>n</code> objects.</p><p>Below are a few examples:</p><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>c 10 5
 </code></strong>252
 </pre><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>18 `c` 8
 </code></strong>43758
 </pre></div></div><div class="top"><p class="src"><a name="v:p" class="def">p</a> :: Integer -&gt; Integer -&gt; Integer</p><div class="doc"><p>The <code><a href="Combinatorics.html#v:p">p</a></code> function returns the number of permutations.
-  It takes two arguments, both of type <code>Integer</code>.
-  When called as p n r, where <code>n</code> and <code>r</code> are arguments, it returns the number of possible permutations of <code>r</code> objects from a set of <code>n</code> objects.</p><p>Two examples are given below:</p><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>p 10 5
+    It takes two arguments, both of type <code>Integer</code>.
+    When called as p n r, where <code>n</code> and <code>r</code> are arguments, it returns the number of possible permutations of <code>r</code> objects from a set of <code>n</code> objects.</p><p>Below are a few examples:</p><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>p 10 5
 </code></strong>30240
 </pre><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>18 `p` 8
 </code></strong>1764322560
 </pre></div></div><div class="top"><p class="src"><a name="v:permutation" class="def">permutation</a> :: [a] -&gt; [[a]]</p><div class="doc"><p>The <code><a href="Combinatorics.html#v:permutation">permutation</a></code> function returns all possible permutations of a list.
-  It takes one argument, which can be a list or string.</p><p>Two examples are given below:</p><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>permutation &quot;abc&quot;
+    It takes one argument, which can be a list or string.</p><p>Below are a few examples:</p><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>permutation &quot;abc&quot;
 </code></strong>[&quot;abc&quot;,&quot;bac&quot;,&quot;cba&quot;,&quot;bca&quot;,&quot;cab&quot;,&quot;acb&quot;]
 </pre><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>permutation [1,2]
 </code></strong>[[1,2],[2,1]]
 </pre></div></div><div class="top"><p class="src"><a name="v:shuffle" class="def">shuffle</a> :: [a] -&gt; IO [a]</p><div class="doc"><p>The <code><a href="Combinatorics.html#v:shuffle">shuffle</a></code> function generates a random permutation.
-  The function takes a list as argument and returns a shuffled list using the Fisher-Yates shuffle algorithm.</p><p>Six examples are given below:</p><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>shuffle [1..10]
+    The function takes a list as argument and returns a shuffled list using the Fisher-Yates shuffle algorithm.</p><p>Below are a few examples:</p><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>shuffle [1..10]
 </code></strong>[6,10,1,7,4,8,9,3,2,5]
 </pre><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>shuffle [2,4..10]
 </code></strong>[8,4,10,2,6]
@@ -44,8 +44,8 @@ window.onload = function () {pageLoad();setSynopsis("mini_Combinatorics.html");}
 </pre><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>shuffle [[1,2], [3,4], [5,6]]
 </code></strong>[[3,4],[1,2],[5,6]]
 </pre></div></div><div class="top"><p class="src"><a name="v:combination" class="def">combination</a> :: Applicative f =&gt; Int -&gt; f [a] -&gt; f [a]</p><div class="doc"><p>The <code><a href="Combinatorics.html#v:combination">combination</a></code> function generates all possible combinations.
-  The function takes two arguments, the first of type Integer and the second as a list of lists.
-  The function generates a combination of <code>n</code> elements at a time, where <code>n</code> is the first argument.</p><p>Three examples are given below:</p><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>combination 2 [&quot;a&quot;,&quot;b&quot;,&quot;c&quot;]
+    The function takes two arguments, the first of type Integer and the second as a list of lists.
+    The function generates a combination of <code>n</code> elements at a time, where <code>n</code> is the first argument.</p><p>Below are a few examples:</p><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>combination 2 [&quot;a&quot;,&quot;b&quot;,&quot;c&quot;]
 </code></strong>[&quot;aa&quot;,&quot;ab&quot;,&quot;ac&quot;,&quot;ba&quot;,&quot;bb&quot;,&quot;bc&quot;,&quot;ca&quot;,&quot;cb&quot;,&quot;cc&quot;]
 </pre><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>combination 2 [[1],[2],[3]]
 </code></strong>[[1,1],[1,2],[1,3],[2,1],[2,2],[2,3],[3,1],[3,2],[3,3]]

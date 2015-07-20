@@ -16,12 +16,12 @@ Functionality for:
 
 module Combinatorics
 (
-	factorial,
-	c,
-	p,
-	permutation,
-	shuffle,
-	combination
+  factorial,
+  c,
+  p,
+  permutation,
+  shuffle,
+  combination
 )
 where
 
@@ -48,10 +48,10 @@ import Control.Applicative
  -}
 factorial :: Integer -> Integer
 factorial n
-	| (n == 0) = 1
-	| (n == 1) = 1
-	| (n > 1) = product [2..n]
-	| (n < 0) = error "Usage - factorial n, where 'n' is non-negative."
+  | n == 0 = 1
+  | n == 1 = 1
+  | n > 1 = product [2..n]
+  | n < 0 = error "Usage - factorial n, where 'n' is non-negative."
 
 
 {-|
@@ -69,12 +69,12 @@ factorial n
 -}
 c :: Integer -> Integer -> Integer
 c n r
-	| (n < 1) = error "Usage - c n r, where 'n' is positive."
-	| (r < 1) = error "Usage - c n r, where 'r' is positive."
-	| otherwise =	(factorial a) `div` ( (factorial b) * (factorial (a-b)) )
-				where
-				a = max n r
-				b = min n r
+  | n < 1 = error "Usage - c n r, where 'n' is positive."
+  | r < 1 = error "Usage - c n r, where 'r' is positive."
+  | otherwise = factorial a `div` ( (factorial b) * (factorial (a-b)) )
+              where
+                a = max n r
+                b = min n r
 
 
 {-|
@@ -92,12 +92,12 @@ c n r
 -}
 p :: Integer -> Integer -> Integer
 p n r
-	| (n < 1) = error "Usage - p n r, where 'n' is positive."
-	| (r < 1) = error "Usage - p n r, where 'r' is positive."
-	| otherwise =	(factorial a) `div` (factorial (a-b))
-				where
-				a = max n r
-				b = min n r
+  | n < 1 = error "Usage - p n r, where 'n' is positive."
+  | r < 1 = error "Usage - p n r, where 'r' is positive."
+  | otherwise = (factorial a) `div` (factorial (a-b))
+  where
+    a = max n r
+    b = min n r
 
 
 {-|
@@ -113,7 +113,7 @@ p n r
     [[1,2],[2,1]]
 -}
 permutation :: [a] -> [[a]]
-permutation x = L.permutations x
+permutation = L.permutations
 
 
 {-|
@@ -142,13 +142,13 @@ permutation x = L.permutations x
 -}
 shuffle :: [a] -> IO [a]
 shuffle l = shuffle' l []
-	where
-		shuffle' [] acc = return acc
-		shuffle' l acc =
-			do
-				k <- randomRIO (0, (length l) - 1)
-				let (lead, x:xs) = splitAt k l
-				shuffle' (lead ++ xs) (x:acc)
+  where
+    shuffle' [] acc = return acc
+    shuffle' l acc =
+      do
+        k <- randomRIO (0, length l - 1)
+        let (lead, x:xs) = splitAt k l
+        shuffle' (lead ++ xs) (x:acc)
 
 
 {-|
@@ -165,5 +165,5 @@ shuffle l = shuffle' l []
     [[1,1],[1,2],[1,3],[2,1],[2,2],[2,3],[3,1],[3,2],[3,3]]
 -}
 combination n as = foldr1 prod $ replicate n as
-		where
-		prod as bs = (++) <$> as <*> bs
+      where
+        prod as bs = (++) <$> as <*> bs

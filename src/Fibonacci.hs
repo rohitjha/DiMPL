@@ -42,7 +42,7 @@ fibs = 1 : 1 : zipWith (+) fibs (tail fibs)
 -}
 fib :: Integer -> Integer
 fib n
-    | n > 0 = fibs !! (fromInteger (n - 1))
+    | n > 0 = fibs !! fromInteger (n - 1)
     | otherwise = error "Usage - fib n, where n is a positive integer."
 
 
@@ -81,7 +81,7 @@ fibSeries n
 -}
 isFibNum :: Integer -> Bool
 isFibNum f
-    | f > 0 = (head $ dropWhile (< f) fibs) == f
+    | f > 0 = head (dropWhile (< f) fibs) == f
     | otherwise = error "Usage - isFibNum f, where f is a positive integer."
 
 
@@ -102,5 +102,5 @@ isFibNum f
 -}
 fibIndex :: Integer -> Integer
 fibIndex f
-    | (f > 0) && (isFibNum f) = toInteger $ 1 + (fromJust $ findIndex (== f) fibs)
+    | (f > 0) && isFibNum f = toInteger $ 1 + (fromJust $ findIndex (== f) fibs)
     | otherwise = error "Usage - fibIndex f, where f is a Fibonacci Series term."

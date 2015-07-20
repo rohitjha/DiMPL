@@ -1,6 +1,6 @@
 {-|
-Module: MPL.Combinatorics.Combinatorics
-Description: Combinatorics Module for MPL
+Module: Combinatorics
+Description: Combinatorics module for the MPL DSL
 Copyright: (c) Rohit Jha, 2015
 License: BSD2
 Maintainer: rohit305jha@gmail.com

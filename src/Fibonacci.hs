@@ -13,7 +13,7 @@ Date: 23 June 2015
 -}
 
 
-module MPL.NumberTheory.Fibonacci
+module Fibonacci
 (
 	fib,
 	fibSeries

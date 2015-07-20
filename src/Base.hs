@@ -12,7 +12,7 @@ Version: 0.1
 Date: 31 Dec 2012
 -}
 
-module MPL.NumberTheory.Base
+module Base
 (
 	toBase,
 	fromBase,

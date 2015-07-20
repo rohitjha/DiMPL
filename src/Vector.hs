@@ -25,7 +25,7 @@ Version: 0.1
 Date: 7 Feb 2013
 -}
 
-module MPL.LinearAlgebra.Vector
+module Vector
 (
 	Vector(..),
 	vDim,

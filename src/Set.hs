@@ -22,7 +22,7 @@ Version: 0.1
 Date: 5 Mar 2013
 -}
 
-module MPL.SetTheory.Set 
+module Set 
 (
 	Set(..),
 	set2list,

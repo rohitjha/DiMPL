@@ -28,7 +28,7 @@ Version: 0.1
 Date: 31 Jan 2013
 -}
 
-module MPL.LinearAlgebra.Matrix
+module Matrix
 (
 	Matrix(..),
 	mAdd,

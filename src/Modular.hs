@@ -17,7 +17,7 @@ Date: 22 Jan 2013
 -}
 
 
-module MPL.NumberTheory.Modular
+module Modular
 (
 	modAdd,
 	modSub,

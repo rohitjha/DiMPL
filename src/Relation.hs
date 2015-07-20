@@ -20,7 +20,7 @@ Version: 0.1
 Date: 25 Feb 2013
 -}
 
-module MPL.SetTheory.Relation
+module Relation
 (
 	Relation(..),
 	relation2list,

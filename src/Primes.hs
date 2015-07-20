@@ -15,7 +15,7 @@ Version: 0.2
 Date: 17 Jun 2015
 -}
 
-module MPL.NumberTheory.Primes
+module Primes
 (
 	primesTo,
 	primesBetween,

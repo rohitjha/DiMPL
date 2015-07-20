@@ -3,7 +3,7 @@ Module: Base
 Description: Base/radix module for the MPL DSL
 Copyright: (c) Rohit Jha, 2015
 License: BSD2
-MaIntegerainer: rohit305jha@gmail.com
+Maintainer: rohit305jha@gmail.com
 Stability: Stable
 
 Functionality for:

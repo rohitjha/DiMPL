@@ -1,4 +1,413 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Graph</title><link href="ocean.css" rel="stylesheet" type="text/css" title="Ocean" /><script src="haddock-util.js" type="text/javascript"></script><script type="text/javascript">//<![CDATA[
 window.onload = function () {pageLoad();setSynopsis("mini_Graph.html");};
 //]]>
-</script></head><body><div id="package-header"><ul class="links" id="page-menu"><li><a href="index.html">Contents</a></li><li><a href="doc-index.html">Index</a></li></ul><p class="caption empty">&nbsp;</p></div><div id="content"><div id="module-header"><table class="info"><tr><th>Safe Haskell</th><td>Safe</td></tr></table><p class="caption">Graph</p></div><div id="interface"><h1>Documentation</h1><div class="top"><p class="src"><span class="keyword">newtype</span> <a name="t:Vertices" class="def">Vertices</a> a</p><div class="subs constructors"><p class="caption">Constructors</p><table><tr><td class="src"><a name="v:Vertices" class="def">Vertices</a> [a]</td><td class="doc empty">&nbsp;</td></tr></table></div><div class="subs instances"><p id="control.i:Vertices" class="caption collapser" onclick="toggleSection('i:Vertices')">Instances</p><div id="section.i:Vertices" class="show"><table><tr><td class="src">Eq a =&gt; Eq (<a href="Graph.html#t:Vertices">Vertices</a> a)</td><td class="doc empty">&nbsp;</td></tr><tr><td class="src">Show a =&gt; Show (<a href="Graph.html#t:Vertices">Vertices</a> a)</td><td class="doc empty">&nbsp;</td></tr></table></div></div></div><div class="top"><p class="src"><a name="v:vertices2list" class="def">vertices2list</a> :: <a href="Graph.html#t:Vertices">Vertices</a> t -&gt; [t]</p></div><div class="top"><p class="src"><span class="keyword">newtype</span> <a name="t:Edges" class="def">Edges</a> a</p><div class="subs constructors"><p class="caption">Constructors</p><table><tr><td class="src"><a name="v:Edges" class="def">Edges</a> [(a, a, Int)]</td><td class="doc empty">&nbsp;</td></tr></table></div><div class="subs instances"><p id="control.i:Edges" class="caption collapser" onclick="toggleSection('i:Edges')">Instances</p><div id="section.i:Edges" class="show"><table><tr><td class="src">Eq a =&gt; Eq (<a href="Graph.html#t:Edges">Edges</a> a)</td><td class="doc empty">&nbsp;</td></tr><tr><td class="src">Show a =&gt; Show (<a href="Graph.html#t:Edges">Edges</a> a)</td><td class="doc empty">&nbsp;</td></tr></table></div></div></div><div class="top"><p class="src"><a name="v:edges2list" class="def">edges2list</a> :: <a href="Graph.html#t:Edges">Edges</a> t -&gt; [(t, t, Int)]</p></div><div class="top"><p class="src"><a name="v:first" class="def">first</a> :: (t, t1, t2) -&gt; t</p></div><div class="top"><p class="src"><a name="v:second" class="def">second</a> :: (t, t1, t2) -&gt; t1</p></div><div class="top"><p class="src"><a name="v:third" class="def">third</a> :: (t, t1, t2) -&gt; t2</p></div><div class="top"><p class="src"><span class="keyword">newtype</span> <a name="t:Graph" class="def">Graph</a> a</p><div class="subs constructors"><p class="caption">Constructors</p><table><tr><td class="src"><a name="v:Graph" class="def">Graph</a> (<a href="Graph.html#t:Vertices">Vertices</a> a, <a href="Graph.html#t:Edges">Edges</a> a)</td><td class="doc empty">&nbsp;</td></tr></table></div><div class="subs instances"><p id="control.i:Graph" class="caption collapser" onclick="toggleSection('i:Graph')">Instances</p><div id="section.i:Graph" class="show"><table><tr><td class="src">Eq a =&gt; Eq (<a href="Graph.html#t:Graph">Graph</a> a)</td><td class="doc empty">&nbsp;</td></tr><tr><td class="src">Show a =&gt; Show (<a href="Graph.html#t:Graph">Graph</a> a)</td><td class="doc empty">&nbsp;</td></tr></table></div></div></div><div class="top"><p class="src"><span class="keyword">newtype</span> <a name="t:GraphMatrix" class="def">GraphMatrix</a> a</p><div class="subs constructors"><p class="caption">Constructors</p><table><tr><td class="src"><a name="v:GraphMatrix" class="def">GraphMatrix</a> [[a]]</td><td class="doc empty">&nbsp;</td></tr></table></div><div class="subs instances"><p id="control.i:GraphMatrix" class="caption collapser" onclick="toggleSection('i:GraphMatrix')">Instances</p><div id="section.i:GraphMatrix" class="show"><table><tr><td class="src">Eq a =&gt; Eq (<a href="Graph.html#t:GraphMatrix">GraphMatrix</a> a)</td><td class="doc empty">&nbsp;</td></tr><tr><td class="src">Show a =&gt; Show (<a href="Graph.html#t:GraphMatrix">GraphMatrix</a> a)</td><td class="doc empty">&nbsp;</td></tr></table></div></div></div><div class="top"><p class="src"><a name="v:graph2matrix" class="def">graph2matrix</a> :: <a href="Graph.html#t:GraphMatrix">GraphMatrix</a> t -&gt; [[t]]</p></div><div class="top"><p class="src"><a name="v:getVerticesG" class="def">getVerticesG</a> :: <a href="Graph.html#t:Graph">Graph</a> t -&gt; <a href="Graph.html#t:Vertices">Vertices</a> t</p></div><div class="top"><p class="src"><a name="v:getVerticesGM" class="def">getVerticesGM</a> :: (Enum a, Num a) =&gt; <a href="Graph.html#t:GraphMatrix">GraphMatrix</a> t -&gt; <a href="Graph.html#t:Vertices">Vertices</a> a</p></div><div class="top"><p class="src"><a name="v:numVerticesG" class="def">numVerticesG</a> :: Num b =&gt; <a href="Graph.html#t:Graph">Graph</a> a -&gt; b</p></div><div class="top"><p class="src"><a name="v:numVerticesGM" class="def">numVerticesGM</a> :: <a href="Graph.html#t:GraphMatrix">GraphMatrix</a> t -&gt; Int</p></div><div class="top"><p class="src"><a name="v:getEdgesG" class="def">getEdgesG</a> :: <a href="Graph.html#t:Graph">Graph</a> t -&gt; <a href="Graph.html#t:Edges">Edges</a> t</p></div><div class="top"><p class="src"><a name="v:getEdgesGM" class="def">getEdgesGM</a> :: Integral r =&gt; <a href="Graph.html#t:GraphMatrix">GraphMatrix</a> r -&gt; <a href="Graph.html#t:Edges">Edges</a> Int</p></div><div class="top"><p class="src"><a name="v:numEdgesG" class="def">numEdgesG</a> :: Num b =&gt; <a href="Graph.html#t:Graph">Graph</a> t -&gt; b</p></div><div class="top"><p class="src"><a name="v:numEdgesGM" class="def">numEdgesGM</a> :: (Integral r, Num b) =&gt; <a href="Graph.html#t:GraphMatrix">GraphMatrix</a> r -&gt; b</p></div><div class="top"><p class="src"><a name="v:convertGM2G" class="def">convertGM2G</a> :: Integral r =&gt; <a href="Graph.html#t:GraphMatrix">GraphMatrix</a> r -&gt; <a href="Graph.html#t:Graph">Graph</a> Int</p></div><div class="top"><p class="src"><a name="v:convertG2GM" class="def">convertG2GM</a> :: Eq t =&gt; <a href="Graph.html#t:Graph">Graph</a> t -&gt; <a href="Graph.html#t:GraphMatrix">GraphMatrix</a> Int</p></div><div class="top"><p class="src"><a name="v:gTransposeG" class="def">gTransposeG</a> :: Eq t =&gt; <a href="Graph.html#t:Graph">Graph</a> t -&gt; <a href="Graph.html#t:Graph">Graph</a> Int</p></div><div class="top"><p class="src"><a name="v:gTransposeGM" class="def">gTransposeGM</a> :: <a href="Graph.html#t:GraphMatrix">GraphMatrix</a> a -&gt; <a href="Graph.html#t:GraphMatrix">GraphMatrix</a> a</p></div><div class="top"><p class="src"><a name="v:isUndirectedG" class="def">isUndirectedG</a> :: Eq t =&gt; <a href="Graph.html#t:Graph">Graph</a> t -&gt; Bool</p></div><div class="top"><p class="src"><a name="v:isUndirectedGM" class="def">isUndirectedGM</a> :: Eq a =&gt; <a href="Graph.html#t:GraphMatrix">GraphMatrix</a> a -&gt; Bool</p></div><div class="top"><p class="src"><a name="v:isDirectedG" class="def">isDirectedG</a> :: Eq t =&gt; <a href="Graph.html#t:Graph">Graph</a> t -&gt; Bool</p></div><div class="top"><p class="src"><a name="v:isDirectedGM" class="def">isDirectedGM</a> :: Eq a =&gt; <a href="Graph.html#t:GraphMatrix">GraphMatrix</a> a -&gt; Bool</p></div><div class="top"><p class="src"><a name="v:unionG" class="def">unionG</a> :: Ord t =&gt; <a href="Graph.html#t:Graph">Graph</a> t -&gt; <a href="Graph.html#t:Graph">Graph</a> t -&gt; <a href="Graph.html#t:Graph">Graph</a> t</p></div><div class="top"><p class="src"><a name="v:unionGM" class="def">unionGM</a> :: (Integral r, Integral r1) =&gt; <a href="Graph.html#t:GraphMatrix">GraphMatrix</a> r -&gt; <a href="Graph.html#t:GraphMatrix">GraphMatrix</a> r1 -&gt; <a href="Graph.html#t:GraphMatrix">GraphMatrix</a> Int</p></div><div class="top"><p class="src"><a name="v:addVerticesG" class="def">addVerticesG</a> :: Eq a =&gt; <a href="Graph.html#t:Graph">Graph</a> a -&gt; <a href="Graph.html#t:Vertices">Vertices</a> a -&gt; <a href="Graph.html#t:Graph">Graph</a> a</p></div><div class="top"><p class="src"><a name="v:addVerticesGM" class="def">addVerticesGM</a> :: Integral r =&gt; <a href="Graph.html#t:GraphMatrix">GraphMatrix</a> r -&gt; <a href="Graph.html#t:Vertices">Vertices</a> Int -&gt; <a href="Graph.html#t:GraphMatrix">GraphMatrix</a> Int</p></div><div class="top"><p class="src"><a name="v:verticesInEdges" class="def">verticesInEdges</a> :: Eq t =&gt; <a href="Graph.html#t:Edges">Edges</a> t -&gt; [t]</p></div><div class="top"><p class="src"><a name="v:addEdgesG" class="def">addEdgesG</a> :: Eq t =&gt; <a href="Graph.html#t:Graph">Graph</a> t -&gt; <a href="Graph.html#t:Edges">Edges</a> t -&gt; <a href="Graph.html#t:Graph">Graph</a> t</p></div><div class="top"><p class="src"><a name="v:addEdgesGM" class="def">addEdgesGM</a> :: Integral r =&gt; <a href="Graph.html#t:GraphMatrix">GraphMatrix</a> r -&gt; <a href="Graph.html#t:Edges">Edges</a> Int -&gt; <a href="Graph.html#t:GraphMatrix">GraphMatrix</a> Int</p></div><div class="top"><p class="src"><a name="v:areConnectedGM" class="def">areConnectedGM</a> :: <a href="Graph.html#t:GraphMatrix">GraphMatrix</a> Double -&gt; <a href="Graph.html#t:Vertices">Vertices</a> Int -&gt; <a href="Graph.html#t:Vertices">Vertices</a> Int -&gt; Bool</p></div><div class="top"><p class="src"><a name="v:numPathsBetweenGM" class="def">numPathsBetweenGM</a> :: <a href="Graph.html#t:GraphMatrix">GraphMatrix</a> Double -&gt; <a href="Graph.html#t:Vertices">Vertices</a> Int -&gt; <a href="Graph.html#t:Vertices">Vertices</a> Int -&gt; Double</p></div><div class="top"><p class="src"><a name="v:adjacentNodesG" class="def">adjacentNodesG</a> :: Eq t =&gt; <a href="Graph.html#t:Graph">Graph</a> t -&gt; <a href="Graph.html#t:Vertices">Vertices</a> t -&gt; <a href="Graph.html#t:Vertices">Vertices</a> t</p></div><div class="top"><p class="src"><a name="v:adjacentNodesGM" class="def">adjacentNodesGM</a> :: Integral r =&gt; <a href="Graph.html#t:GraphMatrix">GraphMatrix</a> r -&gt; <a href="Graph.html#t:Vertices">Vertices</a> Int -&gt; <a href="Graph.html#t:Vertices">Vertices</a> Int</p></div><div class="top"><p class="src"><a name="v:inDegreeG" class="def">inDegreeG</a> :: Eq t =&gt; <a href="Graph.html#t:Graph">Graph</a> t -&gt; <a href="Graph.html#t:Vertices">Vertices</a> t -&gt; Int</p></div><div class="top"><p class="src"><a name="v:inDegreeGM" class="def">inDegreeGM</a> :: Integral r =&gt; <a href="Graph.html#t:GraphMatrix">GraphMatrix</a> r -&gt; <a href="Graph.html#t:Vertices">Vertices</a> Int -&gt; Int</p></div><div class="top"><p class="src"><a name="v:outDegreeG" class="def">outDegreeG</a> :: Eq a =&gt; <a href="Graph.html#t:Graph">Graph</a> a -&gt; <a href="Graph.html#t:Vertices">Vertices</a> a -&gt; Int</p></div><div class="top"><p class="src"><a name="v:outDegreeGM" class="def">outDegreeGM</a> :: Integral r =&gt; <a href="Graph.html#t:GraphMatrix">GraphMatrix</a> r -&gt; <a href="Graph.html#t:Vertices">Vertices</a> Int -&gt; Int</p></div><div class="top"><p class="src"><a name="v:degreeG" class="def">degreeG</a> :: Eq a =&gt; <a href="Graph.html#t:Graph">Graph</a> a -&gt; <a href="Graph.html#t:Vertices">Vertices</a> a -&gt; Int</p></div><div class="top"><p class="src"><a name="v:degreeGM" class="def">degreeGM</a> :: Integral r =&gt; <a href="Graph.html#t:GraphMatrix">GraphMatrix</a> r -&gt; <a href="Graph.html#t:Vertices">Vertices</a> Int -&gt; Int</p></div><div class="top"><p class="src"><a name="v:hasEulerCircuitG" class="def">hasEulerCircuitG</a> :: Eq a =&gt; <a href="Graph.html#t:Graph">Graph</a> a -&gt; Bool</p></div><div class="top"><p class="src"><a name="v:hasEulerCircuitGM" class="def">hasEulerCircuitGM</a> :: Integral r =&gt; <a href="Graph.html#t:GraphMatrix">GraphMatrix</a> r -&gt; Bool</p></div><div class="top"><p class="src"><a name="v:hasEulerPathG" class="def">hasEulerPathG</a> :: Eq a =&gt; <a href="Graph.html#t:Graph">Graph</a> a -&gt; Bool</p></div><div class="top"><p class="src"><a name="v:hasEulerPathGM" class="def">hasEulerPathGM</a> :: Integral r =&gt; <a href="Graph.html#t:GraphMatrix">GraphMatrix</a> r -&gt; Bool</p></div><div class="top"><p class="src"><a name="v:hasHamiltonianCircuitG" class="def">hasHamiltonianCircuitG</a> :: Eq a =&gt; <a href="Graph.html#t:Graph">Graph</a> a -&gt; Bool</p></div><div class="top"><p class="src"><a name="v:hasHamiltonianCircuitGM" class="def">hasHamiltonianCircuitGM</a> :: Integral r =&gt; <a href="Graph.html#t:GraphMatrix">GraphMatrix</a> r -&gt; Bool</p></div><div class="top"><p class="src"><a name="v:countOddDegreeV" class="def">countOddDegreeV</a> :: (Eq a1, Num a) =&gt; <a href="Graph.html#t:Graph">Graph</a> a1 -&gt; a</p></div><div class="top"><p class="src"><a name="v:countEvenDegreeV" class="def">countEvenDegreeV</a> :: (Eq a1, Num a) =&gt; <a href="Graph.html#t:Graph">Graph</a> a1 -&gt; a</p></div><div class="top"><p class="src"><a name="v:hasEulerPathNotCircuitG" class="def">hasEulerPathNotCircuitG</a> :: Eq a =&gt; <a href="Graph.html#t:Graph">Graph</a> a -&gt; Bool</p></div><div class="top"><p class="src"><a name="v:hasEulerPathNotCircuitGM" class="def">hasEulerPathNotCircuitGM</a> :: Integral r =&gt; <a href="Graph.html#t:GraphMatrix">GraphMatrix</a> r -&gt; Bool</p></div><div class="top"><p class="src"><a name="v:isSubgraphG" class="def">isSubgraphG</a> :: Ord a =&gt; <a href="Graph.html#t:Graph">Graph</a> a -&gt; <a href="Graph.html#t:Graph">Graph</a> a -&gt; Bool</p></div><div class="top"><p class="src"><a name="v:isSubgraphGM" class="def">isSubgraphGM</a> :: (Integral r, Integral r1) =&gt; <a href="Graph.html#t:GraphMatrix">GraphMatrix</a> r -&gt; <a href="Graph.html#t:GraphMatrix">GraphMatrix</a> r1 -&gt; Bool</p></div></div></div><div id="footer"><p>Produced by <a href="http://www.haskell.org/haddock/">Haddock</a> version 2.16.0</p></div></body></html>
+</script></head><body><div id="package-header"><ul class="links" id="page-menu"><li><a href="index.html">Contents</a></li><li><a href="doc-index.html">Index</a></li></ul><p class="caption empty">&nbsp;</p></div><div id="content"><div id="module-header"><table class="info"><tr><th>Copyright</th><td>(c) Rohit Jha, 2015</td></tr><tr><th>License</th><td>BSD2</td></tr><tr><th>Maintainer</th><td>rohit305jha@gmail.com</td></tr><tr><th>Stability</th><td>Stable</td></tr><tr><th>Safe Haskell</th><td>Safe</td></tr></table><p class="caption">Graph</p></div><div id="description"><p class="caption">Description</p><div class="doc"><p>Functionality for:
+	* Data types (Graph, GraphMatrix, Edges and Vertices)
+	* Adding edges and vertices
+	* Getting vertices and their number
+	* Getting edges and their number
+	* Converting between different Graph data types
+	* Transpose
+	* Checking for directedness
+	* Union
+	* Connectedness of vertices
+	* Number of paths between two vertices
+	* Adjacent nodes of a vertex
+	* Degrees of vertices
+	* Euler circuits and paths
+	* Hamiltonian circuits</p></div></div><div id="synopsis"><p id="control.syn" class="caption expander" onclick="toggleSection('syn')">Synopsis</p><ul id="section.syn" class="hide" onclick="toggleSection('syn')"><li class="src short"><span class="keyword">newtype</span> <a href="#t:Vertices">Vertices</a> a = <a href="#v:Vertices">Vertices</a> [a]</li><li class="src short"><span class="keyword">newtype</span> <a href="#t:Edges">Edges</a> a = <a href="#v:Edges">Edges</a> [(a, a, Int)]</li><li class="src short"><span class="keyword">newtype</span> <a href="#t:Graph">Graph</a> a = <a href="#v:Graph">Graph</a> (<a href="Graph.html#t:Vertices">Vertices</a> a, <a href="Graph.html#t:Edges">Edges</a> a)</li><li class="src short"><span class="keyword">newtype</span> <a href="#t:GraphMatrix">GraphMatrix</a> a = <a href="#v:GraphMatrix">GraphMatrix</a> [[a]]</li><li class="src short"><a href="#v:vertices2list">vertices2list</a> :: <a href="Graph.html#t:Vertices">Vertices</a> t -&gt; [t]</li><li class="src short"><a href="#v:edges2list">edges2list</a> :: <a href="Graph.html#t:Edges">Edges</a> t -&gt; [(t, t, Int)]</li><li class="src short"><a href="#v:graph2matrix">graph2matrix</a> :: <a href="Graph.html#t:GraphMatrix">GraphMatrix</a> a -&gt; [[a]]</li><li class="src short"><a href="#v:getVerticesG">getVerticesG</a> :: Num a =&gt; <a href="Graph.html#t:Graph">Graph</a> a -&gt; <a href="Graph.html#t:Vertices">Vertices</a> a</li><li class="src short"><a href="#v:getVerticesGM">getVerticesGM</a> :: <a href="Graph.html#t:GraphMatrix">GraphMatrix</a> t -&gt; <a href="Graph.html#t:Vertices">Vertices</a> Int</li><li class="src short"><a href="#v:numVerticesG">numVerticesG</a> :: Num a =&gt; <a href="Graph.html#t:Graph">Graph</a> a -&gt; Int</li><li class="src short"><a href="#v:numVerticesGM">numVerticesGM</a> :: Num a =&gt; <a href="Graph.html#t:GraphMatrix">GraphMatrix</a> a -&gt; Int</li><li class="src short"><a href="#v:getEdgesG">getEdgesG</a> :: Num a =&gt; <a href="Graph.html#t:Graph">Graph</a> a -&gt; <a href="Graph.html#t:Edges">Edges</a> a</li><li class="src short"><a href="#v:getEdgesGM">getEdgesGM</a> :: Integral a =&gt; <a href="Graph.html#t:GraphMatrix">GraphMatrix</a> a -&gt; <a href="Graph.html#t:Edges">Edges</a> Int</li><li class="src short"><a href="#v:numEdgesG">numEdgesG</a> :: Num a =&gt; <a href="Graph.html#t:Graph">Graph</a> a -&gt; Int</li><li class="src short"><a href="#v:numEdgesGM">numEdgesGM</a> :: Integral a =&gt; <a href="Graph.html#t:GraphMatrix">GraphMatrix</a> a -&gt; Int</li><li class="src short"><a href="#v:convertGM2G">convertGM2G</a> :: Integral a =&gt; <a href="Graph.html#t:GraphMatrix">GraphMatrix</a> a -&gt; <a href="Graph.html#t:Graph">Graph</a> Int</li><li class="src short"><a href="#v:convertG2GM">convertG2GM</a> :: (Eq t, Num t) =&gt; <a href="Graph.html#t:Graph">Graph</a> t -&gt; <a href="Graph.html#t:GraphMatrix">GraphMatrix</a> Int</li><li class="src short"><a href="#v:gTransposeG">gTransposeG</a> :: (Eq t, Num t) =&gt; <a href="Graph.html#t:Graph">Graph</a> t -&gt; <a href="Graph.html#t:Graph">Graph</a> Int</li><li class="src short"><a href="#v:gTransposeGM">gTransposeGM</a> :: Num a =&gt; <a href="Graph.html#t:GraphMatrix">GraphMatrix</a> a -&gt; <a href="Graph.html#t:GraphMatrix">GraphMatrix</a> a</li><li class="src short"><a href="#v:isUndirectedG">isUndirectedG</a> :: (Num a, Eq a) =&gt; <a href="Graph.html#t:Graph">Graph</a> a -&gt; Bool</li><li class="src short"><a href="#v:isUndirectedGM">isUndirectedGM</a> :: (Num a, Eq a) =&gt; <a href="Graph.html#t:GraphMatrix">GraphMatrix</a> a -&gt; Bool</li><li class="src short"><a href="#v:isDirectedG">isDirectedG</a> :: (Eq t, Num t) =&gt; <a href="Graph.html#t:Graph">Graph</a> t -&gt; Bool</li><li class="src short"><a href="#v:isDirectedGM">isDirectedGM</a> :: (Num a, Eq a) =&gt; <a href="Graph.html#t:GraphMatrix">GraphMatrix</a> a -&gt; Bool</li><li class="src short"><a href="#v:unionG">unionG</a> :: (Num a, Ord a) =&gt; <a href="Graph.html#t:Graph">Graph</a> a -&gt; <a href="Graph.html#t:Graph">Graph</a> a -&gt; <a href="Graph.html#t:Graph">Graph</a> a</li><li class="src short"><a href="#v:unionGM">unionGM</a> :: (Integral a, Integral a1) =&gt; <a href="Graph.html#t:GraphMatrix">GraphMatrix</a> a -&gt; <a href="Graph.html#t:GraphMatrix">GraphMatrix</a> a1 -&gt; <a href="Graph.html#t:GraphMatrix">GraphMatrix</a> Int</li><li class="src short"><a href="#v:addVerticesG">addVerticesG</a> :: (Num a, Eq a) =&gt; <a href="Graph.html#t:Graph">Graph</a> a -&gt; <a href="Graph.html#t:Vertices">Vertices</a> a -&gt; <a href="Graph.html#t:Graph">Graph</a> a</li><li class="src short"><a href="#v:addVerticesGM">addVerticesGM</a> :: Integral a =&gt; <a href="Graph.html#t:GraphMatrix">GraphMatrix</a> a -&gt; <a href="Graph.html#t:Vertices">Vertices</a> Int -&gt; <a href="Graph.html#t:GraphMatrix">GraphMatrix</a> Int</li><li class="src short"><a href="#v:verticesInEdges">verticesInEdges</a> :: Eq a =&gt; <a href="Graph.html#t:Edges">Edges</a> a -&gt; [a]</li><li class="src short"><a href="#v:addEdgesG">addEdgesG</a> :: (Num a, Eq a) =&gt; <a href="Graph.html#t:Graph">Graph</a> a -&gt; <a href="Graph.html#t:Edges">Edges</a> a -&gt; <a href="Graph.html#t:Graph">Graph</a> a</li><li class="src short"><a href="#v:addEdgesGM">addEdgesGM</a> :: Integral a =&gt; <a href="Graph.html#t:GraphMatrix">GraphMatrix</a> a -&gt; <a href="Graph.html#t:Edges">Edges</a> Int -&gt; <a href="Graph.html#t:GraphMatrix">GraphMatrix</a> Int</li><li class="src short"><a href="#v:areConnectedGM">areConnectedGM</a> :: (Eq a, Floating a) =&gt; <a href="Graph.html#t:GraphMatrix">GraphMatrix</a> a -&gt; <a href="Graph.html#t:Vertices">Vertices</a> Int -&gt; <a href="Graph.html#t:Vertices">Vertices</a> Int -&gt; Bool</li><li class="src short"><a href="#v:numPathsBetweenGM">numPathsBetweenGM</a> :: Floating a =&gt; <a href="Graph.html#t:GraphMatrix">GraphMatrix</a> a -&gt; <a href="Graph.html#t:Vertices">Vertices</a> Int -&gt; <a href="Graph.html#t:Vertices">Vertices</a> Int -&gt; a</li><li class="src short"><a href="#v:adjacentNodesG">adjacentNodesG</a> :: (Num a, Eq a) =&gt; <a href="Graph.html#t:Graph">Graph</a> a -&gt; <a href="Graph.html#t:Vertices">Vertices</a> a -&gt; <a href="Graph.html#t:Vertices">Vertices</a> a</li><li class="src short"><a href="#v:adjacentNodesGM">adjacentNodesGM</a> :: Integral a =&gt; <a href="Graph.html#t:GraphMatrix">GraphMatrix</a> a -&gt; <a href="Graph.html#t:Vertices">Vertices</a> Int -&gt; <a href="Graph.html#t:Vertices">Vertices</a> Int</li><li class="src short"><a href="#v:inDegreeG">inDegreeG</a> :: (Num a, Eq a) =&gt; <a href="Graph.html#t:Graph">Graph</a> a -&gt; <a href="Graph.html#t:Vertices">Vertices</a> a -&gt; Int</li><li class="src short"><a href="#v:inDegreeGM">inDegreeGM</a> :: Integral a =&gt; <a href="Graph.html#t:GraphMatrix">GraphMatrix</a> a -&gt; <a href="Graph.html#t:Vertices">Vertices</a> Int -&gt; Int</li><li class="src short"><a href="#v:outDegreeG">outDegreeG</a> :: (Eq a, Num a) =&gt; <a href="Graph.html#t:Graph">Graph</a> a -&gt; <a href="Graph.html#t:Vertices">Vertices</a> a -&gt; Int</li><li class="src short"><a href="#v:outDegreeGM">outDegreeGM</a> :: Integral a =&gt; <a href="Graph.html#t:GraphMatrix">GraphMatrix</a> a -&gt; <a href="Graph.html#t:Vertices">Vertices</a> Int -&gt; Int</li><li class="src short"><a href="#v:degreeG">degreeG</a> :: (Eq a, Num a) =&gt; <a href="Graph.html#t:Graph">Graph</a> a -&gt; <a href="Graph.html#t:Vertices">Vertices</a> a -&gt; Int</li><li class="src short"><a href="#v:degreeGM">degreeGM</a> :: Integral a =&gt; <a href="Graph.html#t:GraphMatrix">GraphMatrix</a> a -&gt; <a href="Graph.html#t:Vertices">Vertices</a> Int -&gt; Int</li><li class="src short"><a href="#v:hasEulerCircuitG">hasEulerCircuitG</a> :: (Eq a, Num a) =&gt; <a href="Graph.html#t:Graph">Graph</a> a -&gt; Bool</li><li class="src short"><a href="#v:hasEulerCircuitGM">hasEulerCircuitGM</a> :: Integral a =&gt; <a href="Graph.html#t:GraphMatrix">GraphMatrix</a> a -&gt; Bool</li><li class="src short"><a href="#v:hasEulerPathG">hasEulerPathG</a> :: (Eq a, Num a) =&gt; <a href="Graph.html#t:Graph">Graph</a> a -&gt; Bool</li><li class="src short"><a href="#v:hasEulerPathGM">hasEulerPathGM</a> :: Integral a =&gt; <a href="Graph.html#t:GraphMatrix">GraphMatrix</a> a -&gt; Bool</li><li class="src short"><a href="#v:hasHamiltonianCircuitG">hasHamiltonianCircuitG</a> :: (Eq a, Num a) =&gt; <a href="Graph.html#t:Graph">Graph</a> a -&gt; Bool</li><li class="src short"><a href="#v:hasHamiltonianCircuitGM">hasHamiltonianCircuitGM</a> :: Integral a =&gt; <a href="Graph.html#t:GraphMatrix">GraphMatrix</a> a -&gt; Bool</li><li class="src short"><a href="#v:countOddDegreeV">countOddDegreeV</a> :: (Eq a1, Num a, Num a1) =&gt; <a href="Graph.html#t:Graph">Graph</a> a1 -&gt; a</li><li class="src short"><a href="#v:countEvenDegreeV">countEvenDegreeV</a> :: (Eq a1, Num a, Num a1) =&gt; <a href="Graph.html#t:Graph">Graph</a> a1 -&gt; a</li><li class="src short"><a href="#v:hasEulerPathNotCircuitG">hasEulerPathNotCircuitG</a> :: (Eq a, Num a) =&gt; <a href="Graph.html#t:Graph">Graph</a> a -&gt; Bool</li><li class="src short"><a href="#v:hasEulerPathNotCircuitGM">hasEulerPathNotCircuitGM</a> :: Integral a =&gt; <a href="Graph.html#t:GraphMatrix">GraphMatrix</a> a -&gt; Bool</li><li class="src short"><a href="#v:isSubgraphG">isSubgraphG</a> :: (Num a, Ord a) =&gt; <a href="Graph.html#t:Graph">Graph</a> a -&gt; <a href="Graph.html#t:Graph">Graph</a> a -&gt; Bool</li><li class="src short"><a href="#v:isSubgraphGM">isSubgraphGM</a> :: (Integral a, Integral a1) =&gt; <a href="Graph.html#t:GraphMatrix">GraphMatrix</a> a -&gt; <a href="Graph.html#t:GraphMatrix">GraphMatrix</a> a1 -&gt; Bool</li></ul></div><div id="interface"><h1>Documentation</h1><div class="top"><p class="src"><span class="keyword">newtype</span> <a name="t:Vertices" class="def">Vertices</a> a</p><div class="doc"><p><code><a href="Graph.html#t:Vertices">Vertices</a></code> is a data type for representing the vertices of a graph.
+  	It is the set of all the vertices in a graph.
+  	<code><a href="Graph.html#t:Vertices">Vertices</a></code> are internally stored as a list.</p><p>Below are a few examples:</p><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>Vertices []
+</code></strong>{}
+</pre><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>Vertices [1,2,5]
+</code></strong>{1,2,5}
+</pre><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>Vertices [1..10]
+</code></strong>    {1,2,3,4,5,6,7,8,9,10}
+</pre></div><div class="subs constructors"><p class="caption">Constructors</p><table><tr><td class="src"><a name="v:Vertices" class="def">Vertices</a> [a]</td><td class="doc empty">&nbsp;</td></tr></table></div><div class="subs instances"><p id="control.i:Vertices" class="caption collapser" onclick="toggleSection('i:Vertices')">Instances</p><div id="section.i:Vertices" class="show"><table><tr><td class="src">Eq a =&gt; Eq (<a href="Graph.html#t:Vertices">Vertices</a> a)</td><td class="doc empty">&nbsp;</td></tr><tr><td class="src">Show a =&gt; Show (<a href="Graph.html#t:Vertices">Vertices</a> a)</td><td class="doc empty">&nbsp;</td></tr></table></div></div></div><div class="top"><p class="src"><span class="keyword">newtype</span> <a name="t:Edges" class="def">Edges</a> a</p><div class="doc"><p><code><a href="Graph.html#t:Edges">Edges</a></code> is a data types for representing the edges of a graph.
+  	It is the set of all edges in a graph, including their starting and ending vertices, and the weight of the edge.</p><p>Below are a few examples:</p><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>Edges [(1,1,10)]
+</code></strong>{(1,1,10)}
+</pre><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>Edges [(1,2,1),(1,3,5),(2,3,2)]
+</code></strong>{(1,2,1),(1,3,5),(2,3,2)}
+</pre><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>Edges []
+</code></strong>{}
+</pre></div><div class="subs constructors"><p class="caption">Constructors</p><table><tr><td class="src"><a name="v:Edges" class="def">Edges</a> [(a, a, Int)]</td><td class="doc empty">&nbsp;</td></tr></table></div><div class="subs instances"><p id="control.i:Edges" class="caption collapser" onclick="toggleSection('i:Edges')">Instances</p><div id="section.i:Edges" class="show"><table><tr><td class="src">Eq a =&gt; Eq (<a href="Graph.html#t:Edges">Edges</a> a)</td><td class="doc empty">&nbsp;</td></tr><tr><td class="src">Show a =&gt; Show (<a href="Graph.html#t:Edges">Edges</a> a)</td><td class="doc empty">&nbsp;</td></tr></table></div></div></div><div class="top"><p class="src"><span class="keyword">newtype</span> <a name="t:Graph" class="def">Graph</a> a</p><div class="doc"><p><code><a href="Graph.html#t:Graph">Graph</a></code> is a data type for representing graphs as a group of <code><a href="Graph.html#t:Vertices">Vertices</a></code> and <code><a href="Graph.html#t:Edges">Edges</a></code>.</p><p>For example:</p><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>let v = Vertices [1,2,3,4]
+</code></strong><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>v
+</code></strong>{1,2,3,4}
+</pre><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>let e = Edges [(1,2,5),(1,3,7),(2,4,3)]
+</code></strong><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>e
+</code></strong>{(1,2,5),(1,3,7),(2,4,3)}
+</pre><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>let g = Graph (v,e)
+</code></strong><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>g
+</code></strong>		Graph ({1,2,3,4},{(1,2,5),(1,3,7),(2,4,3)})
+</pre></div><div class="subs constructors"><p class="caption">Constructors</p><table><tr><td class="src"><a name="v:Graph" class="def">Graph</a> (<a href="Graph.html#t:Vertices">Vertices</a> a, <a href="Graph.html#t:Edges">Edges</a> a)</td><td class="doc empty">&nbsp;</td></tr></table></div><div class="subs instances"><p id="control.i:Graph" class="caption collapser" onclick="toggleSection('i:Graph')">Instances</p><div id="section.i:Graph" class="show"><table><tr><td class="src">Eq a =&gt; Eq (<a href="Graph.html#t:Graph">Graph</a> a)</td><td class="doc empty">&nbsp;</td></tr><tr><td class="src">Show a =&gt; Show (<a href="Graph.html#t:Graph">Graph</a> a)</td><td class="doc empty">&nbsp;</td></tr></table></div></div></div><div class="top"><p class="src"><span class="keyword">newtype</span> <a name="t:GraphMatrix" class="def">GraphMatrix</a> a</p><div class="doc"><p>The <code><a href="Graph.html#t:GraphMatrix">GraphMatrix</a></code> data type is used here to represent a <code><a href="Graph.html#t:Graph">Graph</a></code> as a two-dimentional list.</p><p>For example:
+    GraphMatrix [[1,2,5],[3,5,7],[0,0,4]]
+    &gt;&gt;&gt; 1 2 5
+    &gt;&gt;&gt; 3 5 7
+    &gt;&gt;&gt; 0 0 4</p></div><div class="subs constructors"><p class="caption">Constructors</p><table><tr><td class="src"><a name="v:GraphMatrix" class="def">GraphMatrix</a> [[a]]</td><td class="doc empty">&nbsp;</td></tr></table></div><div class="subs instances"><p id="control.i:GraphMatrix" class="caption collapser" onclick="toggleSection('i:GraphMatrix')">Instances</p><div id="section.i:GraphMatrix" class="show"><table><tr><td class="src">Eq a =&gt; Eq (<a href="Graph.html#t:GraphMatrix">GraphMatrix</a> a)</td><td class="doc empty">&nbsp;</td></tr><tr><td class="src">Show a =&gt; Show (<a href="Graph.html#t:GraphMatrix">GraphMatrix</a> a)</td><td class="doc empty">&nbsp;</td></tr></table></div></div></div><div class="top"><p class="src"><a name="v:vertices2list" class="def">vertices2list</a> :: <a href="Graph.html#t:Vertices">Vertices</a> t -&gt; [t]</p><div class="doc"><p>The <code><a href="Graph.html#v:vertices2list">vertices2list</a></code> function returns the list of vertices of a graph represented as <code><a href="Graph.html#t:Vertices">Vertices</a></code>.</p><p>Below is an example:</p><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>v1
+</code></strong>{1,2,3,4}
+</pre><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>vertices2list v1
+</code></strong>[1,2,3,4]
+</pre></div></div><div class="top"><p class="src"><a name="v:edges2list" class="def">edges2list</a> :: <a href="Graph.html#t:Edges">Edges</a> t -&gt; [(t, t, Int)]</p><div class="doc"><p>The <code><a href="Graph.html#v:edges2list">edges2list</a></code> function returns the list of edges of a graph represented as <code><a href="Graph.html#t:Edges">Edges</a></code>.</p><p>Below is an example:</p><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>e1
+</code></strong>{(1,2,4),(1,3,1),(1,4,5),(3,2,6)}
+</pre><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>edges2list e1
+</code></strong>[(1,2,4),(1,3,1),(1,4,5),(3,2,6)]
+</pre></div></div><div class="top"><p class="src"><a name="v:graph2matrix" class="def">graph2matrix</a> :: <a href="Graph.html#t:GraphMatrix">GraphMatrix</a> a -&gt; [[a]]</p><div class="doc"><p>The <code><a href="Graph.html#v:graph2matrix">graph2matrix</a></code> function converts <code><a href="Graph.html#t:GraphMatrix">GraphMatrix</a></code> type to a two-dimentional list.</p><p>For example:</p><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>gm1
+</code></strong>0 1 3 5
+4 0 2 6
+1 2 3 4
+0 0 1 6
+</pre><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>graph2matrix gm1
+</code></strong>[[0,1,3,5],[4,0,2,6],[1,2,3,4],[0,0,1,6]]
+</pre></div></div><div class="top"><p class="src"><a name="v:getVerticesG" class="def">getVerticesG</a> :: Num a =&gt; <a href="Graph.html#t:Graph">Graph</a> a -&gt; <a href="Graph.html#t:Vertices">Vertices</a> a</p><div class="doc"><p>The <code><a href="Graph.html#v:getVerticesG">getVerticesG</a></code> function returns the set of all vertices from a graph.
+    The function takes one argument, which is of type <code><a href="Graph.html#t:Graph">Graph</a></code>.</p><p>For example:</p><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>g
+</code></strong>Graph ({1,2,3,4},{(1,2,5),(1,3,7),(2,4,3)})
+</pre><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>getVerticesG g
+</code></strong>{1,2,3,4}
+</pre></div></div><div class="top"><p class="src"><a name="v:getVerticesGM" class="def">getVerticesGM</a> :: <a href="Graph.html#t:GraphMatrix">GraphMatrix</a> t -&gt; <a href="Graph.html#t:Vertices">Vertices</a> Int</p><div class="doc"><p>The <code><a href="Graph.html#v:getVerticesGM">getVerticesGM</a></code> returns the edges in a graph from its adjacency matrix representation.
+    The function takes one argument, which is of type <code><a href="Graph.html#t:GraphMatrix">GraphMatrix</a></code>.</p><p>For example:</p><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>gm
+</code></strong>1	2	5
+3	5	7
+0	0	4
+</pre><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>getVerticesGM gm
+</code></strong>{1,2,3}
+</pre></div></div><div class="top"><p class="src"><a name="v:numVerticesG" class="def">numVerticesG</a> :: Num a =&gt; <a href="Graph.html#t:Graph">Graph</a> a -&gt; Int</p><div class="doc"><p>The <code><a href="Graph.html#v:numVerticesG">numVerticesG</a></code> function returns the number of vertices in a graph.
+    The function takes one argument, which is of type <code><a href="Graph.html#t:Graph">Graph</a></code>.</p><p>For example:</p><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>g
+</code></strong>		Graph ({1,2,3,4},{(1,2,5),(1,3,7),(2,4,3)})
+</pre><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>numVerticesG g
+</code></strong>4
+</pre></div></div><div class="top"><p class="src"><a name="v:numVerticesGM" class="def">numVerticesGM</a> :: Num a =&gt; <a href="Graph.html#t:GraphMatrix">GraphMatrix</a> a -&gt; Int</p><div class="doc"><p>The <code><a href="Graph.html#v:numVerticesGM">numVerticesGM</a></code> function returns the number of vertices in a graph from its adjacency matrix representation.
+    The function takes one argument, which is of type <code><a href="Graph.html#t:GraphMatrix">GraphMatrix</a></code>.</p><p>For example:</p><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>gm
+</code></strong>		1	2	5
+		3	5	7
+		0	0	4
+</pre><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>numVerticesGM gm
+</code></strong>3
+</pre></div></div><div class="top"><p class="src"><a name="v:getEdgesG" class="def">getEdgesG</a> :: Num a =&gt; <a href="Graph.html#t:Graph">Graph</a> a -&gt; <a href="Graph.html#t:Edges">Edges</a> a</p><div class="doc"><p>The <code><a href="Graph.html#v:getEdgesG">getEdgesG</a></code> function returns the edges of a graph.
+    The function takes one argument, which is of type <code><a href="Graph.html#t:Graph">Graph</a></code>.</p><p>For example:</p><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>g
+</code></strong>Graph ({1,2,3,4},{(1,2,5),(1,3,7),(2,4,3)})
+</pre><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>getEdgesG g
+</code></strong>{(1,2,5),(1,3,7),(2,4,3)}
+</pre></div></div><div class="top"><p class="src"><a name="v:getEdgesGM" class="def">getEdgesGM</a> :: Integral a =&gt; <a href="Graph.html#t:GraphMatrix">GraphMatrix</a> a -&gt; <a href="Graph.html#t:Edges">Edges</a> Int</p><div class="doc"><p>The <code><a href="Graph.html#v:getEdgesGM">getEdgesGM</a></code> function returns the set of edges in a graph from its adjacency matrix representation.
+    The function takes one argument, which is of type <code><a href="Graph.html#t:GraphMatrix">GraphMatrix</a></code>.</p><p>For example:</p><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>gm
+</code></strong>		1	2	5
+		3	5	7
+		0	0	4
+</pre><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>getEdgesGM gm
+</code></strong>{(1,1,1),(1,2,2),(1,3,5),(2,1,3),(2,2,5),(2,3,7),(3,3,4)}
+</pre></div></div><div class="top"><p class="src"><a name="v:numEdgesG" class="def">numEdgesG</a> :: Num a =&gt; <a href="Graph.html#t:Graph">Graph</a> a -&gt; Int</p><div class="doc"><p>The <code><a href="Graph.html#v:numEdgesG">numEdgesG</a></code> function returns the number of edges in a graph.
+    The function takes one argument, which is of type <code><a href="Graph.html#t:Graph">Graph</a></code>.</p><p>For example:</p><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>g
+</code></strong>Graph ({1,2,3,4},{(1,2,5),(1,3,7),(2,4,3)})
+</pre><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>numEdgesG g
+</code></strong>3
+</pre></div></div><div class="top"><p class="src"><a name="v:numEdgesGM" class="def">numEdgesGM</a> :: Integral a =&gt; <a href="Graph.html#t:GraphMatrix">GraphMatrix</a> a -&gt; Int</p><div class="doc"><p>The <code><a href="Graph.html#v:numEdgesGM">numEdgesGM</a></code> function returns the number of edges in a graph from its adjacency matrix representation.
+    The function takes one argument, which is of the type <code><a href="Graph.html#t:GraphMatrix">GraphMatrix</a></code>.</p><p>For example:</p><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>gm
+</code></strong>		1	2	5
+		3	5	7
+		0	0	4
+</pre><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>numEdgesGM gm
+</code></strong>7
+</pre></div></div><div class="top"><p class="src"><a name="v:convertGM2G" class="def">convertGM2G</a> :: Integral a =&gt; <a href="Graph.html#t:GraphMatrix">GraphMatrix</a> a -&gt; <a href="Graph.html#t:Graph">Graph</a> Int</p><div class="doc"><p>The <code><a href="Graph.html#v:convertGM2G">convertGM2G</a></code> function returns a Graph representation as G(V,E) from its adjacency matrix representation.
+    The function takes one argument, which is of type <code><a href="Graph.html#t:GraphMatrix">GraphMatrix</a></code> and returns a <code><a href="Graph.html#t:Graph">Graph</a></code>.</p><p>For example:</p><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>gm
+</code></strong>		1	2	5
+		3	5	7
+		0	0	4
+</pre><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>convertGM2G gm
+</code></strong>Graph ({1,2,3},{(1,1,1),(1,2,2),(1,3,5),(2,1,3),(2,2,5),(2,3,7),(3,3,4)})
+</pre></div></div><div class="top"><p class="src"><a name="v:convertG2GM" class="def">convertG2GM</a> :: (Eq t, Num t) =&gt; <a href="Graph.html#t:Graph">Graph</a> t -&gt; <a href="Graph.html#t:GraphMatrix">GraphMatrix</a> Int</p><div class="doc"><p>The <code><a href="Graph.html#v:convertG2GM">convertG2GM</a></code> function returns an adjacency matrix representation of a graph.
+    The function takes one argument, which is of type <code><a href="Graph.html#t:Graph">Graph</a></code> and returns a <code><a href="Graph.html#t:GraphMatrix">GraphMatrix</a></code>.</p><p>For example:
+		&gt;&gt;&gt; g
+		Graph ({1,2,3,4},{(1,2,5),(1,3,7),(2,4,3)})</p><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>convertG2GM g
+</code></strong>0	5	7	0
+0	0	0	3
+0	0	0	0
+0	0	0	0
+</pre></div></div><div class="top"><p class="src"><a name="v:gTransposeG" class="def">gTransposeG</a> :: (Eq t, Num t) =&gt; <a href="Graph.html#t:Graph">Graph</a> t -&gt; <a href="Graph.html#t:Graph">Graph</a> Int</p><div class="doc"><p>The <code><a href="Graph.html#v:gTransposeG">gTransposeG</a></code> function returns a transpose of a graph.
+    The function takes one argument, which is of type <code><a href="Graph.html#t:Graph">Graph</a></code> and returns another graph of type <code><a href="Graph.html#t:Graph">Graph</a></code>.</p><p>For example:
+		&gt;&gt;&gt; g
+		Graph ({1,2,3,4},{(1,2,5),(1,3,7),(2,4,3)})</p><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>gTransposeG g
+</code></strong>Graph ({1,2,3,4},{(2,1,5),(3,1,7),(4,2,3)})
+</pre></div></div><div class="top"><p class="src"><a name="v:gTransposeGM" class="def">gTransposeGM</a> :: Num a =&gt; <a href="Graph.html#t:GraphMatrix">GraphMatrix</a> a -&gt; <a href="Graph.html#t:GraphMatrix">GraphMatrix</a> a</p><div class="doc"><p>The <code><a href="Graph.html#v:gTransposeGM">gTransposeGM</a></code> function returns a transpose of a graph (in adjacency matrix form).
+    The function takes one argument, which is of type <code><a href="Graph.html#t:GraphMatrix">GraphMatrix</a></code> and returns a <code><a href="Graph.html#t:GraphMatrix">GraphMatrix</a></code>.</p><p>For example:</p><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>gm
+</code></strong>1	2	5
+3	5	7
+0	0	4
+</pre><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>gTransposeGM gm
+</code></strong>1	3	0
+2	5	0
+5	7	4
+</pre></div></div><div class="top"><p class="src"><a name="v:isUndirectedG" class="def">isUndirectedG</a> :: (Num a, Eq a) =&gt; <a href="Graph.html#t:Graph">Graph</a> a -&gt; Bool</p><div class="doc"><p>The <code><a href="Graph.html#v:isUndirectedG">isUndirectedG</a></code> function returns whether a graph is undirected or not.
+    A graph is undirected if it is equal to its transpose.
+    The function takes one argument, which is of type <code><a href="Graph.html#t:Graph">Graph</a></code>.</p><p>For example:
+		&gt;&gt;&gt; g
+		Graph ({1,2,3,4},{(1,2,5),(1,3,7),(2,4,3)})</p><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>isUndirectedG g
+</code></strong>False
+</pre></div></div><div class="top"><p class="src"><a name="v:isUndirectedGM" class="def">isUndirectedGM</a> :: (Num a, Eq a) =&gt; <a href="Graph.html#t:GraphMatrix">GraphMatrix</a> a -&gt; Bool</p><div class="doc"><p>The <code><a href="Graph.html#v:isUndirectedGM">isUndirectedGM</a></code> function returns whether a graph (adjacency matrix form) is undirected or not.
+    A graph is undirected if it is equal to its transpose.
+    The function takes one argument, which is of type <code><a href="Graph.html#t:GraphMatrix">GraphMatrix</a></code>.</p><p>Below are two examples:</p><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>gm1
+</code></strong>		1	2	5
+		3	5	7
+		0	0	4
+</pre><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>isUndirectedGM gm1
+</code></strong>False
+</pre><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>gm2
+</code></strong>0	1	1
+1	1	0
+1	0	0
+</pre><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>isUndirected gm2
+</code></strong>True
+</pre></div></div><div class="top"><p class="src"><a name="v:isDirectedG" class="def">isDirectedG</a> :: (Eq t, Num t) =&gt; <a href="Graph.html#t:Graph">Graph</a> t -&gt; Bool</p><div class="doc"><p>The <code><a href="Graph.html#v:isDirectedG">isDirectedG</a></code> function returns whether a graph is directed or not.
+    A graph is directed if it is not equal to its transpose.
+    The function takes one argument, which is of type <code><a href="Graph.html#t:Graph">Graph</a></code>.</p><p>Below are a few examples:</p><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>g
+</code></strong>Graph ({1,2,3,4},{(1,2,5),(1,3,7),(2,4,3)})
+</pre><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>isDirectedG g
+</code></strong>True
+</pre></div></div><div class="top"><p class="src"><a name="v:isDirectedGM" class="def">isDirectedGM</a> :: (Num a, Eq a) =&gt; <a href="Graph.html#t:GraphMatrix">GraphMatrix</a> a -&gt; Bool</p><div class="doc"><p>The <code><a href="Graph.html#v:isDirectedGM">isDirectedGM</a></code> function returns whether a graph (adjacency matrix form) is directed or not.
+    A graph is directed if it is not equal to its transpose.
+    The function takes one argument, which is of type <code><a href="Graph.html#t:GraphMatrix">GraphMatrix</a></code>.</p><p>Below are a few examples:</p><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>gm1
+</code></strong>		1	3
+		0	5
+</pre><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>isDirected gm1
+</code></strong>True
+</pre><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>gm2
+</code></strong>1	2	5
+3	5	7
+0	0	4
+</pre><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>isDirectedGM gm2
+</code></strong>True
+</pre></div></div><div class="top"><p class="src"><a name="v:unionG" class="def">unionG</a> :: (Num a, Ord a) =&gt; <a href="Graph.html#t:Graph">Graph</a> a -&gt; <a href="Graph.html#t:Graph">Graph</a> a -&gt; <a href="Graph.html#t:Graph">Graph</a> a</p><div class="doc"><p>The <code><a href="Graph.html#v:unionG">unionG</a></code> function returns the union of two graphs.
+    The function takes two arguments, both of the type <code><a href="Graph.html#t:Graph">Graph</a></code>, and returns a <code><a href="Graph.html#t:Graph">Graph</a></code> type.</p><p>For example:</p><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>g
+</code></strong>Graph ({1,2,3,4},{(1,2,5),(1,3,7),(2,4,3)})
+</pre><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>g'
+</code></strong>Graph ({1,2,3},{(1,2,1),(1,4,5)})
+</pre><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>unionG g g'
+</code></strong>Graph ({1,2,3,4},{(1,2,1),(1,2,5),(1,3,7),(1,4,5),(2,4,3)})
+</pre></div></div><div class="top"><p class="src"><a name="v:unionGM" class="def">unionGM</a> :: (Integral a, Integral a1) =&gt; <a href="Graph.html#t:GraphMatrix">GraphMatrix</a> a -&gt; <a href="Graph.html#t:GraphMatrix">GraphMatrix</a> a1 -&gt; <a href="Graph.html#t:GraphMatrix">GraphMatrix</a> Int</p><div class="doc"><p>The <code><a href="Graph.html#v:unionGM">unionGM</a></code> function returns the union of two graphs (in their adjancency matrix representation).
+    The function takes two arguments, both of the type <code><a href="Graph.html#t:GraphMatrix">GraphMatrix</a></code>, and returns a <code><a href="Graph.html#t:GraphMatrix">GraphMatrix</a></code> type,</p><p>For example:</p><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>gm
+</code></strong>0	5	7	0
+0	0	0	3
+0	0	0	0
+0	0	0	0
+</pre><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>gm'
+</code></strong>0	1	0
+0	0	0
+0	0	0
+</pre><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>unionGM gm gm'
+</code></strong>0	1	7	0
+0	0	0	3
+0	0	0	0
+0	0	0	0
+</pre></div></div><div class="top"><p class="src"><a name="v:addVerticesG" class="def">addVerticesG</a> :: (Num a, Eq a) =&gt; <a href="Graph.html#t:Graph">Graph</a> a -&gt; <a href="Graph.html#t:Vertices">Vertices</a> a -&gt; <a href="Graph.html#t:Graph">Graph</a> a</p><div class="doc"><p>The <code><a href="Graph.html#v:addVerticesG">addVerticesG</a></code> function is used to add vertices to a graph.
+    The function takes two arguments, one of type <code><a href="Graph.html#t:Graph">Graph</a></code> and the other of type <code><a href="Graph.html#t:Vertices">Vertices</a></code>.
+    The function adds the vertices and returns a <code><a href="Graph.html#t:Graph">Graph</a></code>.</p><p>For example:</p><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>g
+</code></strong>Graph ({1,2,3,4},{(1,2,5),(1,3,7),(2,4,3)})
+</pre><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>addVerticesG g (Vertices [5])
+</code></strong>Graph ({1,2,3,4,5},{(1,2,5),(1,3,7),(2,4,3)})
+</pre><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>addVerticesG g (Vertices [5..8])
+</code></strong>Graph ({1,2,3,4,5,6,7,8},{(1,2,5),(1,3,7),(2,4,3)})
+</pre></div></div><div class="top"><p class="src"><a name="v:addVerticesGM" class="def">addVerticesGM</a> :: Integral a =&gt; <a href="Graph.html#t:GraphMatrix">GraphMatrix</a> a -&gt; <a href="Graph.html#t:Vertices">Vertices</a> Int -&gt; <a href="Graph.html#t:GraphMatrix">GraphMatrix</a> Int</p><div class="doc"><p>The <code><a href="Graph.html#v:addVerticesGM">addVerticesGM</a></code> function is used to add vertices to a graph (adjacency matrix representation.
+    The function takes two arguments, one of type <code><a href="Graph.html#t:GraphMatrix">GraphMatrix</a></code> and the other of type <code><a href="Graph.html#t:Vertices">Vertices</a></code>.
+    The function adds the vertices and returns a <code><a href="Graph.html#t:GraphMatrix">GraphMatrix</a></code>.</p><p>For example:</p><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>gm
+</code></strong>0	5	7	0
+0	0	0	3
+0	0	0	0
+0	0	0	0
+</pre><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>addVerticesGM gm (Vertices [5])
+</code></strong>0	5	7	0	0
+0	0	0	3	0
+0	0	0	0	0
+0	0	0	0	0
+0	0	0	0	0
+</pre><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>addVerticesGM gm (Vertices [5,6])
+</code></strong>0	5	7	0	0	0
+0	0	0	3	0	0
+0	0	0	0	0	0
+0	0	0	0	0	0
+0	0	0	0	0	0
+0	0	0	0	0	0
+</pre></div></div><div class="top"><p class="src"><a name="v:verticesInEdges" class="def">verticesInEdges</a> :: Eq a =&gt; <a href="Graph.html#t:Edges">Edges</a> a -&gt; [a]</p><div class="doc"><p>The <code><a href="Graph.html#v:verticesInEdges">verticesInEdges</a></code> function returns a list of vertices that for edges.
+    The function takes one argument of type <code><a href="Graph.html#t:Edges">Edges</a></code> and retuns a list.</p><p>For example:</p><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>e
+</code></strong>		{(1,2,5),(1,3,7),(2,4,3)}
+</pre><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>verticesInEdges e
+</code></strong>[1,2,3,4]
+</pre></div></div><div class="top"><p class="src"><a name="v:addEdgesG" class="def">addEdgesG</a> :: (Num a, Eq a) =&gt; <a href="Graph.html#t:Graph">Graph</a> a -&gt; <a href="Graph.html#t:Edges">Edges</a> a -&gt; <a href="Graph.html#t:Graph">Graph</a> a</p><div class="doc"><p>The <code><a href="Graph.html#v:addEdgesG">addEdgesG</a></code> function adds edges to a graph.
+    The new edges must consist of the vertices already existing in the graph.
+    The function takes two arguments, the first of type <code><a href="Graph.html#t:Graph">Graph</a></code> and the second of type <code><a href="Graph.html#t:Edges">Edges</a></code>.
+    After adding the edges, the new <code><a href="Graph.html#t:Graph">Graph</a></code> is returned.</p><p>For example:</p><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>g
+</code></strong>Graph ({1,2,3},{(1,2),(1,3)})
+</pre><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>addEdgesG g (Edges [(2,3),(3,1)])
+</code></strong>Graph ({1,2,3},{(1,2),(1,3),(2,3),(3,1)})
+</pre><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>addEdgesG g (Edges [(2,3),(3,1),(4,1)])
+</code></strong>Graph *** Exception: Vertices in the edge(s) are not in the graph's set of vertices.
+</pre></div></div><div class="top"><p class="src"><a name="v:addEdgesGM" class="def">addEdgesGM</a> :: Integral a =&gt; <a href="Graph.html#t:GraphMatrix">GraphMatrix</a> a -&gt; <a href="Graph.html#t:Edges">Edges</a> Int -&gt; <a href="Graph.html#t:GraphMatrix">GraphMatrix</a> Int</p><div class="doc"><p>The <code><a href="Graph.html#v:addEdgesGM">addEdgesGM</a></code> function adds edges to a graph (adjacency matrix representation).
+    The new edges must consist of the vertices already existing in the graph.
+    The function takes two arguments, the first of type <code><a href="Graph.html#t:GraphMatrix">GraphMatrix</a></code> and the second of type <code><a href="Graph.html#t:Edges">Edges</a></code>.
+    After adding the edges, the new <code><a href="Graph.html#t:GraphMatrix">GraphMatrix</a></code> is returned.</p><p>For example:</p><p>gm
+		0	5	7	0
+		0	0	0	3
+		0	0	0	0
+		0	0	0	0</p><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>addEdgesGM gm (Edges [(1,4,5),(2,3,6),(4,3,1)])
+</code></strong>0	5	7	5
+0	0	6	3
+0	0	0	0
+0	0	1	0
+</pre></div></div><div class="top"><p class="src"><a name="v:areConnectedGM" class="def">areConnectedGM</a> :: (Eq a, Floating a) =&gt; <a href="Graph.html#t:GraphMatrix">GraphMatrix</a> a -&gt; <a href="Graph.html#t:Vertices">Vertices</a> Int -&gt; <a href="Graph.html#t:Vertices">Vertices</a> Int -&gt; Bool</p><div class="doc"><p>The <code><a href="Graph.html#v:areConnectedGM">areConnectedGM</a></code> function is used to check if two vertices are directly (or even indirectly) connected.
+    The function takes three arguments, a <code><a href="Graph.html#t:GraphMatrix">GraphMatrix</a></code> and two <code><a href="Graph.html#t:Vertices">Vertices</a></code>.</p><p>For example:</p><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>gm1
+</code></strong>0.0	1.0	1.0	0.0
+1.0	0.0	0.0	1.0
+1.0	0.0	0.0	1.0
+0.0	1.0	1.0	0.0
+</pre><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>areConnectedGM gm1 (Vertices [1]) (Vertices [3])
+</code></strong>True
+</pre></div></div><div class="top"><p class="src"><a name="v:numPathsBetweenGM" class="def">numPathsBetweenGM</a> :: Floating a =&gt; <a href="Graph.html#t:GraphMatrix">GraphMatrix</a> a -&gt; <a href="Graph.html#t:Vertices">Vertices</a> Int -&gt; <a href="Graph.html#t:Vertices">Vertices</a> Int -&gt; a</p><div class="doc"><p>The <code><a href="Graph.html#v:numPathsBetweenGM">numPathsBetweenGM</a></code> function is used to find the number of paths that exist between two given vertices in a graph.
+    The function takes two arguments, the first is the <code><a href="Graph.html#t:GraphMatrix">GraphMatrix</a></code> and the other two are <code><a href="Graph.html#t:Vertices">Vertices</a></code>.</p><p>For example:</p><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>gm1
+</code></strong>0.0	1.0	1.0	0.0
+1.0	0.0	0.0	1.0
+1.0	0.0	0.0	1.0
+0.0	1.0	1.0	0.0
+</pre><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>numPathsBetweenGM gm1 (Vertices [1]) (Vertices [4])
+</code></strong>8.0
+</pre></div></div><div class="top"><p class="src"><a name="v:adjacentNodesG" class="def">adjacentNodesG</a> :: (Num a, Eq a) =&gt; <a href="Graph.html#t:Graph">Graph</a> a -&gt; <a href="Graph.html#t:Vertices">Vertices</a> a -&gt; <a href="Graph.html#t:Vertices">Vertices</a> a</p><div class="doc"><p>The <code><a href="Graph.html#v:adjacentNodesG">adjacentNodesG</a></code> function returns all the adjacent vertices of a mentioned vertex.
+    The function takes two arguments, the first is a <code><a href="Graph.html#t:Graph">Graph</a></code> and the second is a vertex of type <code><a href="Graph.html#t:Vertices">Vertices</a></code>.</p><p>For example:</p><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>g
+</code></strong>		Graph ({1,2,3,4},{(1,2,1),(1,3,4),(2,1,5),(2,4,1),(3,1,2),(3,4,4),(4,2,1),(4,3,1)})
+</pre><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>adjacentNodes g (Vertices [1])
+</code></strong>{2,3}
+</pre><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>adjacentNodes g (Vertices [2])
+</code></strong>{1,4}
+</pre><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>adjacentNodes g (Vertices [3])
+</code></strong>{1,4}
+</pre><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>adjacentNodes g (Vertices [4])
+</code></strong>{2,3}
+</pre></div></div><div class="top"><p class="src"><a name="v:adjacentNodesGM" class="def">adjacentNodesGM</a> :: Integral a =&gt; <a href="Graph.html#t:GraphMatrix">GraphMatrix</a> a -&gt; <a href="Graph.html#t:Vertices">Vertices</a> Int -&gt; <a href="Graph.html#t:Vertices">Vertices</a> Int</p><div class="doc"><p>The <code><a href="Graph.html#v:adjacentNodesGM">adjacentNodesGM</a></code> function returns all the adjacent vertices of a mentioned vertex.
+    The function takes two arguments, the first is a <code><a href="Graph.html#t:GraphMatrix">GraphMatrix</a></code> and the second is a vertex of type <code><a href="Graph.html#t:Vertices">Vertices</a></code>.</p><p>For example:</p><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>gm
+</code></strong>		0	1	4	0
+		5	0	0	1
+		2	0	0	4
+		0	1	1	0
+</pre><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>adjacentNodesGM gm (Vertices [1])
+</code></strong>{2,3}
+</pre><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>adjacentNodesGM gm (Vertices [2])
+</code></strong>{1,4}
+</pre><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>adjacentNodesGM gm (Vertices [3])
+</code></strong>{1,4}
+</pre><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>adjacentNodesGM gm (Vertices [4])
+</code></strong>{2,3}
+</pre></div></div><div class="top"><p class="src"><a name="v:inDegreeG" class="def">inDegreeG</a> :: (Num a, Eq a) =&gt; <a href="Graph.html#t:Graph">Graph</a> a -&gt; <a href="Graph.html#t:Vertices">Vertices</a> a -&gt; Int</p><div class="doc"><p>The <code><a href="Graph.html#v:inDegreeG">inDegreeG</a></code> function returns the in-degree of a vertex in a directed graph.
+    The function takes two arguments, the first is a <code><a href="Graph.html#t:Graph">Graph</a></code> and the second is a vertex of type <code><a href="Graph.html#t:Vertices">Vertices</a></code></p><p>For example:</p><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>g
+</code></strong>		Graph ({1,2,3,4},{(1,2,1),(1,3,4),(2,1,5),(2,4,1),(3,1,2),(3,4,4),(4,2,1),(4,3,1)})
+</pre><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>inDegreeG g (Vertices [1])
+</code></strong>2
+</pre></div></div><div class="top"><p class="src"><a name="v:inDegreeGM" class="def">inDegreeGM</a> :: Integral a =&gt; <a href="Graph.html#t:GraphMatrix">GraphMatrix</a> a -&gt; <a href="Graph.html#t:Vertices">Vertices</a> Int -&gt; Int</p><div class="doc"><p>The <code><a href="Graph.html#v:inDegreeGM">inDegreeGM</a></code> function returns the in-degree of a vertex in a directed graph.
+    The function takes two arguments, the first is a <code><a href="Graph.html#t:GraphMatrix">GraphMatrix</a></code> and the second is a vertex of type <code><a href="Graph.html#t:Vertices">Vertices</a></code></p><p>For example:</p><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>gm
+</code></strong>		0	1	4	0
+		5	0	0	1
+		2	0	0	4
+		0	1	1	0
+</pre><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>inDegreeGM gm (Vertices [2])
+</code></strong>2
+</pre></div></div><div class="top"><p class="src"><a name="v:outDegreeG" class="def">outDegreeG</a> :: (Eq a, Num a) =&gt; <a href="Graph.html#t:Graph">Graph</a> a -&gt; <a href="Graph.html#t:Vertices">Vertices</a> a -&gt; Int</p><div class="doc"><p>The <code><a href="Graph.html#v:outDegreeG">outDegreeG</a></code> function returns the out-degree of a vertex in a directed graph.
+    The function takes two arguments, the first is a <code><a href="Graph.html#t:Graph">Graph</a></code> and the second is a vertex of type <code><a href="Graph.html#t:Vertices">Vertices</a></code>.</p><p>For example:</p><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>g
+</code></strong>Graph ({1,2,3,4},{(1,2,1),(1,3,4),(2,1,5),(2,4,1),(3,1,2),(3,4,4),(4,2,1),(4,3,1)})
+</pre><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>outDegree g (Vertices [4])
+</code></strong>2
+</pre><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>outDegree g (Vertices [1])
+</code></strong>2
+</pre></div></div><div class="top"><p class="src"><a name="v:outDegreeGM" class="def">outDegreeGM</a> :: Integral a =&gt; <a href="Graph.html#t:GraphMatrix">GraphMatrix</a> a -&gt; <a href="Graph.html#t:Vertices">Vertices</a> Int -&gt; Int</p><div class="doc"><p>The <code><a href="Graph.html#v:outDegreeGM">outDegreeGM</a></code> function returns the out-degree of a vertex in a directed graph.
+    The function takes two arguments, the first is a <code><a href="Graph.html#t:GraphMatrix">GraphMatrix</a></code> and the second is a vertex of type <code><a href="Graph.html#t:Vertices">Vertices</a></code>.</p><p>For example:</p><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>gm
+</code></strong>0	1	4	0
+5	0	0	1
+2	0	0	4
+0	1	1	0
+</pre><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>outDegreeGM gm (Vertices [3])
+</code></strong>2
+</pre></div></div><div class="top"><p class="src"><a name="v:degreeG" class="def">degreeG</a> :: (Eq a, Num a) =&gt; <a href="Graph.html#t:Graph">Graph</a> a -&gt; <a href="Graph.html#t:Vertices">Vertices</a> a -&gt; Int</p><div class="doc"><p>The <code><a href="Graph.html#v:degreeG">degreeG</a></code> function returns the degree of a vertex in a undirected graph.
+    The function takes two arguments, the first is the undirected <code><a href="Graph.html#t:Graph">Graph</a></code> and the second is a vertex of type <code><a href="Graph.html#t:Vertices">Vertices</a></code>.</p><p>For example:</p><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>g
+</code></strong>		Graph ({1,2,3,4},{(1,2,1),(1,3,4),(2,1,5),(2,4,1),(3,1,2),(3,4,4),(4,2,1),(4,3,1)})
+</pre><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>degreeG g (Vertices [4])
+</code></strong>4
+</pre></div></div><div class="top"><p class="src"><a name="v:degreeGM" class="def">degreeGM</a> :: Integral a =&gt; <a href="Graph.html#t:GraphMatrix">GraphMatrix</a> a -&gt; <a href="Graph.html#t:Vertices">Vertices</a> Int -&gt; Int</p><div class="doc"><p>The <code><a href="Graph.html#v:degreeGM">degreeGM</a></code> function returns the degree of a vertex in a undirected graph (adjacency matrix representation.
+    The function takes two arguments, the first is the undirected <code><a href="Graph.html#t:GraphMatrix">GraphMatrix</a></code> and the second is a vertex of type <code><a href="Graph.html#t:Vertices">Vertices</a></code>.</p><p>For example:</p><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>gm
+</code></strong>0	1	4	0
+5	0	0	1
+2	0	0	4
+0	1	1	0
+</pre><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>degreeGM gm (Vertices [2])
+</code></strong>4
+</pre></div></div><div class="top"><p class="src"><a name="v:hasEulerCircuitG" class="def">hasEulerCircuitG</a> :: (Eq a, Num a) =&gt; <a href="Graph.html#t:Graph">Graph</a> a -&gt; Bool</p><div class="doc"><p>The <code><a href="Graph.html#v:hasEulerCircuitG">hasEulerCircuitG</a></code> function checks if a specified graph conrtains a Euler Circuit.</p><p>For example:</p><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>g
+</code></strong>		Graph ({1,2,3,4,5},{(1,2,1),(1,5,1),(2,1,1),(2,5,1),(3,4,1),(3,5,1),(4,3,1),(4,5,1),(5,1,1),(5,2,1),(5,3,1),(5,4,1)})
+</pre><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>hasEulerCircuitG g
+</code></strong>True
+</pre></div></div><div class="top"><p class="src"><a name="v:hasEulerCircuitGM" class="def">hasEulerCircuitGM</a> :: Integral a =&gt; <a href="Graph.html#t:GraphMatrix">GraphMatrix</a> a -&gt; Bool</p><div class="doc"><p>The <code><a href="Graph.html#v:hasEulerCircuitGM">hasEulerCircuitGM</a></code> function checks if a specified graph (adjacency matrix representation) conrtains a Euler Circuit.</p><p>For example:</p><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>gm
+</code></strong>		0	1	0	0	1
+		1	0	0	0	1
+		0	0	0	1	1
+		0	0	1	0	1
+		1	1	1	1	0
+</pre><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>hasEulerCircuitGM gm
+</code></strong>True
+</pre></div></div><div class="top"><p class="src"><a name="v:hasEulerPathG" class="def">hasEulerPathG</a> :: (Eq a, Num a) =&gt; <a href="Graph.html#t:Graph">Graph</a> a -&gt; Bool</p><div class="doc"><p>The <code><a href="Graph.html#v:hasEulerPathG">hasEulerPathG</a></code> function checks if a graph contains a Euler Path.</p><p>For example:</p><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>g
+</code></strong>Graph ({1,2,3,4},{(1,2,1),(1,4,1),(2,1,1),(2,3,1),(2,4,1),(3,2,1),(3,4,1),(4,1,1),(4,2,1),(4,3,1)})
+</pre><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>hasEulerPathG g
+</code></strong>True
+</pre></div></div><div class="top"><p class="src"><a name="v:hasEulerPathGM" class="def">hasEulerPathGM</a> :: Integral a =&gt; <a href="Graph.html#t:GraphMatrix">GraphMatrix</a> a -&gt; Bool</p><div class="doc"><p>The <code><a href="Graph.html#v:hasEulerPathGM">hasEulerPathGM</a></code> function checks if a graph (adjacency matrix representation) contains a Euler Path.</p><p>For example:</p><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>gm
+</code></strong>0	1	0	1
+1	0	1	1
+0	1	0	1
+1	1	1	0
+</pre><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>hasEulerPathGM gm
+</code></strong>True
+</pre></div></div><div class="top"><p class="src"><a name="v:hasHamiltonianCircuitG" class="def">hasHamiltonianCircuitG</a> :: (Eq a, Num a) =&gt; <a href="Graph.html#t:Graph">Graph</a> a -&gt; Bool</p><div class="doc"><p>The <code><a href="Graph.html#v:hasHamiltonianCircuitG">hasHamiltonianCircuitG</a></code> function checks if a graph contains a Hamiltonian Circuit.</p><p>For example:</p><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>g2
+</code></strong>Graph ({1,2,3,4,5},{(1,2,1),(1,3,1),(1,5,1),(2,1,1),(2,3,1),(2,5,1),(3,1,1),(3,2,1),(3,4,1),(3,5,1),(4,3,1),(4,5,1),(5,1,1),(5,2,1),(5,3,1),(5,4,1)})
+</pre><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>hasHamiltonianCircuitG g2
+</code></strong>True
+</pre></div></div><div class="top"><p class="src"><a name="v:hasHamiltonianCircuitGM" class="def">hasHamiltonianCircuitGM</a> :: Integral a =&gt; <a href="Graph.html#t:GraphMatrix">GraphMatrix</a> a -&gt; Bool</p><div class="doc"><p>The <code><a href="Graph.html#v:hasHamiltonianCircuitGM">hasHamiltonianCircuitGM</a></code> function checks if a graph (adjacency matrix representation) contains a Hamiltonian Circuit.</p><p>For example:</p><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>gm
+</code></strong>		0	1	1	0	1
+		1	0	1	0	1
+		1	1	0	1	1
+		0	0	1	0	1
+		1	1	1	1	0
+</pre><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>hasHamiltonianCircuitGM gm
+</code></strong>True
+</pre></div></div><div class="top"><p class="src"><a name="v:countOddDegreeV" class="def">countOddDegreeV</a> :: (Eq a1, Num a, Num a1) =&gt; <a href="Graph.html#t:Graph">Graph</a> a1 -&gt; a</p><div class="doc"><p>The <code><a href="Graph.html#v:countOddDegreeV">countOddDegreeV</a></code> function returns the number of vertices in a graph that have an odd degree.</p><p>For example:</p><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>g
+</code></strong>		Graph ({1,2,3,4},{(1,2,1),(1,4,1),(2,1,1),(2,3,1),(2,4,1),(3,2,1),(3,4,1),(4,1,1),(4,2,1),(4,3,1)})
+</pre><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>countOddDegreeV g
+</code></strong>0
+</pre><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>g1
+</code></strong>Graph ({1,2,3,4},{(1,2,4),(1,3,1),(1,4,5),(3,2,6)})
+</pre><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>countOddDegreeV g1
+</code></strong>2
+</pre></div></div><div class="top"><p class="src"><a name="v:countEvenDegreeV" class="def">countEvenDegreeV</a> :: (Eq a1, Num a, Num a1) =&gt; <a href="Graph.html#t:Graph">Graph</a> a1 -&gt; a</p><div class="doc"><p>The <code><a href="Graph.html#v:countEvenDegreeV">countEvenDegreeV</a></code> function returns the number of vertices in a graph that have an even degree.</p><p>For example:</p><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>g1
+</code></strong>Graph ({1,2,3,4},{(1,2,4),(1,3,1),(1,4,5),(3,2,6)})
+</pre><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>countEvenDegreeV g1
+</code></strong>2
+</pre></div></div><div class="top"><p class="src"><a name="v:hasEulerPathNotCircuitG" class="def">hasEulerPathNotCircuitG</a> :: (Eq a, Num a) =&gt; <a href="Graph.html#t:Graph">Graph</a> a -&gt; Bool</p><div class="doc"><p>The <code><a href="Graph.html#v:hasEulerPathNotCircuitG">hasEulerPathNotCircuitG</a></code> function checks if a graph conatains a Euler Path but not a Euler circuit.</p><p>For example:</p><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>g1
+</code></strong>Graph ({1,2,3,4},{(1,2,4),(1,3,1),(1,4,5),(3,2,6)})
+</pre><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>hasEulerPathNotCircuitG g1
+</code></strong>True
+</pre></div></div><div class="top"><p class="src"><a name="v:hasEulerPathNotCircuitGM" class="def">hasEulerPathNotCircuitGM</a> :: Integral a =&gt; <a href="Graph.html#t:GraphMatrix">GraphMatrix</a> a -&gt; Bool</p><div class="doc"><p>The <code><a href="Graph.html#v:hasEulerPathNotCircuitGM">hasEulerPathNotCircuitGM</a></code> function checks if a graph (adjacency matrix representation) conatains a Euler Path but not a Euler circuit.</p><p>For example:</p><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>gm
+</code></strong>0	4	1	5
+0	0	0	0
+0	6	0	0
+0	0	0	0
+</pre><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>hasEulerPathNotCircuitGM gm
+</code></strong>True
+</pre></div></div><div class="top"><p class="src"><a name="v:isSubgraphG" class="def">isSubgraphG</a> :: (Num a, Ord a) =&gt; <a href="Graph.html#t:Graph">Graph</a> a -&gt; <a href="Graph.html#t:Graph">Graph</a> a -&gt; Bool</p><div class="doc"><p>The <code><a href="Graph.html#v:isSubgraphG">isSubgraphG</a></code> function checks if a graph is a sub-graph if another specified graph.</p><p>For example:</p><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>g1
+</code></strong>Graph ({1,2,3,4},{(1,2,4),(1,3,1),(1,4,5),(3,2,6)})
+</pre><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>g2
+</code></strong>Graph ({1,3},{(1,3,1)})
+</pre><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>isSubgraphG g2 g1
+</code></strong>True
+</pre><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>isSubgraphG g1 g2
+</code></strong>False
+</pre></div></div><div class="top"><p class="src"><a name="v:isSubgraphGM" class="def">isSubgraphGM</a> :: (Integral a, Integral a1) =&gt; <a href="Graph.html#t:GraphMatrix">GraphMatrix</a> a -&gt; <a href="Graph.html#t:GraphMatrix">GraphMatrix</a> a1 -&gt; Bool</p><div class="doc"><p>The <code><a href="Graph.html#v:isSubgraphGM">isSubgraphGM</a></code> function checks if a graph is a sub-graph if another specified graph (both graphs as <code><a href="Graph.html#t:GraphMatrix">GraphMatrix</a></code> - adjacency matrix representation).</p><p>For example:</p><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>grm1
+</code></strong>		0	4	1	5
+		0	0	0	0
+		0	6	0	0
+		0	0	0	0
+</pre><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>grm2
+</code></strong>0	4
+0	0
+</pre><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>isSubgraphGM grm2 grm1
+</code></strong>True
+</pre><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>isSubgraphGM grm1 grm2
+</code></strong>False
+</pre></div></div></div></div><div id="footer"><p>Produced by <a href="http://www.haskell.org/haddock/">Haddock</a> version 2.16.0</p></div></body></html>

@@ -7,7 +7,7 @@ Maintainer  : rohit305jha@gmail.com
 Stability   : Stable
 
 Functionality for:
-  * Factorial
+    * Factorial
 	* Finding number of combinations
 	* Finding number of permutations
 	* Generating permutations and combinations

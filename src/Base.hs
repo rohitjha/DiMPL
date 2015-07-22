@@ -1,10 +1,10 @@
 {-|
-Module: Base
-Description: Base/radix module for the MPL DSL
-Copyright: (c) Rohit Jha, 2015
-License: BSD2
-Maintainer: rohit305jha@gmail.com
-Stability: Stable
+Module      : Base
+Description : Base/radix module for the MPL DSL
+Copyright   : (c) Rohit Jha, 2015
+License     : BSD2
+Maintainer  : rohit305jha@gmail.com
+Stability   : Stable
 
 Functionality for:
 	* Converting decimal numbers to binary, octal, hexadecimal or any other base/radix
@@ -64,46 +64,46 @@ toBase b v = toBase' [] v where
   	Below are a few examples:
 
   	>>> toBin 11
-	[1,0,1,1]
-	
-	>>> toBin 32
-	[1,0,0,0,0,0]
+  	[1,0,1,1]
+  	
+  	>>> toBin 32
+  	[1,0,0,0,0,0]
 
-	>>> toBin (3^(-1))
-	*** Exception: Negative exponent
+  	>>> toBin (3^(-1))
+  	*** Exception: Negative exponent
 -}
 toBin :: Integer -> [Integer]
 toBin = toBase 2
 
 
 {-|
-	The 'toOct' function converts a decimal number to its octal equivalent.
+    The 'toOct' function converts a decimal number to its octal equivalent.
   	The function takes one argument of type Integer, which is the decimal number.
 
   	Below are a few examples:
 
   	>>> toOct 11
-	[1,3]
+  	[1,3]
 
-	>>> toOct 100
-	[1,4,4]
+  	>>> toOct 100
+  	[1,4,4]
 -}
 toOct :: Integer -> [Integer]
 toOct = toBase 8
 
 
 {-|
-	The 'toDec' function converts a decimal number to its decimal equivalent.
-	The function returns a list of digits of the decimal number.
+  	The 'toDec' function converts a decimal number to its decimal equivalent.
+  	The function returns a list of digits of the decimal number.
   	The function takes one argument of type Integer, which is the decimal number.
 
   	Below are a few examples:
 
   	>>> toDec 15
-	[1,5]
+  	[1,5]
 
-	>>> toDec 123
-	[1,2,3]
+  	>>> toDec 123
+  	[1,2,3]
 -}
 toDec :: Integer -> [Integer]
 toDec = toBase 10
@@ -116,10 +116,10 @@ toDec = toBase 10
   	Below are a few examples:
 
   	>>> toHex 15
-	[15]
+  	[15]
 
-	>>> toHex 1200
-	[4,11,0]
+  	>>> toHex 1200
+  	[4,11,0]
 -}
 toHex :: Integer -> [Integer]
 toHex = toBase 16
@@ -151,10 +151,10 @@ fromBase b ds = foldl' (\n k -> n * b + k) 0 ds
   	Below are a few examples:
 
   	>>> fromBin [1,0,1,0]
-	10
+    10
 
-	>>> fromBin (toBin 12345)
-	12345
+  	>>> fromBin (toBin 12345)
+  	12345
 -}
 fromBin :: [Integer] -> Integer
 fromBin = fromBase 2
@@ -167,10 +167,10 @@ fromBin = fromBase 2
   	Below are a few examples:
 
   	>>> fromOct [6,3,7]
-	415
+    415
 
-	>>> fromOct (toOct 1234)
-	1234
+  	>>> fromOct (toOct 1234)
+  	1234
 -}
 fromOct :: [Integer] -> Integer
 fromOct = fromBase 8
@@ -183,10 +183,10 @@ fromOct = fromBase 8
   	Below are a few examples:
 
   	>>> fromDec [1,5,8,2,2]
-	15822
+  	15822
 
-	>>> fromDec (toDec 635465)
-	635465
+  	>>> fromDec (toDec 635465)
+  	635465
 -}
 fromDec :: [Integer] -> Integer
 fromDec = fromBase 10
@@ -199,10 +199,10 @@ fromDec = fromBase 10
   	Below are a few examples:
 
   	>>> fromHex [14,15,8,2,0]
-	981024
+  	981024
 
-	>>> fromHex (toHex 0234)
-	234
+  	>>> fromHex (toHex 0234)
+  	234
 -}
 fromHex :: [Integer] -> Integer
 fromHex = fromBase 16
@@ -233,16 +233,16 @@ toAlphaDigits = map convert where
 
 
 {-|
-	The 'from AlphaDigits' function converts a String to list of Integer digits.
-	The function takes only one argument of type String.
+  	The 'from AlphaDigits' function converts a String to list of Integer digits.
+  	The function takes only one argument of type String.
 
-	Below are a few examples:
+  	Below are a few examples:
 
-	>>> fromAlphaDigits "j43hbrh"
-	[19,4,3,17,11,27,17]
-		
-	>>> fromAlphaDigits "ffff"
-	[15,15,15,15]
+  	>>> fromAlphaDigits "j43hbrh"
+  	[19,4,3,17,11,27,17]
+  		
+  	>>> fromAlphaDigits "ffff"
+  	[15,15,15,15]
 -}
 fromAlphaDigits :: String -> [Integer]
 fromAlphaDigits = map convert where

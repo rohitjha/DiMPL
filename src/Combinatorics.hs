@@ -1,13 +1,13 @@
 {-|
-Module: Combinatorics
-Description: Combinatorics module for the MPL DSL
-Copyright: (c) Rohit Jha, 2015
-License: BSD2
-Maintainer: rohit305jha@gmail.com
-Stability: Stable
+Module      : Combinatorics
+Description : Combinatorics module for the MPL DSL
+Copyright   : (c) Rohit Jha, 2015
+License     : BSD2
+Maintainer  : rohit305jha@gmail.com
+Stability   : Stable
 
 Functionality for:
-    * Factorial
+  * Factorial
 	* Finding number of combinations
 	* Finding number of permutations
 	* Generating permutations and combinations

@@ -119,7 +119,7 @@ showVertices (x:xs) str = showChar '{' (shows x (showl xs str))
   	{1,2,3,4}
 
   	>>> vertices2list v1
-  	[1,2,3,4]
+    [1,2,3,4]
 -} 
 vertices2list :: Vertices t -> [t]
 vertices2list (Vertices v) = v
@@ -186,7 +186,7 @@ third (a,b,c) = c
 		
     >>> let g = Graph (v,e)
     >>> g
-		Graph ({1,2,3,4},{(1,2,5),(1,3,7),(2,4,3)})
+    Graph ({1,2,3,4},{(1,2,5),(1,3,7),(2,4,3)})
 -}
 newtype Graph a = Graph (Vertices a, Edges a) deriving (Eq, Show)
 
@@ -202,10 +202,11 @@ instance Show a => Show (Matrix a) where
     The 'GraphMatrix' data type is used here to represent a 'Graph' as a two-dimentional list.
 
     For example:
-    GraphMatrix [[1,2,5],[3,5,7],[0,0,4]]
-    >>> 1 2 5
-    >>> 3 5 7
-    >>> 0 0 4
+    
+    >>> GraphMatrix [[1,2,5],[3,5,7],[0,0,4]]
+    1 2 5
+    3 5 7
+    0 0 4
 -}
 newtype GraphMatrix a = GraphMatrix [[a]] deriving (Eq)
 
@@ -254,7 +255,7 @@ getVerticesG (Graph g) = fst g
     For example:
 		
     >>> g
-		Graph ({1,2,3,4},{(1,2,5),(1,3,7),(2,4,3)})
+    Graph ({1,2,3,4},{(1,2,5),(1,3,7),(2,4,3)})
 
 		>>> numVerticesG g
 		4
@@ -270,7 +271,7 @@ numVerticesG (Graph g) = length $ vertices2list $ getVerticesG (Graph g)
     For example:
 
 		>>> g
-		Graph ({1,2,3,4},{(1,2,5),(1,3,7),(2,4,3)})
+    Graph ({1,2,3,4},{(1,2,5),(1,3,7),(2,4,3)})
 
 		>>> numEdgesG g
 		3
@@ -286,7 +287,7 @@ numEdgesG (Graph g) = length $ edges2list $ getEdgesG (Graph g)
     For example:
 
 		>>> g
-		Graph ({1,2,3,4},{(1,2,5),(1,3,7),(2,4,3)})
+    Graph ({1,2,3,4},{(1,2,5),(1,3,7),(2,4,3)})
 
 		>>> getEdgesG g
 		{(1,2,5),(1,3,7),(2,4,3)}
@@ -302,9 +303,9 @@ getEdgesG (Graph g) = snd g
     For example:
 
 		>>> gm
-		1	2	5
-		3	5	7
-		0	0	4
+    1	2	5
+    3	5	7
+    0	0	4
 
 		>>> getVerticesGM gm
 		{1,2,3}
@@ -320,9 +321,9 @@ getVerticesGM (GraphMatrix gm) = Vertices [1 .. length gm]
     For example:
 		
     >>> gm
-		1	2	5
-		3	5	7
-		0	0	4
+    1	2	5
+    3	5	7
+    0	0	4
 
 		>>> numVerticesGM gm
 		3
@@ -343,9 +344,9 @@ weight (GraphMatrix gm) i j = (gm !! i) !! j
     For example:
 		
     >>> gm
-		1	2	5
-		3	5	7
-		0	0	4
+    1	2	5
+    3	5	7
+    0	0	4
 
 		>>> getEdgesGM gm
 		{(1,1,1),(1,2,2),(1,3,5),(2,1,3),(2,2,5),(2,3,7),(3,3,4)}
@@ -363,9 +364,9 @@ getEdgesGM (GraphMatrix gm) = Edges [(i + 1, j + 1, w i j) | i <- [0 .. fromInte
     For example:
 		
     >>> gm
-		1	2	5
-		3	5	7
-		0	0	4
+    1	2	5
+    3	5	7
+    0	0	4
 
 		>>> numEdgesGM gm
 		7
@@ -381,9 +382,9 @@ numEdgesGM (GraphMatrix gm) = length $ edges2list $ getEdgesGM (GraphMatrix gm)
     For example:
 		
     >>> gm
-		1	2	5
-		3	5	7
-		0	0	4
+    1	2	5
+    3	5	7
+    0	0	4
 
 		>>> convertGM2G gm
 		Graph ({1,2,3},{(1,1,1),(1,2,2),(1,3,5),(2,1,3),(2,2,5),(2,3,7),(3,3,4)})
@@ -456,6 +457,7 @@ gTransposeGM (GraphMatrix xs) = GraphMatrix $ foldr (zipWith (:)) (repeat []) xs
     The function takes one argument, which is of type 'Graph' and returns another graph of type 'Graph'.
 
     For example:
+
 		>>> g
 		Graph ({1,2,3,4},{(1,2,5),(1,3,7),(2,4,3)})
 
@@ -474,9 +476,9 @@ gTransposeG (Graph g) = convertGM2G $ gTransposeGM $ convertG2GM (Graph g)
     Below are two examples:
 		
     >>> gm1
-		1	2	5
-		3	5	7
-		0	0	4
+    1	2	5
+    3	5	7
+    0	0	4
 
 		>>> isUndirectedGM gm1
 		False
@@ -499,6 +501,7 @@ isUndirectedGM (GraphMatrix gm) = GraphMatrix gm == gTransposeGM (GraphMatrix gm
     The function takes one argument, which is of type 'Graph'.
 
     For example:
+
 		>>> g
 		Graph ({1,2,3,4},{(1,2,5),(1,3,7),(2,4,3)})
 
@@ -517,8 +520,8 @@ isUndirectedG (Graph g) = isUndirectedGM (convertG2GM (Graph g))
     Below are a few examples:
 		
     >>> gm1
-		1	3
-		0	5
+    1	3
+    0	5
 
 		>>> isDirected gm1
 		True
@@ -661,7 +664,7 @@ addVerticesGM (GraphMatrix gm) (Vertices v) = convertG2GM $ addVerticesG (conver
     For example:
 		
     >>> e
-		{(1,2,5),(1,3,7),(2,4,3)}
+    {(1,2,5),(1,3,7),(2,4,3)}
 
 		>>> verticesInEdges e
 		[1,2,3,4]
@@ -705,7 +708,7 @@ addEdgesG (Graph g) (Edges e) =
 
     For example:
 
-		gm
+		>>> gm
 		0	5	7	0
 		0	0	0	3
 		0	0	0	0
@@ -837,7 +840,7 @@ numPathsBetweenGM (GraphMatrix g) (Vertices v1) (Vertices v2) =
     For example:
 		
     >>> g
-		Graph ({1,2,3,4},{(1,2,1),(1,3,4),(2,1,5),(2,4,1),(3,1,2),(3,4,4),(4,2,1),(4,3,1)})
+    Graph ({1,2,3,4},{(1,2,1),(1,3,4),(2,1,5),(2,4,1),(3,1,2),(3,4,4),(4,2,1),(4,3,1)})
 		
 		>>> adjacentNodes g (Vertices [1])
 		{2,3}
@@ -862,10 +865,10 @@ adjacentNodesG (Graph g) (Vertices v) = Vertices $ L.union [ second x | x <- edg
     For example:
 		
     >>> gm
-		0	1	4	0
-		5	0	0	1
-		2	0	0	4
-		0	1	1	0
+    0	1	4	0
+    5	0	0	1
+    2	0	0	4
+    0	1	1	0
 
 		>>> adjacentNodesGM gm (Vertices [1])
 		{2,3}
@@ -890,7 +893,7 @@ adjacentNodesGM (GraphMatrix gm) (Vertices v) = adjacentNodesG (convertGM2G (Gra
     For example:
 		
     >>> g
-		Graph ({1,2,3,4},{(1,2,1),(1,3,4),(2,1,5),(2,4,1),(3,1,2),(3,4,4),(4,2,1),(4,3,1)})
+    Graph ({1,2,3,4},{(1,2,1),(1,3,4),(2,1,5),(2,4,1),(3,1,2),(3,4,4),(4,2,1),(4,3,1)})
 
 		>>> inDegreeG g (Vertices [1])
 		2
@@ -906,10 +909,10 @@ inDegreeG (Graph g) (Vertices v) = length [ first y | y <- edges2list $ getEdges
     For example:
 		
     >>> gm
-		0	1	4	0
-		5	0	0	1
-		2	0	0	4
-		0	1	1	0
+    0	1	4	0
+    5	0	0	1
+    2	0	0	4
+    0	1	1	0
 
 		>>> inDegreeGM gm (Vertices [2])
 		2
@@ -963,7 +966,7 @@ outDegreeGM (GraphMatrix gm) (Vertices v) = outDegreeG (convertGM2G (GraphMatrix
     For example:
 		
     >>> g
-		Graph ({1,2,3,4},{(1,2,1),(1,3,4),(2,1,5),(2,4,1),(3,1,2),(3,4,4),(4,2,1),(4,3,1)})
+    Graph ({1,2,3,4},{(1,2,1),(1,3,4),(2,1,5),(2,4,1),(3,1,2),(3,4,4),(4,2,1),(4,3,1)})
 
 		>>> degreeG g (Vertices [4])
 		4
@@ -1001,7 +1004,7 @@ degreeGM (GraphMatrix gm) (Vertices v)
     For example:
 		
     >>> g
-		Graph ({1,2,3,4,5},{(1,2,1),(1,5,1),(2,1,1),(2,5,1),(3,4,1),(3,5,1),(4,3,1),(4,5,1),(5,1,1),(5,2,1),(5,3,1),(5,4,1)})
+    Graph ({1,2,3,4,5},{(1,2,1),(1,5,1),(2,1,1),(2,5,1),(3,4,1),(3,5,1),(4,3,1),(4,5,1),(5,1,1),(5,2,1),(5,3,1),(5,4,1)})
 
 		>>> hasEulerCircuitG g
 		True
@@ -1016,11 +1019,11 @@ hasEulerCircuitG (Graph g) = and [ even $ degreeG (Graph g) (Vertices [v]) | v <
     For example:
 		
     >>> gm
-		0	1	0	0	1
-		1	0	0	0	1
-		0	0	0	1	1
-		0	0	1	0	1
-		1	1	1	1	0
+    0	1	0	0	1
+    1	0	0	0	1
+    0	0	0	1	1
+    0	0	1	0	1
+    1	1	1	1	0
 
 		>>> hasEulerCircuitGM gm
 		True
@@ -1068,7 +1071,7 @@ hasEulerPathGM (GraphMatrix gm) = hasEulerCircuitGM (GraphMatrix gm)
     For example:
 		
     >>> g
-		Graph ({1,2,3,4},{(1,2,1),(1,4,1),(2,1,1),(2,3,1),(2,4,1),(3,2,1),(3,4,1),(4,1,1),(4,2,1),(4,3,1)})
+    Graph ({1,2,3,4},{(1,2,1),(1,4,1),(2,1,1),(2,3,1),(2,4,1),(3,2,1),(3,4,1),(4,1,1),(4,2,1),(4,3,1)})
 
 		>>> countOddDegreeV g
 		0
@@ -1152,11 +1155,11 @@ hasHamiltonianCircuitG (Graph g) = and [degreeG (Graph g) (Vertices [v]) >= (num
     For example:
 		
     >>> gm
-		0	1	1	0	1
-		1	0	1	0	1
-		1	1	0	1	1
-		0	0	1	0	1
-		1	1	1	1	0
+    0	1	1	0	1
+    1	0	1	0	1
+    1	1	0	1	1
+    0	0	1	0	1
+    1	1	1	1	0
 
 		>>> hasHamiltonianCircuitGM gm
 		True
@@ -1198,10 +1201,10 @@ isSubgraphG (Graph g1) (Graph g2) = (e1 `isSubset` e2) && (v1 `isSubset` v2)
     For example:
 		
     >>> grm1
-		0	4	1	5
-		0	0	0	0
-		0	6	0	0
-		0	0	0	0
+    0	4	1	5
+    0	0	0	0
+    0	6	0	0
+    0	0	0	0
 
 		>>> grm2
 		0	4

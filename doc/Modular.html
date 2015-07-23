@@ -1,4 +1,47 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Modular</title><link href="ocean.css" rel="stylesheet" type="text/css" title="Ocean" /><script src="haddock-util.js" type="text/javascript"></script><script type="text/javascript">//<![CDATA[
 window.onload = function () {pageLoad();setSynopsis("mini_Modular.html");};
 //]]>
-</script></head><body><div id="package-header"><ul class="links" id="page-menu"><li><a href="index.html">Contents</a></li><li><a href="doc-index.html">Index</a></li></ul><p class="caption empty">&nbsp;</p></div><div id="content"><div id="module-header"><table class="info"><tr><th>Safe Haskell</th><td>Safe</td></tr></table><p class="caption">Modular</p></div><div id="interface"><h1>Documentation</h1><div class="top"><p class="src"><a name="v:modAdd" class="def">modAdd</a> :: Integral a =&gt; a -&gt; a -&gt; a -&gt; a</p></div><div class="top"><p class="src"><a name="v:modSub" class="def">modSub</a> :: Integral a =&gt; a -&gt; a -&gt; a -&gt; a</p></div><div class="top"><p class="src"><a name="v:modMult" class="def">modMult</a> :: Integral a =&gt; a -&gt; a -&gt; a -&gt; a</p></div><div class="top"><p class="src"><a name="v:modExp" class="def">modExp</a> :: (Integral a, Integral a1) =&gt; a -&gt; a1 -&gt; a -&gt; a</p></div><div class="top"><p class="src"><a name="v:isCongruent" class="def">isCongruent</a> :: Integral a =&gt; a -&gt; a -&gt; a -&gt; Bool</p></div><div class="top"><p class="src"><a name="v:findCongruentPair" class="def">findCongruentPair</a> :: Integral t =&gt; t -&gt; t -&gt; t -&gt; t -&gt; [t]</p></div><div class="top"><p class="src"><a name="v:findCongruentPair1" class="def">findCongruentPair1</a> :: Integral t =&gt; t -&gt; t -&gt; t -&gt; t -&gt; [t]</p></div></div></div><div id="footer"><p>Produced by <a href="http://www.haskell.org/haddock/">Haddock</a> version 2.16.0</p></div></body></html>
+</script></head><body><div id="package-header"><ul class="links" id="page-menu"><li><a href="index.html">Contents</a></li><li><a href="doc-index.html">Index</a></li></ul><p class="caption empty">&nbsp;</p></div><div id="content"><div id="module-header"><table class="info"><tr><th>Copyright</th><td>(c) Rohit Jha, 2015</td></tr><tr><th>License</th><td>BSD2</td></tr><tr><th>Maintainer</th><td>rohit305jha@gmail.com</td></tr><tr><th>Stability</th><td>Stable</td></tr><tr><th>Safe Haskell</th><td>Safe</td></tr></table><p class="caption">Modular</p></div><div id="description"><p class="caption">Description</p><div class="doc"><p>Functionality for:
+    * Modular addition
+    * Modular subtraction
+    * Modular multiplication
+    * Modular exponentiation
+    * Checking congruence
+    * Solving linear congruences</p></div></div><div id="synopsis"><p id="control.syn" class="caption expander" onclick="toggleSection('syn')">Synopsis</p><ul id="section.syn" class="hide" onclick="toggleSection('syn')"><li class="src short"><a href="#v:modAdd">modAdd</a> :: Integral a =&gt; a -&gt; a -&gt; a -&gt; a</li><li class="src short"><a href="#v:modSub">modSub</a> :: Integral a =&gt; a -&gt; a -&gt; a -&gt; a</li><li class="src short"><a href="#v:modMult">modMult</a> :: Integral a =&gt; a -&gt; a -&gt; a -&gt; a</li><li class="src short"><a href="#v:modExp">modExp</a> :: (Integral a, Integral a1) =&gt; a -&gt; a1 -&gt; a -&gt; a</li><li class="src short"><a href="#v:isCongruent">isCongruent</a> :: Integral a =&gt; a -&gt; a -&gt; a -&gt; Bool</li><li class="src short"><a href="#v:findCongruentPair">findCongruentPair</a> :: Integral t =&gt; t -&gt; t -&gt; t -&gt; t -&gt; [t]</li><li class="src short"><a href="#v:findCongruentPair1">findCongruentPair1</a> :: Integral t =&gt; t -&gt; t -&gt; t -&gt; t -&gt; [t]</li></ul></div><div id="interface"><h1>Documentation</h1><div class="top"><p class="src"><a name="v:modAdd" class="def">modAdd</a> :: Integral a =&gt; a -&gt; a -&gt; a -&gt; a</p><div class="doc"><p>The <code><a href="Modular.html#v:modAdd">modAdd</a></code> function performs addition using modular arithmetic.</p><pre>modAdd a b m = (a + b) mod m</pre><pre>(a + b) mod m = (a mod m) + (b mod m)</pre><p>For example:</p><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>modAdd 17 44 11
+</code></strong>6
+</pre><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>modAdd 126832 1832 11
+</code></strong>8
+</pre></div></div><div class="top"><p class="src"><a name="v:modSub" class="def">modSub</a> :: Integral a =&gt; a -&gt; a -&gt; a -&gt; a</p><div class="doc"><p>The <code><a href="Modular.html#v:modSub">modSub</a></code> function performs subtraction using modular arithmetic.</p><pre>modSub a b m = (a - b) mod m</pre><pre>(a - b) mod m = (a mod m) - (b mod m)</pre><p>For example:</p><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>modSub 117 14 11
+</code></strong>4
+</pre><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>modSub 114787 23934 3874
+</code></strong>1751
+</pre></div></div><div class="top"><p class="src"><a name="v:modMult" class="def">modMult</a> :: Integral a =&gt; a -&gt; a -&gt; a -&gt; a</p><div class="doc"><p>The <code><a href="Modular.html#v:modMult">modMult</a></code> function performs multiplication using modular arithmetic.</p><pre>modMult a b m = (a * b) mod m</pre><pre>(a * b) mod m = ((a mod m) * (b mod m)) mod m</pre><p>For example:</p><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>modMult 117 14 11
+</code></strong>10
+</pre><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>modMult 114787 23934 3874
+</code></strong>2974
+</pre></div></div><div class="top"><p class="src"><a name="v:modExp" class="def">modExp</a> :: (Integral a, Integral a1) =&gt; a -&gt; a1 -&gt; a -&gt; a</p><div class="doc"><p>The <code><a href="Modular.html#v:modExp">modExp</a></code> function is for the Modular Exponentiation operation (a ^ b mod m)</p><p>For example:</p><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>modExp 12 5 6
+</code></strong>0
+</pre><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>modExp 112 34 546
+</code></strong>532
+</pre><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>modExp 515 5151 1563
+</code></strong>1004
+</pre></div></div><div class="top"><p class="src"><a name="v:isCongruent" class="def">isCongruent</a> :: Integral a =&gt; a -&gt; a -&gt; a -&gt; Bool</p><div class="doc"><p>The <code><a href="Modular.html#v:isCongruent">isCongruent</a></code> function checks for modular congruency.
+    For a = b (mod m) to be congruent, a mod m = b.</p><p>For example:</p><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>isCongruent 132 2 130
+</code></strong>True
+</pre><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>isCongruent 13493 238 234
+</code></strong>False
+</pre></div></div><div class="top"><p class="src"><a name="v:findCongruentPair" class="def">findCongruentPair</a> :: Integral t =&gt; t -&gt; t -&gt; t -&gt; t -&gt; [t]</p><div class="doc"><p>The <code><a href="Modular.html#v:findCongruentPair">findCongruentPair</a></code> function uses the linear congruence formula a * x = b (mod m) or (a * x) mod m = b to find x, when a, b and m are given.</p><p>For example:</p><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>findCongruentPair 5 6 199 100
+</code></strong>[41]
+</pre><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>isCongruent (5 * 41) 6 199
+</code></strong>True
+</pre><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>findCongruentPair 5 6 199 500
+</code></strong>[41,240,439]
+</pre></div></div><div class="top"><p class="src"><a name="v:findCongruentPair1" class="def">findCongruentPair1</a> :: Integral t =&gt; t -&gt; t -&gt; t -&gt; t -&gt; [t]</p><div class="doc"><p>The <code><a href="Modular.html#v:findCongruentPair1">findCongruentPair1</a></code> function uses the linear congruence formula a + b = b (mod m) or (a + x) mod m = b to find x, when a, b and m are given.</p><p>For example:</p><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>findCongruentPair1 10 4 5 100
+</code></strong>[4,9,14,19,24,29,34,39,44,49,54,59,64,69,74,79,84,89,94,99]
+</pre><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>findCongruentPair1 113 20 40 100
+</code></strong>[27,67]
+</pre><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>isCongruent (113 + 27) 20 40
+</code></strong>True
+</pre><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>isCongruent (113 + 67) 20 40
+</code></strong>True
+</pre></div></div></div></div><div id="footer"><p>Produced by <a href="http://www.haskell.org/haddock/">Haddock</a> version 2.16.0</p></div></body></html>

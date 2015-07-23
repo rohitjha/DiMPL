@@ -17,8 +17,8 @@ Functionality for:
         -> Extractig row/s and column/s
         -> Power of matrices
         -> Trace of a matrix
-        -> Checking for type of matrix
-        (symmetric, skew-symmetric, row, column, square, zero, one, unit/identity, orthogonal, involutive, invertible)
+        -> Checking for type of matrix (symmetric, skew-symmetric, row, column, square, zero, one, unit/identity, orthogonal, involutive, invertible)
+    
     -> Determinant
         -> Calculating determinant of a matrix
         -> Finding minors and cofactors

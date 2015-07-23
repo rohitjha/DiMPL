@@ -38,8 +38,8 @@ module Set
     isSuperset,
     powerSet,
     cartProduct,
-    disjoint,
-    disjointL,
+    areDisjoint,
+    areDisjointL,
     natural,
     natural',
     whole,
@@ -344,20 +344,20 @@ cartProduct (Set set1) (Set set2) = Set [(x,y) | x <- set1', y <- set2']
 -- Checking if two sets are disjoint
 {-
     Usage:
-        disjoint (Set [1..10]) (Set [1,2,3])
+        areDisjoint (Set [1..10]) (Set [1,2,3])
         >>> False
 
-        disjoint (Set [2,4..100]) (Set [1,3..9])
+        areDisjoint (Set [2,4..100]) (Set [1,3..9])
         >>> True
 
-        disjoint (Set (natural' 1000)) (Set (whole' 100))
+        areDisjoint (Set (natural' 1000)) (Set (whole' 100))
         >>> False
 
-        disjoint (Set "dshbchsdb") (Set "yruiretu")
+        areDisjoint (Set "dshbchsdb") (Set "yruiretu")
         >>> True
 -}
-disjoint :: Ord a => Set a -> Set a -> Bool
-disjoint (Set set1) (Set set2) = isNullSet $ intersection (Set set1) (Set set2)
+areDisjoint :: Ord a => Set a -> Set a -> Bool
+areDisjoint (Set set1) (Set set2) = isNullSet $ intersection (Set set1) (Set set2)
 
 
 -- Checking if all Sets in a list are disjoint
@@ -372,30 +372,33 @@ disjoint (Set set1) (Set set2) = isNullSet $ intersection (Set set1) (Set set2)
         s6
         >>> {0,4,8,12}
 
-        disjointL [s4,s5,s6]
+        areDisjointL [s4,s5,s6]
         >>> False
 
-        disjointL [(Set [1,2]), (Set [3..10])]
+        areDisjointL [(Set [1,2]), (Set [3..10])]
         >>> True
 -}
-disjointL :: Ord a => [Set a] -> Bool
-disjointL s = isNullSet $ intersectionL s
+areDisjointL :: Ord a => [Set a] -> Bool
+areDisjointL s = isNullSet $ intersectionL s
 
+
+-- Null set
+nullSet = Set []
 
 -- Set of natural numbers
-natural = [1,2..]
+natural = Set [1,2..]
 
 
 -- Set of natural numbers upto n
-natural' n = [1,2..n]
+natural' n = Set [1,2..n]
 
 
 -- Set of whole numbers
-whole = [0,1..]
+whole = Set [0,1..]
 
 
 -- Set of whole numbers upto n
-whole' n = [0,1..n]
+whole' n = Set [0,1..n]
 
 
 -- Mapping a function to a Set
@@ -413,6 +416,6 @@ sMap f (Set s) = list2set $ map f s
 -- SAMPLE SETS --
 s1 = Set [1,3,5,7,9]
 
-s2 = Set [2,4..100]
+s2 = Set [2,4..10]
 
 s3 = Set []

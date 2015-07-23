@@ -1,19 +1,18 @@
-{-
--------------------------------------
-| Modular Arithmetic Module for MPL |
--------------------------------------
+{-|
+Module      : Modular
+Description : Modular Arithmetic module for the MPL DSL
+Copyright   : (c) Rohit Jha, 2015
+License     : BSD2
+Maintainer  : rohit305jha@gmail.com
+Stability   : Stable
 
 Functionality for:
-    -> Modular addition
-    -> Modular subtraction
-    -> Modular multiplication
-    -> Modular exponentiation
-    -> Checking congruence
-    -> Solving linear congruences
-
-Author: Rohit Jha
-Version: 0.1
-Date: 22 Jan 2013
+    * Modular addition
+    * Modular subtraction
+    * Modular multiplication
+    * Modular exponentiation
+    * Checking congruence
+    * Solving linear congruences
 -}
 
 
@@ -30,15 +29,20 @@ module Modular
 where
 
 
--- addition using modular arithmetic
--- (a + b) mod m = (a mod m) + (b mod m)
-{-
-    Usage:
-        modAdd 17 44 11
-        >>> 6
-        
-        modAdd 126832 1832 11
-        >>> 8
+{-|
+    The 'modAdd' function performs addition using modular arithmetic.
+    
+    prop> modAdd a b m = (a + b) mod m
+
+    prop> (a + b) mod m = (a mod m) + (b mod m)
+
+    For example:
+    
+    >>> modAdd 17 44 11
+    6
+    
+    >>> modAdd 126832 1832 11
+    8
 -}
 modAdd a b m = (a `mod` m) + (b `mod` m)
 

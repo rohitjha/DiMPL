@@ -1,4 +1,133 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Logic</title><link href="ocean.css" rel="stylesheet" type="text/css" title="Ocean" /><script src="haddock-util.js" type="text/javascript"></script><script type="text/javascript">//<![CDATA[
 window.onload = function () {pageLoad();setSynopsis("mini_Logic.html");};
 //]]>
-</script></head><body><div id="package-header"><ul class="links" id="page-menu"><li><a href="index.html">Contents</a></li><li><a href="doc-index.html">Index</a></li></ul><p class="caption empty">&nbsp;</p></div><div id="content"><div id="module-header"><table class="info"><tr><th>Safe Haskell</th><td>Safe</td></tr></table><p class="caption">Logic</p></div><div id="interface"><h1>Documentation</h1><div class="top"><p class="src"><a name="v:and-39-" class="def">and'</a> :: Bool -&gt; Bool -&gt; Bool</p></div><div class="top"><p class="src"><a name="v:or-39-" class="def">or'</a> :: Bool -&gt; Bool -&gt; Bool</p></div><div class="top"><p class="src"><a name="v:xor" class="def">xor</a> :: Bool -&gt; Bool -&gt; Bool</p></div><div class="top"><p class="src"><a name="v:xnor" class="def">xnor</a> :: Bool -&gt; Bool -&gt; Bool</p></div><div class="top"><p class="src"><a name="v:nand" class="def">nand</a> :: Bool -&gt; Bool -&gt; Bool</p></div><div class="top"><p class="src"><a name="v:nor" class="def">nor</a> :: Bool -&gt; Bool -&gt; Bool</p></div><div class="top"><p class="src"><a name="v:equals" class="def">equals</a> :: Bool -&gt; Bool -&gt; Bool</p></div><div class="top"><p class="src"><a name="v:implies" class="def">implies</a> :: Bool -&gt; Bool -&gt; Bool</p></div><div class="top"><p class="src"><a name="v:-47--92-" class="def">(/\)</a> :: Bool -&gt; Bool -&gt; Bool</p></div><div class="top"><p class="src"><a name="v:-92--47-" class="def">(\/)</a> :: Bool -&gt; Bool -&gt; Bool</p></div><div class="top"><p class="src"><a name="v:-61--61--62-" class="def">(==&gt;)</a> :: Bool -&gt; Bool -&gt; Bool</p></div><div class="top"><p class="src"><a name="v:-60--61--62-" class="def">(&lt;=&gt;)</a> :: Bool -&gt; Bool -&gt; Bool</p></div><div class="top"><p class="src"><a name="v:notL" class="def">notL</a> :: [Bool] -&gt; [Bool]</p></div><div class="top"><p class="src"><a name="v:andL" class="def">andL</a> :: [Bool] -&gt; Bool</p></div><div class="top"><p class="src"><a name="v:orL" class="def">orL</a> :: [Bool] -&gt; Bool</p></div><div class="top"><p class="src"><a name="v:xorL" class="def">xorL</a> :: [Bool] -&gt; Bool</p></div><div class="top"><p class="src"><a name="v:xnorL" class="def">xnorL</a> :: [Bool] -&gt; Bool</p></div><div class="top"><p class="src"><a name="v:nandL" class="def">nandL</a> :: [Bool] -&gt; Bool</p></div><div class="top"><p class="src"><a name="v:norL" class="def">norL</a> :: [Bool] -&gt; Bool</p></div></div></div><div id="footer"><p>Produced by <a href="http://www.haskell.org/haddock/">Haddock</a> version 2.16.0</p></div></body></html>
+</script></head><body><div id="package-header"><ul class="links" id="page-menu"><li><a href="index.html">Contents</a></li><li><a href="doc-index.html">Index</a></li></ul><p class="caption empty">&nbsp;</p></div><div id="content"><div id="module-header"><table class="info"><tr><th>Copyright</th><td>(c) Rohit Jha, 2015</td></tr><tr><th>License</th><td>BSD2</td></tr><tr><th>Maintainer</th><td>rohit305jha@gmail.com</td></tr><tr><th>Stability</th><td>Stable</td></tr><tr><th>Safe Haskell</th><td>Safe</td></tr></table><p class="caption">Logic</p></div><div id="description"><p class="caption">Description</p><div class="doc"><p>Functionality for:
+  * AND
+  * OR
+  * NOT
+  * XOR
+  * NAND
+  * NOR
+  * Logical Implication
+  * Logical Equality
+  * Operators for the above
+  * Operations on list for the above</p></div></div><div id="synopsis"><p id="control.syn" class="caption expander" onclick="toggleSection('syn')">Synopsis</p><ul id="section.syn" class="hide" onclick="toggleSection('syn')"><li class="src short"><a href="#v:and-39-">and'</a> :: Bool -&gt; Bool -&gt; Bool</li><li class="src short"><a href="#v:or-39-">or'</a> :: Bool -&gt; Bool -&gt; Bool</li><li class="src short"><a href="#v:xor">xor</a> :: Bool -&gt; Bool -&gt; Bool</li><li class="src short"><a href="#v:xnor">xnor</a> :: Bool -&gt; Bool -&gt; Bool</li><li class="src short"><a href="#v:nand">nand</a> :: Bool -&gt; Bool -&gt; Bool</li><li class="src short"><a href="#v:nor">nor</a> :: Bool -&gt; Bool -&gt; Bool</li><li class="src short"><a href="#v:equals">equals</a> :: Bool -&gt; Bool -&gt; Bool</li><li class="src short"><a href="#v:implies">implies</a> :: Bool -&gt; Bool -&gt; Bool</li><li class="src short"><a href="#v:-47--92-">(/\)</a> :: Bool -&gt; Bool -&gt; Bool</li><li class="src short"><a href="#v:-92--47-">(\/)</a> :: Bool -&gt; Bool -&gt; Bool</li><li class="src short"><a href="#v:-61--61--62-">(==&gt;)</a> :: Bool -&gt; Bool -&gt; Bool</li><li class="src short"><a href="#v:-60--61--62-">(&lt;=&gt;)</a> :: Bool -&gt; Bool -&gt; Bool</li><li class="src short"><a href="#v:notL">notL</a> :: [Bool] -&gt; [Bool]</li><li class="src short"><a href="#v:andL">andL</a> :: [Bool] -&gt; Bool</li><li class="src short"><a href="#v:orL">orL</a> :: [Bool] -&gt; Bool</li><li class="src short"><a href="#v:xorL">xorL</a> :: [Bool] -&gt; Bool</li><li class="src short"><a href="#v:xnorL">xnorL</a> :: [Bool] -&gt; Bool</li><li class="src short"><a href="#v:nandL">nandL</a> :: [Bool] -&gt; Bool</li><li class="src short"><a href="#v:norL">norL</a> :: [Bool] -&gt; Bool</li></ul></div><div id="interface"><h1>Documentation</h1><div class="top"><p class="src"><a name="v:and-39-" class="def">and'</a> :: Bool -&gt; Bool -&gt; Bool</p><div class="doc"><p>The <code><a href="Logic.html#v:and-39-">and'</a></code> function is for the binary AND operation.</p><p>For example:</p><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>let a = True
+</code></strong><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>let b = False
+</code></strong><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>c = and' a b
+</code></strong>c = False
+</pre><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>True `and'` False
+</code></strong>False
+</pre></div></div><div class="top"><p class="src"><a name="v:or-39-" class="def">or'</a> :: Bool -&gt; Bool -&gt; Bool</p><div class="doc"><p>The <code><a href="Logic.html#v:or-39-">or'</a></code> function is for the binary OR operation.</p><p>For example:</p><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>let a = True
+</code></strong><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>let b = False
+</code></strong><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>let c = or a b
+</code></strong>c = True
+</pre><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>True `or'` False
+</code></strong>True
+</pre></div></div><div class="top"><p class="src"><a name="v:xor" class="def">xor</a> :: Bool -&gt; Bool -&gt; Bool</p><div class="doc"><p>The <code><a href="Logic.html#v:xor">xor</a></code> function is for the binary XOR operation.</p><p>For example:</p><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>let a = True
+</code></strong><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>let b = False
+</code></strong><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>let c = xor a b
+</code></strong>c = True
+</pre><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>True `xor` False
+</code></strong>True
+</pre></div></div><div class="top"><p class="src"><a name="v:xnor" class="def">xnor</a> :: Bool -&gt; Bool -&gt; Bool</p><div class="doc"><p>The <code><a href="Logic.html#v:xnor">xnor</a></code> function is for the binary XNOR operation.</p><p>For example:</p><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>xnor True False
+</code></strong>False
+</pre><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>xnor True True
+</code></strong>True
+</pre><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>xnor False True
+</code></strong>False
+</pre><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>False `xnor` False
+</code></strong>True
+</pre></div></div><div class="top"><p class="src"><a name="v:nand" class="def">nand</a> :: Bool -&gt; Bool -&gt; Bool</p><div class="doc"><p>The <code><a href="Logic.html#v:nand">nand</a></code> function is for the binary NAND operation.</p><p>For example:</p><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>let a = True
+</code></strong><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>let b = False
+</code></strong><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>let c = nand a b
+</code></strong>c = True
+</pre><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>True `nand` False
+</code></strong>True
+</pre></div></div><div class="top"><p class="src"><a name="v:nor" class="def">nor</a> :: Bool -&gt; Bool -&gt; Bool</p><div class="doc"><p>The <code><a href="Logic.html#v:nor">nor</a></code> function is for the binary NOR operation.</p><p>For example:</p><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>let a = True
+</code></strong><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>let b = False
+</code></strong><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>let c = nor a b
+</code></strong>c = False
+</pre><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>True `nor` False
+</code></strong>False
+</pre></div></div><div class="top"><p class="src"><a name="v:equals" class="def">equals</a> :: Bool -&gt; Bool -&gt; Bool</p><div class="doc"><p>The <code><a href="Logic.html#v:equals">equals</a></code> function checks for binary logical equality.</p><p>For example:</p><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>let a = True
+</code></strong><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>let b = False
+</code></strong><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>let c = equals a b
+</code></strong>c = False
+</pre><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>True `equals` True
+</code></strong>True
+</pre></div></div><div class="top"><p class="src"><a name="v:implies" class="def">implies</a> :: Bool -&gt; Bool -&gt; Bool</p><div class="doc"><p>The <code><a href="Logic.html#v:implies">implies</a></code> function checks for binart logical implication.</p><p>For example:</p><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>let a = True
+</code></strong><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>let b = False
+</code></strong><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>let c = implies a b
+</code></strong>c = False
+</pre><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>True `implies` False
+</code></strong>False
+</pre></div></div><div class="top"><p class="src"><a name="v:-47--92-" class="def">(/\)</a> :: Bool -&gt; Bool -&gt; Bool</p><div class="doc"><p>The <code><a href="Logic.html#v:-47--92-">/\</a></code> operator is the binary AND operator.</p><p>For example:</p><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>True /\ True
+</code></strong>True
+</pre><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>True /\ False
+</code></strong>False
+</pre><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>False /\ True
+</code></strong>False
+</pre><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>False /\ False
+</code></strong>False
+</pre></div></div><div class="top"><p class="src"><a name="v:-92--47-" class="def">(\/)</a> :: Bool -&gt; Bool -&gt; Bool</p><div class="doc"><p>The <code><a href="Logic.html#v:-92--47-">\/</a></code> operator is the binary OR operator.</p><p>For example:</p><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>True \/ True
+</code></strong>True
+</pre><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>True \/ False
+</code></strong>True
+</pre><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>False \/ True
+</code></strong>True
+</pre><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>False \/ False
+</code></strong>False
+</pre></div></div><div class="top"><p class="src"><a name="v:-61--61--62-" class="def">(==&gt;)</a> :: Bool -&gt; Bool -&gt; Bool</p><div class="doc"><p>The <code><a href="Logic.html#v:-61--61--62-">==&gt;</a></code> operator is the binary implication operator.
+    This operator can be used instead of the <code><a href="Logic.html#v:implies">implies</a></code> function.</p><p>For example:</p><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>True ==&gt; False
+</code></strong>False
+</pre><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>False ==&gt; False
+</code></strong>True
+</pre><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>False ==&gt; True
+</code></strong>True
+</pre><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>True ==&gt; True
+</code></strong>True
+</pre></div></div><div class="top"><p class="src"><a name="v:-60--61--62-" class="def">(&lt;=&gt;)</a> :: Bool -&gt; Bool -&gt; Bool</p><div class="doc"><p>The <code><a href="Logic.html#v:-60--61--62-">&lt;=&gt;</a></code> operator is the binary equality operator.</p><p>For example:</p><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>True &lt;=&gt; True
+</code></strong>True
+</pre><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>True &lt;=&gt; False
+</code></strong>False
+</pre><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>False &lt;=&gt; True
+</code></strong>False
+</pre><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>False &lt;=&gt; False
+</code></strong>True
+</pre></div></div><div class="top"><p class="src"><a name="v:notL" class="def">notL</a> :: [Bool] -&gt; [Bool]</p><div class="doc"><p>The <code><a href="Logic.html#v:notL">notL</a></code> function is a unary NOT function that is applied to each element of a Bool list.</p><p>For example:</p><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>notL [True, True, False]
+</code></strong>[False,False,True]
+</pre><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>notL [True, False, True, True, False]
+</code></strong>[False,True,False,False,True]
+</pre><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>notL [True]
+</code></strong>[False]
+</pre><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>notL []
+</code></strong>[]
+</pre></div></div><div class="top"><p class="src"><a name="v:andL" class="def">andL</a> :: [Bool] -&gt; Bool</p><div class="doc"><p>The <code><a href="Logic.html#v:andL">andL</a></code> function is an AND operator that is applied on all elements of a Bool list.</p><p>For example:</p><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>andL [True, False, True, True, False]
+</code></strong>False
+</pre><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>andL [True, True]
+</code></strong>True
+</pre><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>andL [False]
+</code></strong>False
+</pre></div></div><div class="top"><p class="src"><a name="v:orL" class="def">orL</a> :: [Bool] -&gt; Bool</p><div class="doc"><p>The <code><a href="Logic.html#v:orL">orL</a></code> function is an OR operator that is applied on all elements of a Bool list.</p><p>For example:</p><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>orL [True, False, True, True, False]
+</code></strong>True
+</pre><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>orL [True, False]
+</code></strong>True
+</pre><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>orL [False, False]
+</code></strong>False
+</pre></div></div><div class="top"><p class="src"><a name="v:xorL" class="def">xorL</a> :: [Bool] -&gt; Bool</p><div class="doc"><p>The <code><a href="Logic.html#v:xorL">xorL</a></code> function is an XOR operator that is applied on all the elements of a Bool list.</p><p>For example:</p><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>xorL [True, False, True, True, False]
+</code></strong>True
+</pre><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>xorL [False, False]
+</code></strong>False
+</pre></div></div><div class="top"><p class="src"><a name="v:xnorL" class="def">xnorL</a> :: [Bool] -&gt; Bool</p><div class="doc"><p>The <code><a href="Logic.html#v:xnorL">xnorL</a></code> function is an XNOR operator that is applied on all the elements of a Bool list.</p><p>For example:</p><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>xnorL [True, False, True, True, False]
+</code></strong>True
+</pre><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>xnorL [False, False]
+</code></strong>True
+</pre></div></div><div class="top"><p class="src"><a name="v:nandL" class="def">nandL</a> :: [Bool] -&gt; Bool</p><div class="doc"><p>The <code><a href="Logic.html#v:nandL">nandL</a></code> function is a NAND operator that is applied on all the elements of a Bool list.</p><p>For example:</p><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>nandL [True, False, True, True, False]
+</code></strong>True
+</pre><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>nandL [False, False]
+</code></strong>True
+</pre></div></div><div class="top"><p class="src"><a name="v:norL" class="def">norL</a> :: [Bool] -&gt; Bool</p><div class="doc"><p>The <code><a href="Logic.html#v:norL">norL</a></code> function is a NOR operator that is applied on all the elements of a Bool list.</p><p>For example:</p><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>norL [True, False, True, True, False]
+</code></strong>True
+</pre><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>norL [False, False]
+</code></strong>True
+</pre></div></div></div></div><div id="footer"><p>Produced by <a href="http://www.haskell.org/haddock/">Haddock</a> version 2.16.0</p></div></body></html>

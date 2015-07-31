@@ -1,4 +1,258 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Matrix</title><link href="ocean.css" rel="stylesheet" type="text/css" title="Ocean" /><script src="haddock-util.js" type="text/javascript"></script><script type="text/javascript">//<![CDATA[
 window.onload = function () {pageLoad();setSynopsis("mini_Matrix.html");};
 //]]>
-</script></head><body><div id="package-header"><ul class="links" id="page-menu"><li><a href="index.html">Contents</a></li><li><a href="doc-index.html">Index</a></li></ul><p class="caption empty">&nbsp;</p></div><div id="content"><div id="module-header"><table class="info"><tr><th>Safe Haskell</th><td>Safe</td></tr></table><p class="caption">Matrix</p></div><div id="interface"><h1>Documentation</h1><div class="top"><p class="src"><span class="keyword">newtype</span> <a name="t:Matrix" class="def">Matrix</a> a</p><div class="subs constructors"><p class="caption">Constructors</p><table><tr><td class="src"><a name="v:Matrix" class="def">Matrix</a> [[a]]</td><td class="doc empty">&nbsp;</td></tr></table></div><div class="subs instances"><p id="control.i:Matrix" class="caption collapser" onclick="toggleSection('i:Matrix')">Instances</p><div id="section.i:Matrix" class="show"><table><tr><td class="src">Eq a =&gt; Eq (<a href="Matrix.html#t:Matrix">Matrix</a> a)</td><td class="doc empty">&nbsp;</td></tr><tr><td class="src">Show a =&gt; Show (<a href="Matrix.html#t:Matrix">Matrix</a> a)</td><td class="doc empty">&nbsp;</td></tr></table></div></div></div><div class="top"><p class="src"><a name="v:mAdd" class="def">mAdd</a> :: Num a =&gt; <a href="Matrix.html#t:Matrix">Matrix</a> a -&gt; <a href="Matrix.html#t:Matrix">Matrix</a> a -&gt; <a href="Matrix.html#t:Matrix">Matrix</a> a</p></div><div class="top"><p class="src"><a name="v:mAddL" class="def">mAddL</a> :: Num a =&gt; [<a href="Matrix.html#t:Matrix">Matrix</a> a] -&gt; <a href="Matrix.html#t:Matrix">Matrix</a> a</p></div><div class="top"><p class="src"><a name="v:-124--43--124-" class="def">(|+|)</a> :: Num a =&gt; <a href="Matrix.html#t:Matrix">Matrix</a> a -&gt; <a href="Matrix.html#t:Matrix">Matrix</a> a -&gt; <a href="Matrix.html#t:Matrix">Matrix</a> a</p></div><div class="top"><p class="src"><a name="v:mSub" class="def">mSub</a> :: Num a =&gt; <a href="Matrix.html#t:Matrix">Matrix</a> a -&gt; <a href="Matrix.html#t:Matrix">Matrix</a> a -&gt; <a href="Matrix.html#t:Matrix">Matrix</a> a</p></div><div class="top"><p class="src"><a name="v:-124--45--124-" class="def">(|-|)</a> :: Num a =&gt; <a href="Matrix.html#t:Matrix">Matrix</a> a -&gt; <a href="Matrix.html#t:Matrix">Matrix</a> a -&gt; <a href="Matrix.html#t:Matrix">Matrix</a> a</p></div><div class="top"><p class="src"><a name="v:mTranspose" class="def">mTranspose</a> :: <a href="Matrix.html#t:Matrix">Matrix</a> a -&gt; <a href="Matrix.html#t:Matrix">Matrix</a> a</p></div><div class="top"><p class="src"><a name="v:mScalarMult" class="def">mScalarMult</a> :: Num a =&gt; a -&gt; <a href="Matrix.html#t:Matrix">Matrix</a> a -&gt; <a href="Matrix.html#t:Matrix">Matrix</a> a</p></div><div class="top"><p class="src"><a name="v:-124--42--124-" class="def">(|*|)</a> :: Num a =&gt; a -&gt; <a href="Matrix.html#t:Matrix">Matrix</a> a -&gt; <a href="Matrix.html#t:Matrix">Matrix</a> a</p></div><div class="top"><p class="src"><a name="v:mMult" class="def">mMult</a> :: Num a =&gt; <a href="Matrix.html#t:Matrix">Matrix</a> a -&gt; <a href="Matrix.html#t:Matrix">Matrix</a> a -&gt; <a href="Matrix.html#t:Matrix">Matrix</a> a</p></div><div class="top"><p class="src"><a name="v:mMultL" class="def">mMultL</a> :: Num a =&gt; [<a href="Matrix.html#t:Matrix">Matrix</a> a] -&gt; <a href="Matrix.html#t:Matrix">Matrix</a> a</p></div><div class="top"><p class="src"><a name="v:-124--62--60--124-" class="def">(|&gt;&lt;|)</a> :: Num a =&gt; <a href="Matrix.html#t:Matrix">Matrix</a> a -&gt; <a href="Matrix.html#t:Matrix">Matrix</a> a -&gt; <a href="Matrix.html#t:Matrix">Matrix</a> a</p></div><div class="top"><p class="src"><a name="v:numRows" class="def">numRows</a> :: Num a =&gt; <a href="Matrix.html#t:Matrix">Matrix</a> a -&gt; Int</p></div><div class="top"><p class="src"><a name="v:numCols" class="def">numCols</a> :: Num a =&gt; <a href="Matrix.html#t:Matrix">Matrix</a> a -&gt; Int</p></div><div class="top"><p class="src"><a name="v:mat2list" class="def">mat2list</a> :: <a href="Matrix.html#t:Matrix">Matrix</a> a -&gt; [[a]]</p></div><div class="top"><p class="src"><a name="v:determinant" class="def">determinant</a> :: <a href="Matrix.html#t:Matrix">Matrix</a> Double -&gt; Double</p></div><div class="top"><p class="src"><a name="v:inverse" class="def">inverse</a> :: <a href="Matrix.html#t:Matrix">Matrix</a> Double -&gt; <a href="Matrix.html#t:Matrix">Matrix</a> Double</p></div><div class="top"><p class="src"><a name="v:mDiv" class="def">mDiv</a> :: <a href="Matrix.html#t:Matrix">Matrix</a> Double -&gt; <a href="Matrix.html#t:Matrix">Matrix</a> Double -&gt; <a href="Matrix.html#t:Matrix">Matrix</a> Double</p></div><div class="top"><p class="src"><a name="v:-124--47--124-" class="def">(|/|)</a> :: <a href="Matrix.html#t:Matrix">Matrix</a> Double -&gt; <a href="Matrix.html#t:Matrix">Matrix</a> Double -&gt; <a href="Matrix.html#t:Matrix">Matrix</a> Double</p></div><div class="top"><p class="src"><a name="v:extractRow" class="def">extractRow</a> :: <a href="Matrix.html#t:Matrix">Matrix</a> a -&gt; Int -&gt; [a]</p></div><div class="top"><p class="src"><a name="v:extractCol" class="def">extractCol</a> :: <a href="Matrix.html#t:Matrix">Matrix</a> a -&gt; Int -&gt; [a]</p></div><div class="top"><p class="src"><a name="v:extractRowRange" class="def">extractRowRange</a> :: <a href="Matrix.html#t:Matrix">Matrix</a> a -&gt; Int -&gt; Int -&gt; <a href="Matrix.html#t:Matrix">Matrix</a> a</p></div><div class="top"><p class="src"><a name="v:extractColRange" class="def">extractColRange</a> :: <a href="Matrix.html#t:Matrix">Matrix</a> a -&gt; Int -&gt; Int -&gt; <a href="Matrix.html#t:Matrix">Matrix</a> a</p></div><div class="top"><p class="src"><a name="v:mPower" class="def">mPower</a> :: (Num a, Ord a) =&gt; <a href="Matrix.html#t:Matrix">Matrix</a> Double -&gt; a -&gt; <a href="Matrix.html#t:Matrix">Matrix</a> Double</p></div><div class="top"><p class="src"><a name="v:trace" class="def">trace</a> :: Num a =&gt; <a href="Matrix.html#t:Matrix">Matrix</a> a -&gt; a</p></div><div class="top"><p class="src"><a name="v:isInvertible" class="def">isInvertible</a> :: <a href="Matrix.html#t:Matrix">Matrix</a> Double -&gt; Bool</p></div><div class="top"><p class="src"><a name="v:isSymmetric" class="def">isSymmetric</a> :: Eq a =&gt; <a href="Matrix.html#t:Matrix">Matrix</a> a -&gt; Bool</p></div><div class="top"><p class="src"><a name="v:isSkewSymmetric" class="def">isSkewSymmetric</a> :: (Eq a, Num a) =&gt; <a href="Matrix.html#t:Matrix">Matrix</a> a -&gt; Bool</p></div><div class="top"><p class="src"><a name="v:isRow" class="def">isRow</a> :: Num a =&gt; <a href="Matrix.html#t:Matrix">Matrix</a> a -&gt; Bool</p></div><div class="top"><p class="src"><a name="v:isColumn" class="def">isColumn</a> :: Num a =&gt; <a href="Matrix.html#t:Matrix">Matrix</a> a -&gt; Bool</p></div><div class="top"><p class="src"><a name="v:isSquare" class="def">isSquare</a> :: Num a =&gt; <a href="Matrix.html#t:Matrix">Matrix</a> a -&gt; Bool</p></div><div class="top"><p class="src"><a name="v:isOrthogonal" class="def">isOrthogonal</a> :: <a href="Matrix.html#t:Matrix">Matrix</a> Double -&gt; Bool</p></div><div class="top"><p class="src"><a name="v:isInvolutive" class="def">isInvolutive</a> :: <a href="Matrix.html#t:Matrix">Matrix</a> Double -&gt; Bool</p></div><div class="top"><p class="src"><a name="v:isZeroOne" class="def">isZeroOne</a> :: (Eq a, Num a) =&gt; <a href="Matrix.html#t:Matrix">Matrix</a> a -&gt; Bool</p></div><div class="top"><p class="src"><a name="v:isZero" class="def">isZero</a> :: (Eq a, Num a) =&gt; <a href="Matrix.html#t:Matrix">Matrix</a> a -&gt; Bool</p></div><div class="top"><p class="src"><a name="v:isOne" class="def">isOne</a> :: (Eq a, Num a) =&gt; <a href="Matrix.html#t:Matrix">Matrix</a> a -&gt; Bool</p></div><div class="top"><p class="src"><a name="v:isUnit" class="def">isUnit</a> :: <a href="Matrix.html#t:Matrix">Matrix</a> Double -&gt; Bool</p></div><div class="top"><p class="src"><a name="v:mMap" class="def">mMap</a> :: (a1 -&gt; a) -&gt; <a href="Matrix.html#t:Matrix">Matrix</a> a1 -&gt; <a href="Matrix.html#t:Matrix">Matrix</a> a</p></div><div class="top"><p class="src"><a name="v:zero" class="def">zero</a> :: Num a =&gt; Int -&gt; <a href="Matrix.html#t:Matrix">Matrix</a> a</p></div><div class="top"><p class="src"><a name="v:zero-39-" class="def">zero'</a> :: Num a =&gt; Int -&gt; Int -&gt; <a href="Matrix.html#t:Matrix">Matrix</a> a</p></div><div class="top"><p class="src"><a name="v:one" class="def">one</a> :: Num a =&gt; Int -&gt; <a href="Matrix.html#t:Matrix">Matrix</a> a</p></div><div class="top"><p class="src"><a name="v:one-39-" class="def">one'</a> :: Num a =&gt; Int -&gt; Int -&gt; <a href="Matrix.html#t:Matrix">Matrix</a> a</p></div><div class="top"><p class="src"><a name="v:unit" class="def">unit</a> :: Num a =&gt; Int -&gt; <a href="Matrix.html#t:Matrix">Matrix</a> a</p></div></div></div><div id="footer"><p>Produced by <a href="http://www.haskell.org/haddock/">Haddock</a> version 2.16.0</p></div></body></html>
+</script></head><body><div id="package-header"><ul class="links" id="page-menu"><li><a href="index.html">Contents</a></li><li><a href="doc-index.html">Index</a></li></ul><p class="caption empty">&nbsp;</p></div><div id="content"><div id="module-header"><table class="info"><tr><th>Copyright</th><td>(c) Rohit Jha, 2015</td></tr><tr><th>License</th><td>BSD2</td></tr><tr><th>Maintainer</th><td>rohit305jha@gmail.com</td></tr><tr><th>Stability</th><td>Stable</td></tr><tr><th>Safe Haskell</th><td>Safe</td></tr></table><p class="caption">Matrix</p></div><div id="description"><p class="caption">Description</p><div class="doc"><p>Functionality for:
+    * Matrix addition
+    * Matrix subtraction
+    * Matrix multiplication
+    * Multiplication with a scalar
+    * Matrix division
+    * Matrix transposition
+    * Matrix inversion
+    * Finding number of rows and columns
+    * Matrix equality
+    * Extractig row<em>s and column</em>s
+    * Power of matrices
+    * Trace of a matrix
+    * Checking for type of matrix (symmetric, skew-symmetric, row, column, square, zero, one, unit/identity, orthogonal, involutive, invertible)    
+    * Determinant
+    * Calculating determinant of a matrix
+    * Finding minors and cofactors</p></div></div><div id="synopsis"><p id="control.syn" class="caption expander" onclick="toggleSection('syn')">Synopsis</p><ul id="section.syn" class="hide" onclick="toggleSection('syn')"><li class="src short"><span class="keyword">newtype</span> <a href="#t:Matrix">Matrix</a> a = <a href="#v:Matrix">Matrix</a> [[a]]</li><li class="src short"><a href="#v:mAdd">mAdd</a> :: Num a =&gt; <a href="Matrix.html#t:Matrix">Matrix</a> a -&gt; <a href="Matrix.html#t:Matrix">Matrix</a> a -&gt; <a href="Matrix.html#t:Matrix">Matrix</a> a</li><li class="src short"><a href="#v:mAddL">mAddL</a> :: Num a =&gt; [<a href="Matrix.html#t:Matrix">Matrix</a> a] -&gt; <a href="Matrix.html#t:Matrix">Matrix</a> a</li><li class="src short"><a href="#v:-124--43--124-">(|+|)</a> :: Num a =&gt; <a href="Matrix.html#t:Matrix">Matrix</a> a -&gt; <a href="Matrix.html#t:Matrix">Matrix</a> a -&gt; <a href="Matrix.html#t:Matrix">Matrix</a> a</li><li class="src short"><a href="#v:mSub">mSub</a> :: Num a =&gt; <a href="Matrix.html#t:Matrix">Matrix</a> a -&gt; <a href="Matrix.html#t:Matrix">Matrix</a> a -&gt; <a href="Matrix.html#t:Matrix">Matrix</a> a</li><li class="src short"><a href="#v:-124--45--124-">(|-|)</a> :: Num a =&gt; <a href="Matrix.html#t:Matrix">Matrix</a> a -&gt; <a href="Matrix.html#t:Matrix">Matrix</a> a -&gt; <a href="Matrix.html#t:Matrix">Matrix</a> a</li><li class="src short"><a href="#v:mTranspose">mTranspose</a> :: <a href="Matrix.html#t:Matrix">Matrix</a> a -&gt; <a href="Matrix.html#t:Matrix">Matrix</a> a</li><li class="src short"><a href="#v:mScalarMult">mScalarMult</a> :: Num a =&gt; a -&gt; <a href="Matrix.html#t:Matrix">Matrix</a> a -&gt; <a href="Matrix.html#t:Matrix">Matrix</a> a</li><li class="src short"><a href="#v:-124--42--124-">(|*|)</a> :: Num a =&gt; a -&gt; <a href="Matrix.html#t:Matrix">Matrix</a> a -&gt; <a href="Matrix.html#t:Matrix">Matrix</a> a</li><li class="src short"><a href="#v:mMult">mMult</a> :: Num a =&gt; <a href="Matrix.html#t:Matrix">Matrix</a> a -&gt; <a href="Matrix.html#t:Matrix">Matrix</a> a -&gt; <a href="Matrix.html#t:Matrix">Matrix</a> a</li><li class="src short"><a href="#v:mMultL">mMultL</a> :: Num a =&gt; [<a href="Matrix.html#t:Matrix">Matrix</a> a] -&gt; <a href="Matrix.html#t:Matrix">Matrix</a> a</li><li class="src short"><a href="#v:-124--62--60--124-">(|&gt;&lt;|)</a> :: Num a =&gt; <a href="Matrix.html#t:Matrix">Matrix</a> a -&gt; <a href="Matrix.html#t:Matrix">Matrix</a> a -&gt; <a href="Matrix.html#t:Matrix">Matrix</a> a</li><li class="src short"><a href="#v:numRows">numRows</a> :: Num a =&gt; <a href="Matrix.html#t:Matrix">Matrix</a> a -&gt; Int</li><li class="src short"><a href="#v:numCols">numCols</a> :: Num a =&gt; <a href="Matrix.html#t:Matrix">Matrix</a> a -&gt; Int</li><li class="src short"><a href="#v:mat2list">mat2list</a> :: <a href="Matrix.html#t:Matrix">Matrix</a> a -&gt; [[a]]</li><li class="src short"><a href="#v:determinant">determinant</a> :: Num a =&gt; <a href="Matrix.html#t:Matrix">Matrix</a> a -&gt; a</li><li class="src short"><a href="#v:inverse">inverse</a> :: (Eq a, Fractional a) =&gt; <a href="Matrix.html#t:Matrix">Matrix</a> a -&gt; <a href="Matrix.html#t:Matrix">Matrix</a> a</li><li class="src short"><a href="#v:mDiv">mDiv</a> :: (Eq a, Fractional a) =&gt; <a href="Matrix.html#t:Matrix">Matrix</a> a -&gt; <a href="Matrix.html#t:Matrix">Matrix</a> a -&gt; <a href="Matrix.html#t:Matrix">Matrix</a> a</li><li class="src short"><a href="#v:-124--47--124-">(|/|)</a> :: (Eq a, Fractional a) =&gt; <a href="Matrix.html#t:Matrix">Matrix</a> a -&gt; <a href="Matrix.html#t:Matrix">Matrix</a> a -&gt; <a href="Matrix.html#t:Matrix">Matrix</a> a</li><li class="src short"><a href="#v:extractRow">extractRow</a> :: <a href="Matrix.html#t:Matrix">Matrix</a> a -&gt; Int -&gt; [a]</li><li class="src short"><a href="#v:extractCol">extractCol</a> :: <a href="Matrix.html#t:Matrix">Matrix</a> a -&gt; Int -&gt; [a]</li><li class="src short"><a href="#v:extractRowRange">extractRowRange</a> :: <a href="Matrix.html#t:Matrix">Matrix</a> a -&gt; Int -&gt; Int -&gt; <a href="Matrix.html#t:Matrix">Matrix</a> a</li><li class="src short"><a href="#v:extractColRange">extractColRange</a> :: <a href="Matrix.html#t:Matrix">Matrix</a> a -&gt; Int -&gt; Int -&gt; <a href="Matrix.html#t:Matrix">Matrix</a> a</li><li class="src short"><a href="#v:mPower">mPower</a> :: (Eq a1, Fractional a1, Num a, Ord a) =&gt; <a href="Matrix.html#t:Matrix">Matrix</a> a1 -&gt; a -&gt; <a href="Matrix.html#t:Matrix">Matrix</a> a1</li><li class="src short"><a href="#v:trace">trace</a> :: Num a =&gt; <a href="Matrix.html#t:Matrix">Matrix</a> a -&gt; a</li><li class="src short"><a href="#v:isInvertible">isInvertible</a> :: (Eq a, Num a) =&gt; <a href="Matrix.html#t:Matrix">Matrix</a> a -&gt; Bool</li><li class="src short"><a href="#v:isSymmetric">isSymmetric</a> :: Eq a =&gt; <a href="Matrix.html#t:Matrix">Matrix</a> a -&gt; Bool</li><li class="src short"><a href="#v:isSkewSymmetric">isSkewSymmetric</a> :: (Eq a, Num a) =&gt; <a href="Matrix.html#t:Matrix">Matrix</a> a -&gt; Bool</li><li class="src short"><a href="#v:isRow">isRow</a> :: Num a =&gt; <a href="Matrix.html#t:Matrix">Matrix</a> a -&gt; Bool</li><li class="src short"><a href="#v:isColumn">isColumn</a> :: Num a =&gt; <a href="Matrix.html#t:Matrix">Matrix</a> a -&gt; Bool</li><li class="src short"><a href="#v:isSquare">isSquare</a> :: Num a =&gt; <a href="Matrix.html#t:Matrix">Matrix</a> a -&gt; Bool</li><li class="src short"><a href="#v:isOrthogonal">isOrthogonal</a> :: (Eq a, Fractional a) =&gt; <a href="Matrix.html#t:Matrix">Matrix</a> a -&gt; Bool</li><li class="src short"><a href="#v:isInvolutive">isInvolutive</a> :: (Eq a, Fractional a) =&gt; <a href="Matrix.html#t:Matrix">Matrix</a> a -&gt; Bool</li><li class="src short"><a href="#v:isZeroOne">isZeroOne</a> :: (Eq a, Num a) =&gt; <a href="Matrix.html#t:Matrix">Matrix</a> a -&gt; Bool</li><li class="src short"><a href="#v:isZero">isZero</a> :: (Eq a, Num a) =&gt; <a href="Matrix.html#t:Matrix">Matrix</a> a -&gt; Bool</li><li class="src short"><a href="#v:isOne">isOne</a> :: (Eq a, Num a) =&gt; <a href="Matrix.html#t:Matrix">Matrix</a> a -&gt; Bool</li><li class="src short"><a href="#v:isUnit">isUnit</a> :: (Eq a, Fractional a) =&gt; <a href="Matrix.html#t:Matrix">Matrix</a> a -&gt; Bool</li><li class="src short"><a href="#v:mMap">mMap</a> :: (a1 -&gt; a) -&gt; <a href="Matrix.html#t:Matrix">Matrix</a> a1 -&gt; <a href="Matrix.html#t:Matrix">Matrix</a> a</li><li class="src short"><a href="#v:zero">zero</a> :: Num a =&gt; Int -&gt; <a href="Matrix.html#t:Matrix">Matrix</a> a</li><li class="src short"><a href="#v:zero-39-">zero'</a> :: Num a =&gt; Int -&gt; Int -&gt; <a href="Matrix.html#t:Matrix">Matrix</a> a</li><li class="src short"><a href="#v:one">one</a> :: Num a =&gt; Int -&gt; <a href="Matrix.html#t:Matrix">Matrix</a> a</li><li class="src short"><a href="#v:one-39-">one'</a> :: Num a =&gt; Int -&gt; Int -&gt; <a href="Matrix.html#t:Matrix">Matrix</a> a</li><li class="src short"><a href="#v:unit">unit</a> :: Num a =&gt; Int -&gt; <a href="Matrix.html#t:Matrix">Matrix</a> a</li></ul></div><div id="interface"><h1>Documentation</h1><div class="top"><p class="src"><span class="keyword">newtype</span> <a name="t:Matrix" class="def">Matrix</a> a</p><div class="doc"><p><code><a href="Matrix.html#t:Matrix">Matrix</a></code> is the data type used for representing a matrix as a two-dimensional list.</p><p>For example:</p><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>let m = Matrix [[1,2,3],[4,5,6],[7,8,9]]
+</code></strong><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>m
+</code></strong>1   2   3
+4   5   6
+7   8   9
+</pre></div><div class="subs constructors"><p class="caption">Constructors</p><table><tr><td class="src"><a name="v:Matrix" class="def">Matrix</a> [[a]]</td><td class="doc empty">&nbsp;</td></tr></table></div><div class="subs instances"><p id="control.i:Matrix" class="caption collapser" onclick="toggleSection('i:Matrix')">Instances</p><div id="section.i:Matrix" class="show"><table><tr><td class="src">Eq a =&gt; Eq (<a href="Matrix.html#t:Matrix">Matrix</a> a)</td><td class="doc empty">&nbsp;</td></tr><tr><td class="src">Show a =&gt; Show (<a href="Matrix.html#t:Matrix">Matrix</a> a)</td><td class="doc empty">&nbsp;</td></tr></table></div></div></div><div class="top"><p class="src"><a name="v:mAdd" class="def">mAdd</a> :: Num a =&gt; <a href="Matrix.html#t:Matrix">Matrix</a> a -&gt; <a href="Matrix.html#t:Matrix">Matrix</a> a -&gt; <a href="Matrix.html#t:Matrix">Matrix</a> a</p><div class="doc"><p>The <code><a href="Matrix.html#v:mAdd">mAdd</a></code> function adds two matrices, each of type <code><a href="Matrix.html#t:Matrix">Matrix</a></code>, and returns their sum as a <code><a href="Matrix.html#t:Matrix">Matrix</a></code>.</p><p>For example:</p><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>mAdd (Matrix [[1,2,3],[4,5,6]]) (Matrix [[1,1,1],[0.2,0.5,0.5]])
+</code></strong>2.0     3.0     4.0
+4.2     5.5     6.5
+</pre></div></div><div class="top"><p class="src"><a name="v:mAddL" class="def">mAddL</a> :: Num a =&gt; [<a href="Matrix.html#t:Matrix">Matrix</a> a] -&gt; <a href="Matrix.html#t:Matrix">Matrix</a> a</p><div class="doc"><p>The <code><a href="Matrix.html#v:mAddL">mAddL</a></code> function can be used to add a list of matrices, each of type <code><a href="Matrix.html#t:Matrix">Matrix</a></code>.</p><p>For example:</p><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>m1
+</code></strong>1   0
+0   1
+</pre><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>m4
+</code></strong>1   6
+2   3
+</pre><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>mAddL [m1,m4]
+</code></strong>2   6
+2   4
+</pre></div></div><div class="top"><p class="src"><a name="v:-124--43--124-" class="def">(|+|)</a> :: Num a =&gt; <a href="Matrix.html#t:Matrix">Matrix</a> a -&gt; <a href="Matrix.html#t:Matrix">Matrix</a> a -&gt; <a href="Matrix.html#t:Matrix">Matrix</a> a</p><div class="doc"><p>The <code><a href="Matrix.html#v:-124--43--124-">|+|</a></code> operator can also be used for adding two matrices.</p><p>For example:</p><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>(Matrix [[1,2,3]]) |+| (Matrix [[1,1,1]])
+</code></strong>2   3   4
+</pre></div></div><div class="top"><p class="src"><a name="v:mSub" class="def">mSub</a> :: Num a =&gt; <a href="Matrix.html#t:Matrix">Matrix</a> a -&gt; <a href="Matrix.html#t:Matrix">Matrix</a> a -&gt; <a href="Matrix.html#t:Matrix">Matrix</a> a</p><div class="doc"><p>The <code><a href="Matrix.html#v:mSub">mSub</a></code> function is used to subtract one matrix from another, both of type <code><a href="Matrix.html#t:Matrix">Matrix</a></code> and return their difference as a Matrix.</p><p>For example:</p><p>mSub (Matrix [[1,2,3],[4,5,0]]) (Matrix [[1,1,1],[0.2,0.5,0.5]])
+    &gt;&gt;&gt; 0.0 1.0 2.0
+    &gt;&gt;&gt; 3.8 4.5 -0.5</p></div></div><div class="top"><p class="src"><a name="v:-124--45--124-" class="def">(|-|)</a> :: Num a =&gt; <a href="Matrix.html#t:Matrix">Matrix</a> a -&gt; <a href="Matrix.html#t:Matrix">Matrix</a> a -&gt; <a href="Matrix.html#t:Matrix">Matrix</a> a</p><div class="doc"><p>The <code><a href="Matrix.html#v:-124--45--124-">|-|</a></code> can also be used to find the difference between two matrices.</p><p>For example:</p><p>(Matrix [[1,2,3],[4,5,6]]) |-| (Matrix [[1,1,1],[0,0,0]])
+    &gt;&gt;&gt; 0 1 2
+    &gt;&gt;&gt; 4 5 6</p></div></div><div class="top"><p class="src"><a name="v:mTranspose" class="def">mTranspose</a> :: <a href="Matrix.html#t:Matrix">Matrix</a> a -&gt; <a href="Matrix.html#t:Matrix">Matrix</a> a</p><div class="doc"><p>The <code><a href="Matrix.html#v:mTranspose">mTranspose</a></code> function returns the transpose of a matrix.</p><p>For example:</p><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>mTranspose (Matrix [[1,0,1],[0,1,2]])
+</code></strong>1 0
+0 1
+1 2
+</pre><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>mTranspose (Matrix [[1,0],[2,1],[3,2],[4,3]])
+</code></strong>1 2 3 4
+0 1 2 3
+</pre></div></div><div class="top"><p class="src"><a name="v:mScalarMult" class="def">mScalarMult</a> :: Num a =&gt; a -&gt; <a href="Matrix.html#t:Matrix">Matrix</a> a -&gt; <a href="Matrix.html#t:Matrix">Matrix</a> a</p><div class="doc"><p>The <code><a href="Matrix.html#v:mScalarMult">mScalarMult</a></code> function is used to multiply a scalar value and a matrix .</p><p>For example:</p><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>mScalarMult (-3/2) (Matrix [[1,0,0],[0,1,0],[0,0,1]])
+</code></strong>-1.5 -0.0 -0.0
+-0.0 -1.5 -0.0
+-0.0 -0.0 -1.5
+</pre><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>mScalarMult 3 (Matrix [[1,0,0],[0,1,0],[0,0,1]])
+</code></strong>3 0 0
+0 3 0
+0 0 3
+</pre></div></div><div class="top"><p class="src"><a name="v:-124--42--124-" class="def">(|*|)</a> :: Num a =&gt; a -&gt; <a href="Matrix.html#t:Matrix">Matrix</a> a -&gt; <a href="Matrix.html#t:Matrix">Matrix</a> a</p><div class="doc"><p>The <code><a href="Matrix.html#v:-124--42--124-">|*|</a></code> operator can also be used to multiply a scalar and a matrix.</p><p>For example:</p><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>(-3/2) |*| (Matrix [[1,0,0],[0,1,0],[0,0,1]])
+</code></strong>-1.5 -0.0 -0.0
+-0.0 -1.5 -0.0
+-0.0 -0.0 -1.5
+</pre></div></div><div class="top"><p class="src"><a name="v:mMult" class="def">mMult</a> :: Num a =&gt; <a href="Matrix.html#t:Matrix">Matrix</a> a -&gt; <a href="Matrix.html#t:Matrix">Matrix</a> a -&gt; <a href="Matrix.html#t:Matrix">Matrix</a> a</p><div class="doc"><p>The <code><a href="Matrix.html#v:mMult">mMult</a></code> function multiplies two matrices and returns the product.</p><p>For example:</p><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>mMult (Matrix [[1,2,3],[4,5,6]]) (Matrix [[4.5,7,8],[10,(-10),6]])
+</code></strong>24.5    -13.0       20.0
+68.0    -22.0       62.0
+</pre></div></div><div class="top"><p class="src"><a name="v:mMultL" class="def">mMultL</a> :: Num a =&gt; [<a href="Matrix.html#t:Matrix">Matrix</a> a] -&gt; <a href="Matrix.html#t:Matrix">Matrix</a> a</p><div class="doc"><p>The <code><a href="Matrix.html#v:mMultL">mMultL</a></code> function multiplies a list of matrices and returns their product.</p><p>For example:</p><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>m1
+</code></strong>1   0
+0   1
+</pre><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>m4
+</code></strong>1   6
+2   3
+</pre><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>mMultL [m1,m1,m4]
+</code></strong>1   6
+2   3
+</pre></div></div><div class="top"><p class="src"><a name="v:-124--62--60--124-" class="def">(|&gt;&lt;|)</a> :: Num a =&gt; <a href="Matrix.html#t:Matrix">Matrix</a> a -&gt; <a href="Matrix.html#t:Matrix">Matrix</a> a -&gt; <a href="Matrix.html#t:Matrix">Matrix</a> a</p><div class="doc"><p>The <code><a href="Matrix.html#v:-124--62--60--124-">|&gt;&lt;|</a></code> function can also be used to multiply two matrices.</p><p>For example:</p><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>(Matrix [[1,0],[0,1]]) |&gt;&lt;| (Matrix [[4.5,8],[(-10),6]])
+</code></strong>4.5 8.0
+-10.0   6.0
+</pre></div></div><div class="top"><p class="src"><a name="v:numRows" class="def">numRows</a> :: Num a =&gt; <a href="Matrix.html#t:Matrix">Matrix</a> a -&gt; Int</p><div class="doc"><p>The <code><a href="Matrix.html#v:numRows">numRows</a></code> function returns the number of rows in a specified matrix..</p><p>For example:</p><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>numRows (Matrix [[1],[2],[3],[4]])
+</code></strong>4
+</pre><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>numRows (Matrix [])
+</code></strong>0
+</pre><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>numRows (Matrix [[]])
+</code></strong>1
+</pre><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>numRows (Matrix [[1..10],[2,4..20]])
+</code></strong>2
+</pre></div></div><div class="top"><p class="src"><a name="v:numCols" class="def">numCols</a> :: Num a =&gt; <a href="Matrix.html#t:Matrix">Matrix</a> a -&gt; Int</p><div class="doc"><p>The <code><a href="Matrix.html#v:numCols">numCols</a></code> function returns the number of columns in a specified matrix.</p><p>For example:</p><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>numCols (Matrix [[1],[2],[3],[4]])
+</code></strong>1
+</pre><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>numCols (Matrix [])
+</code></strong>0
+</pre><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>numCols (Matrix [[]])
+</code></strong>1
+</pre><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>numCols (Matrix [[1..10],[2,4..20]])
+</code></strong>10
+</pre></div></div><div class="top"><p class="src"><a name="v:mat2list" class="def">mat2list</a> :: <a href="Matrix.html#t:Matrix">Matrix</a> a -&gt; [[a]]</p><div class="doc"><p>The <code><a href="Matrix.html#v:mat2list">mat2list</a></code> function converts a <code><a href="Matrix.html#t:Matrix">Matrix</a></code> into a two-dimensional list.</p><p>For example:</p><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>mat2list (Matrix [[1..10],[2,4..20]])
+</code></strong>[[1,2,3,4,5,6,7,8,9,10],[2,4,6,8,10,12,14,16,18,20]]
+</pre><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>mat2list (Matrix [[1],[2],[3],[4]])
+</code></strong>[[1],[2],[3],[4]]
+</pre></div></div><div class="top"><p class="src"><a name="v:determinant" class="def">determinant</a> :: Num a =&gt; <a href="Matrix.html#t:Matrix">Matrix</a> a -&gt; a</p><div class="doc"><p>The <code><a href="Matrix.html#v:determinant">determinant</a></code> function returns the determinant of a matrix.</p><p>For example:</p><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>determinant (Matrix [[1,0],[0,1]])
+</code></strong>1.0
+</pre><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>determinant (Matrix [[1,1],[1,(-1)]])
+</code></strong>-2
+</pre><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>determinant (Matrix [[2,4,5],[8,(-1.5),6.8]])
+</code></strong>-35.0
+</pre></div></div><div class="top"><p class="src"><a name="v:inverse" class="def">inverse</a> :: (Eq a, Fractional a) =&gt; <a href="Matrix.html#t:Matrix">Matrix</a> a -&gt; <a href="Matrix.html#t:Matrix">Matrix</a> a</p><div class="doc"><p>The <code><a href="Matrix.html#v:inverse">inverse</a></code> function returns the inverse of a specified matrix.</p><p>For example:</p><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>let m5 = Matrix [[4,3],[3,2]]
+</code></strong><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>inverse m5
+</code></strong>-2.0    3.0
+3.0     -4.0
+</pre><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>let m6 = Matrix [[1,2,3],[0,4,5],[1,0,6]]
+</code></strong><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>inverse m6
+</code></strong>1.0909090909090908      -0.5454545454545454     -9.090909090909091e-2
+0.2272727272727273      0.13636363636363635     -0.2272727272727273
+-0.18181818181818182    9.090909090909091e-2    0.18181818181818182
+</pre><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>inverse (Matrix [[1,0],[0,1]])
+</code></strong>1.0     -0.0
+-0.0    1.0
+</pre><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>inverse (Matrix [[4.6,3.5],[3.1,2]])
+</code></strong>-1.212121212121212  2.121212121212121
+1.8787878787878785  -2.787878787878787
+</pre></div></div><div class="top"><p class="src"><a name="v:mDiv" class="def">mDiv</a> :: (Eq a, Fractional a) =&gt; <a href="Matrix.html#t:Matrix">Matrix</a> a -&gt; <a href="Matrix.html#t:Matrix">Matrix</a> a -&gt; <a href="Matrix.html#t:Matrix">Matrix</a> a</p><div class="doc"><p>The <code><a href="Matrix.html#v:mDiv">mDiv</a></code> function is used to divide a matrix by another.</p><p>For example:</p><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>mDiv (Matrix [[4.5,6.7],[8.9,10.0]]) (Matrix [[1.0,0.0],[0.0,1.0]])
+</code></strong>4.5 6.7
+8.9 10.0
+</pre></div></div><div class="top"><p class="src"><a name="v:-124--47--124-" class="def">(|/|)</a> :: (Eq a, Fractional a) =&gt; <a href="Matrix.html#t:Matrix">Matrix</a> a -&gt; <a href="Matrix.html#t:Matrix">Matrix</a> a -&gt; <a href="Matrix.html#t:Matrix">Matrix</a> a</p><div class="doc"><p>The <code><a href="Matrix.html#v:-124--47--124-">|/|</a></code> operator can also be used to divide two matrices.</p><p>For example:</p><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>Matrix [[1.0,0.0],[0.0,1.0]]) |/| (Matrix [[4.5,6.7],[8.9,10.0]])
+</code></strong>-0.6835269993164729 0.45796308954203685
+0.608339029391661 -0.3075871496924128
+</pre></div></div><div class="top"><p class="src"><a name="v:extractRow" class="def">extractRow</a> :: <a href="Matrix.html#t:Matrix">Matrix</a> a -&gt; Int -&gt; [a]</p><div class="doc"><p>The <code><a href="Matrix.html#v:extractRow">extractRow</a></code> function returns a particular row of the matrix passed as argument.</p><p>For example:</p><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>extractRow (Matrix [[1..5]]) 0
+</code></strong>[1,2,3,4,5]
+</pre><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>extractRow (Matrix [[1..5],[6..10],[11..15]]) 2
+</code></strong>[11,12,13,14,15]
+</pre></div></div><div class="top"><p class="src"><a name="v:extractCol" class="def">extractCol</a> :: <a href="Matrix.html#t:Matrix">Matrix</a> a -&gt; Int -&gt; [a]</p><div class="doc"><p>The <code><a href="Matrix.html#v:extractCol">extractCol</a></code> function returns a particular column of the matrix passed as argument.</p><p>For example:</p><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>extractCol (Matrix [[1..5],[6..10],[11..15]]) 2
+</code></strong>[3,8,13]
+</pre><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>extractCol (Matrix [[1..5]]) 0
+</code></strong>[1]
+</pre></div></div><div class="top"><p class="src"><a name="v:extractRowRange" class="def">extractRowRange</a> :: <a href="Matrix.html#t:Matrix">Matrix</a> a -&gt; Int -&gt; Int -&gt; <a href="Matrix.html#t:Matrix">Matrix</a> a</p><div class="doc"><p>The <code><a href="Matrix.html#v:extractRowRange">extractRowRange</a></code> function returns a range of rows from the passed matrix.</p><p>For example:</p><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>extractRowRange (Matrix [[1,2],[3,4],[5,6],[7.8,(-9)],[10,11.5]]) 2 4
+</code></strong>5.0     6.0
+7.8     -9.0
+10.0    11.5
+</pre></div></div><div class="top"><p class="src"><a name="v:extractColRange" class="def">extractColRange</a> :: <a href="Matrix.html#t:Matrix">Matrix</a> a -&gt; Int -&gt; Int -&gt; <a href="Matrix.html#t:Matrix">Matrix</a> a</p><div class="doc"><p>The <code><a href="Matrix.html#v:extractColRange">extractColRange</a></code> function returns a range of columns from the passed matrix.</p><p>For example:</p><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>extractColRange (Matrix [[1,2],[3,4],[5,6],[7.8,(-9)],[10,11.5]]) 0 1
+</code></strong>1.0 3.0 5.0 7.8 10.0
+2.0 4.0 6.0 -9.0 11.5
+</pre></div></div><div class="top"><p class="src"><a name="v:mPower" class="def">mPower</a> :: (Eq a1, Fractional a1, Num a, Ord a) =&gt; <a href="Matrix.html#t:Matrix">Matrix</a> a1 -&gt; a -&gt; <a href="Matrix.html#t:Matrix">Matrix</a> a1</p><div class="doc"><p>The <code><a href="Matrix.html#v:mPower">mPower</a></code> function returns the power of a matrix.</p><p>For example:</p><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>m5
+</code></strong>4.6 3.5
+3.1 2.0
+<code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>mPower m5 10
+</code></strong>1.5349250119379473e8    1.1096944577877794e8
+9.828722340406047e7     7.105805575813112e7
+</pre><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>mPower (unit 3) 3
+</code></strong>1.0 0.0 0.0
+0.0 1.0 0.0
+0.0 0.0 1.0
+</pre><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>mPower (unit 3) (-3)
+</code></strong>1.0 0.0 0.0
+0.0 1.0 0.0
+0.0 0.0 1.0
+</pre></div></div><div class="top"><p class="src"><a name="v:trace" class="def">trace</a> :: Num a =&gt; <a href="Matrix.html#t:Matrix">Matrix</a> a -&gt; a</p><div class="doc"><p>The <code><a href="Matrix.html#v:trace">trace</a></code> function returns the trace of a matrix.</p><p>For example:</p><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>trace (Matrix [[1,1,1],[1,2,3],[4,(-6),7.8]])
+</code></strong>10.8
+</pre><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>trace (Matrix [[1,0,0],[0,1,0],[0,0,1]])
+</code></strong>3
+</pre></div></div><div class="top"><p class="src"><a name="v:isInvertible" class="def">isInvertible</a> :: (Eq a, Num a) =&gt; <a href="Matrix.html#t:Matrix">Matrix</a> a -&gt; Bool</p><div class="doc"><p>The <code><a href="Matrix.html#v:isInvertible">isInvertible</a></code> function checks if a matrix can be inverted or not.</p><p>For example:</p><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>isInvertible (Matrix [[1,1],[1,(-1)]])
+</code></strong>True
+</pre><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>isInvertible (Matrix [[1,1],[(-1),1]])
+</code></strong>True
+</pre><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>isInvertible (Matrix [[1,1],[1,1]])
+</code></strong>False
+</pre><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>isInvertible (Matrix [[1,0],[0,1]])
+</code></strong>True
+</pre></div></div><div class="top"><p class="src"><a name="v:isSymmetric" class="def">isSymmetric</a> :: Eq a =&gt; <a href="Matrix.html#t:Matrix">Matrix</a> a -&gt; Bool</p><div class="doc"><p>The <code><a href="Matrix.html#v:isSymmetric">isSymmetric</a></code> function checks if a matrix is symmetric.</p><p>For example:</p><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>isSymmetric (Matrix [[1,2,3],[2,1,3],[3,3,4]])
+</code></strong>True
+</pre><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>isSymmetric (Matrix [[1,0],[0,1]])
+</code></strong>True
+</pre><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>isSymmetric (Matrix [[1,1],[(-1),1]])
+</code></strong>False
+</pre></div></div><div class="top"><p class="src"><a name="v:isSkewSymmetric" class="def">isSkewSymmetric</a> :: (Eq a, Num a) =&gt; <a href="Matrix.html#t:Matrix">Matrix</a> a -&gt; Bool</p><div class="doc"><p>The <code><a href="Matrix.html#v:isSkewSymmetric">isSkewSymmetric</a></code> function checks if a matrix is anti/skew-symmetric.</p><p>For example:</p><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>isSkewSymmetric (Matrix [[0,0],[0,0]])
+</code></strong>True
+</pre><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>isSkewSymmetric (Matrix [[1,1],[(-1),1.5]])
+</code></strong>False
+</pre></div></div><div class="top"><p class="src"><a name="v:isRow" class="def">isRow</a> :: Num a =&gt; <a href="Matrix.html#t:Matrix">Matrix</a> a -&gt; Bool</p><div class="doc"><p>The <code><a href="Matrix.html#v:isRow">isRow</a></code> function checks if a matrix is a row matrix.</p><p>For example:</p><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>isRow (Matrix [[1..5]])
+</code></strong>True
+</pre><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>isRow (Matrix [[1..5],[2..7]])
+</code></strong>False
+</pre></div></div><div class="top"><p class="src"><a name="v:isColumn" class="def">isColumn</a> :: Num a =&gt; <a href="Matrix.html#t:Matrix">Matrix</a> a -&gt; Bool</p><div class="doc"><p>The <code><a href="Matrix.html#v:isColumn">isColumn</a></code> function checks if a matrix is a column matrix.</p><p>For example:</p><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>isColumn (Matrix [[1..4],[2..6]])
+</code></strong>False
+</pre><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>isColumn (Matrix [[1],[2],[3]])
+</code></strong>True
+</pre></div></div><div class="top"><p class="src"><a name="v:isSquare" class="def">isSquare</a> :: Num a =&gt; <a href="Matrix.html#t:Matrix">Matrix</a> a -&gt; Bool</p><div class="doc"><p>The <code><a href="Matrix.html#v:isSquare">isSquare</a></code> matrix checks if a matrix is a square matrix.</p><p>For example:</p><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>isSquare (Matrix [[1,0,0],[1,2,3]])
+</code></strong>False
+</pre><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>isSquare (Matrix [[1,0],[0,1]])
+</code></strong>True
+</pre></div></div><div class="top"><p class="src"><a name="v:isOrthogonal" class="def">isOrthogonal</a> :: (Eq a, Fractional a) =&gt; <a href="Matrix.html#t:Matrix">Matrix</a> a -&gt; Bool</p><div class="doc"><p>The <code><a href="Matrix.html#v:isOrthogonal">isOrthogonal</a></code> function checks if a matrix is orthogonal.</p><p>For example:</p><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>isOrthogonal (Matrix [[1,0],[0,1]])
+</code></strong>True
+</pre><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>isOrthogonal (Matrix [[1,1],[1.2,(-1.5)]])
+</code></strong>False
+</pre></div></div><div class="top"><p class="src"><a name="v:isInvolutive" class="def">isInvolutive</a> :: (Eq a, Fractional a) =&gt; <a href="Matrix.html#t:Matrix">Matrix</a> a -&gt; Bool</p><div class="doc"><p>The <code><a href="Matrix.html#v:isInvolutive">isInvolutive</a></code> function checks if a matrix is involutive.</p><p>For example:</p><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>isInvolutive (Matrix [[1,0],[0,1]])
+</code></strong>True
+</pre><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>isInvolutive (Matrix [[1,2],[2,1]])
+</code></strong>False
+</pre></div></div><div class="top"><p class="src"><a name="v:isZeroOne" class="def">isZeroOne</a> :: (Eq a, Num a) =&gt; <a href="Matrix.html#t:Matrix">Matrix</a> a -&gt; Bool</p><div class="doc"><p>The <code><a href="Matrix.html#v:isZeroOne">isZeroOne</a></code> function returns true if a matrix is a zero or one matrix.</p><p>For example:</p><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>isZeroOne (Matrix [[1,1],[1,4]])
+</code></strong>False
+</pre><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>isZeroOne (Matrix [[1,1],[1,0]])
+</code></strong>True
+</pre></div></div><div class="top"><p class="src"><a name="v:isZero" class="def">isZero</a> :: (Eq a, Num a) =&gt; <a href="Matrix.html#t:Matrix">Matrix</a> a -&gt; Bool</p><div class="doc"><p>The <code><a href="Matrix.html#v:isZero">isZero</a></code> function returns true if a matrix is a zero matrix (all elements evaluate to 0).</p><p>For example:</p><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>isZero (Matrix [[0,0,0]])
+</code></strong>True
+</pre><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>isZero (Matrix [[0,1],[1,2]])
+</code></strong>False
+</pre></div></div><div class="top"><p class="src"><a name="v:isOne" class="def">isOne</a> :: (Eq a, Num a) =&gt; <a href="Matrix.html#t:Matrix">Matrix</a> a -&gt; Bool</p><div class="doc"><p>The <code><a href="Matrix.html#v:isOne">isOne</a></code> function returns true if a matrix is a one matrix (all elements evaluate to 1).
+    Usage:
+        isOne (Matrix [[1,1],[1,1]])
+        &gt;&gt;&gt; True</p><p>isOne (Matrix [[1,1],[1,0]])
+        &gt;&gt;&gt; False</p></div></div><div class="top"><p class="src"><a name="v:isUnit" class="def">isUnit</a> :: (Eq a, Fractional a) =&gt; <a href="Matrix.html#t:Matrix">Matrix</a> a -&gt; Bool</p><div class="doc"><p>The <code><a href="Matrix.html#v:isUnit">isUnit</a></code> function returns true is a matrix is a unit matrix.</p><p>For example:</p><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>isUnit (Matrix [[1,0],[0,1]])
+</code></strong>True
+</pre><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>isUnit (Matrix [[3,0],[0,3]])
+</code></strong>False
+</pre><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>isUnit (Matrix [[1,0,0],[0,1,0],[0,0,1]])
+</code></strong>True
+</pre><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>isUnit (Matrix [[]])
+</code></strong>False
+</pre><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>isUnit (Matrix [[1]])
+</code></strong>True
+</pre></div></div><div class="top"><p class="src"><a name="v:mMap" class="def">mMap</a> :: (a1 -&gt; a) -&gt; <a href="Matrix.html#t:Matrix">Matrix</a> a1 -&gt; <a href="Matrix.html#t:Matrix">Matrix</a> a</p><div class="doc"><p>The <code><a href="Matrix.html#v:mMap">mMap</a></code> function maps a function to a matrix, i.e. applies a function to all elements of a matrix.</p><p>For example:</p><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>m
+</code></strong>1.0 0.0 2.0
+2.0 5.0 6.5
+</pre><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>mMap (*3) m
+</code></strong>3.0     0.0     6.0
+6.0     15.0    19.5
+</pre></div></div><div class="top"><p class="src"><a name="v:zero" class="def">zero</a> :: Num a =&gt; Int -&gt; <a href="Matrix.html#t:Matrix">Matrix</a> a</p><div class="doc"><p>The <code><a href="Matrix.html#v:zero">zero</a></code> function returns a zero matrix of order 'n x n', where n is the argument passed.</p><p>For example:</p><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>zero 2
+</code></strong>0   0
+0   0
+</pre><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>zero 3
+</code></strong>0   0   0
+0   0   0
+0   0   0
+</pre></div></div><div class="top"><p class="src"><a name="v:zero-39-" class="def">zero'</a> :: Num a =&gt; Int -&gt; Int -&gt; <a href="Matrix.html#t:Matrix">Matrix</a> a</p><div class="doc"><p>The <code><a href="Matrix.html#v:zero-39-">zero'</a></code> function returns a zero matrix of order 'm x n', where m and n are the arguments passed.</p><p>For example:</p><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>zero 2 3
+</code></strong>0   0   0
+0   0   0
+</pre><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>zero 3 3
+</code></strong>0   0   0
+0   0   0
+0   0   0
+</pre></div></div><div class="top"><p class="src"><a name="v:one" class="def">one</a> :: Num a =&gt; Int -&gt; <a href="Matrix.html#t:Matrix">Matrix</a> a</p><div class="doc"><p>The <code><a href="Matrix.html#v:one">one</a></code> function returns a one matrix of order 'n x n', where n is the argument passed.</p><p>For example:</p><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>one 2
+</code></strong>1   1
+1   1
+</pre><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>one 3
+</code></strong>1   1   1
+1   1   1
+1   1   1
+</pre></div></div><div class="top"><p class="src"><a name="v:one-39-" class="def">one'</a> :: Num a =&gt; Int -&gt; Int -&gt; <a href="Matrix.html#t:Matrix">Matrix</a> a</p><div class="doc"><p>The <code><a href="Matrix.html#v:one-39-">one'</a></code> function returns a one matrix of order 'm x n', where m and n are the arguments passed.</p><p>For example:</p><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>one 2 2
+</code></strong>1   1
+1   1
+</pre><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>one 3 2
+</code></strong>1   1
+1   1
+1   1
+</pre></div></div><div class="top"><p class="src"><a name="v:unit" class="def">unit</a> :: Num a =&gt; Int -&gt; <a href="Matrix.html#t:Matrix">Matrix</a> a</p><div class="doc"><p>The <code><a href="Matrix.html#v:unit">unit</a></code> function returns a unit matrix of order 'n x n', where n is the argument passed.</p><p>For example:</p><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>unit 2
+</code></strong>1   0
+0   1
+</pre><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>unit 3
+</code></strong>1   0   0
+0   1   0
+0   0   1
+</pre></div></div></div></div><div id="footer"><p>Produced by <a href="http://www.haskell.org/haddock/">Haddock</a> version 2.16.0</p></div></body></html>

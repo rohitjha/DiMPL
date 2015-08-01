@@ -1,23 +1,22 @@
-{-
------------------------------------
-| Module for Relations in MPL |
------------------------------------
+{-|
+Module      : Relation
+Description : Relation module for the MPL DSL
+Copyright   : (c) Rohit Jha, 2015
+License     : BSD2
+Maintainer  : rohit305jha@gmail.com
+Stability   : Stable
 
 Functionality for
-    -> Generating element set
-    -> Obtaining list of first element values
-    -> Obtaining list of second element values
-    -> Obtaining list of first element values for a specified element as a second element
-    -> Obtaining list of second element values for a specified element as a first element
-    -> Checking for reflexivity, symmetricity, anti-symmetricity, transitivity
-    -> Union, intersection and difference of two relations
-    -> Relation composition
-    -> Power of relations
-    -> Reflexive, Symmetric and Transitive closures
-
-Author: Rohit Jha, Alfy Samuel, Ashmee Pawar
-Version: 0.1
-Date: 25 Feb 2013
+    * Generating element set
+    * Obtaining list of first element values
+    * Obtaining list of second element values
+    * Obtaining list of first element values for a specified element as a second element
+    * Obtaining list of second element values for a specified element as a first element
+    * Checking for reflexivity, symmetricity, anti-symmetricity, transitivity
+    * Union, intersection and difference of two relations
+    * Relation composition
+    * Power of relations
+    * Reflexive, Symmetric and Transitive closures
 -}
 
 module Relation
@@ -57,7 +56,17 @@ where
 import qualified Data.List as L
 
 
--- Relation data type
+{-|
+    The 'Relation' data type is used for represnting relations (discrete mathematics).
+
+    For example:
+
+    >>> r1
+    {(1,1),(1,2),(1,3),(2,1),(2,2),(2,3),(3,1),(3,2),(3,3)}
+
+    >>> r2
+    {(1,1),(2,2),(3,3)}
+-}
 newtype Relation a = Relation [(a,a)] deriving (Eq)
 
 instance (Show a) => Show (Relation a) where
@@ -70,267 +79,426 @@ showRelation (x:xs) str = showChar '{' (shows x (showl xs str))
         showl (x:xs) str = showChar ',' (shows x (showl xs str))
 
 
--- Converting a relation to list
+{-|
+    The 'relation2list' function converts a 'Relation' to a list representation.
+
+    For example:
+
+    >>> r2
+    {(1,1),(2,2),(3,3)}
+
+    >>> relation2list r2
+    [(1,1),(2,2),(3,3)]
+-}
+relation2list :: Relation t -> [(t, t)]
 relation2list (Relation r) = r
 
 
-elemSet r = getFirst (Relation r) `L.union` getSecond (Relation r)
+{-|
+    The 'getFirst' function returns the list of all "a" where (a,b) <- 'Relation'.
 
+    For example:
+        
+    >>> getFirst (Relation [(1,2),(3,4),(2,5)])
+    [1,3,2]
 
--- Returns list of all 'a' where (a,b) <- Relation
-{-
-    Usage:
-        getFirst (Relation [(1,2),(3,4),(2,5)])
-        >>> [1,3,2]
-
-        getFirst (Relation [])
-        >>> []
+    >>> getFirst (Relation [])
+    []
 -}
+getFirst :: Eq a => Relation a -> [a]
 getFirst (Relation r) = L.nub [fst x | x <- r]
 
 
--- Returns list of all 'b' where (a,b) <- Relation
-{-
-    Usage:
-        getSecond (Relation [(1,2),(3,4),(2,5)])
-        >>> [2,4,5]
+{-|
+    The 'getSecond' function returns the list of all "b" where (a,b) <- 'Relation'.
 
-        getSecond (Relation [])
-        >>> []
+    For example:
+        
+    >>> getSecond (Relation [(1,2),(3,4),(2,5)])
+    [2,4,5]
+
+    >>> getSecond (Relation [])
+    []
 -}
+getSecond :: Eq a => Relation a -> [a]
 getSecond (Relation r) = L.nub [snd x | x <- r]
 
 
--- Returns list of all 'a' where (a,b) <- Relation and 'b' is specified
-{-
-    Usage:
-        returnFirstElems (Relation [(1,2),(1,3),(2,3),(3,3),(3,4)]) 1
-        >>> []
+{-|
+    The 'elemSet' function returns a list of all elements in a 'Relation'.
 
-        returnFirstElems (Relation [(1,2),(1,3),(2,3),(3,3),(3,4)]) 4
-        >>> [3]
+    For example:
 
-        returnFirstElems (Relation [(1,2),(1,3),(2,3),(3,3),(3,4)]) 3
-        >>> [1,2,3]
+    >>> r1
+    {(1,1),(1,2),(1,3),(2,1),(2,2),(2,3),(3,1),(3,2),(3,3)}
+
+    >>> elemSet r1
+    [1,2,3]
 -}
+elemSet :: Eq a => Relation a -> [a]
+elemSet (Relation r) = getFirst (Relation r) `L.union` getSecond (Relation r)
+
+
+{-|
+    The 'returnFirstElems' function returns alist of all "a" where (a,b) <- 'Relation' and "b" is specified
+
+    For example:
+
+    >>> returnFirstElems (Relation [(1,2),(1,3),(2,3),(3,3),(3,4)]) 1
+    []
+
+    >>> returnFirstElems (Relation [(1,2),(1,3),(2,3),(3,3),(3,4)]) 4
+    [3]
+
+    >>> returnFirstElems (Relation [(1,2),(1,3),(2,3),(3,3),(3,4)]) 3
+    [1,2,3]
+-}
+returnFirstElems :: Eq a => Relation a -> a -> [a]
 returnFirstElems (Relation r) x = L.nub [a | a <- getFirst (Relation r), (a,x) `elem` r]
 
 
--- Returns list of all 'b' where (a,b) <- Relation and 'a' is specified
-{-
-    Usage:
-        returnSecondElems (Relation [(1,2),(1,3),(2,3),(3,3),(3,4)]) 3
-        >>> [3,4]
+{-|
+    The 'returnSecondElems' function returns list of all 'b' where (a,b) <- Relation and 'a' is specified/
 
-        returnSecondElems (Relation [(1,2),(1,3),(2,5)]) 1
-        >>> [2,3]
+    For example:
+    
+    >>> returnSecondElems (Relation [(1,2),(1,3),(2,3),(3,3),(3,4)]) 3
+    [3,4]
+
+    >>> returnSecondElems (Relation [(1,2),(1,3),(2,5)]) 1
+    [2,3]
 -}
+returnSecondElems :: Eq a => Relation a -> a -> [a]
 returnSecondElems (Relation r) x = L.nub [b | b <- getSecond (Relation r), (x,b) `elem` r]
 
 
--- Checks if a relation is reflexive or not
-{-
-    Usage:
-        isReflexive (Relation [(1,1),(1,2),(2,2),(2,3)])
-        >>> False
+{-|
+    The 'isReflexive' function checks if a 'Relation' is reflexive or not.
 
-        isReflexive (Relation [(1,1),(1,2),(2,2)])
-        >>> True
+    For example:
+
+    >>> isReflexive (Relation [(1,1),(1,2),(2,2),(2,3)])
+    False
+
+    >>> isReflexive (Relation [(1,1),(1,2),(2,2)])
+    True
 -}
-isReflexive (Relation r) = and [(a,a) `elem` r | a <- elemSet r]
+isReflexive :: Eq t => Relation t -> Bool
+isReflexive (Relation r) = and [(a,a) `elem` r | a <- elemSet (Relation r)]
 
 
+{-|
+    The 'isIrreflexive' function checks if a 'Relation' is irreflexive or not.
+
+    For example:
+
+    >>> isIrreflexive (Relation [(1,1),(1,2),(2,2),(2,3)])
+    True
+
+    >>> isIrreflexive (Relation [(1,1),(1,2),(2,2)])
+    False
+-}
+isIrreflexive :: Eq t => Relation t -> Bool
 isIrreflexive (Relation r) = not $ isReflexive (Relation r)
 
 
--- Checks if a relation is symmetric or not
-{-
-    Usage:
-        isSymmetric (Relation [(1,1),(1,2),(2,2)])
-        >>> False
+{-|
+    The 'isSymmetric' function checks if a 'Relation' is symmetric or not.
 
-        isSymmetric (Relation [(1,1),(1,2),(2,2),(2,1)])
-        >>> True
+    For example:
+
+    >>> isSymmetric (Relation [(1,1),(1,2),(2,2)])
+    False
+
+    >>> isSymmetric (Relation [(1,1),(1,2),(2,2),(2,1)])
+    True
 -}
-isSymmetric (Relation r) = and [(b, a) `elem` r | a <- elemSet r, b <- elemSet r, (a, b) `elem` r]
+isSymmetric :: Eq a => Relation a -> Bool
+isSymmetric (Relation r) = and [(b, a) `elem` r | a <- elemSet (Relation r), b <- elemSet (Relation r), (a, b) `elem` r]
 
 
--- Checks if a relation is asymmetric or not
-{-
-    Usage:
-        isAntiSymmetric (Relation [(1,2),(2,1)])
-        >>> False
+{-|
+    The 'isAsymmetric' function checks if a 'Relation' is asymmetric or not.
 
-        isAntiSymmetric (Relation [(1,2),(1,3)])
-        >>> True
+    For example:
+
+    >>> isAntiSymmetric (Relation [(1,2),(2,1)])
+    False
+
+    >>> isAntiSymmetric (Relation [(1,2),(1,3)])
+    True
 -}
-isAsymmetric (Relation r) = and [ (b,a) `notElem` r | a <- elemSet r, b <- elemSet r, (a,b) `elem` r]
+isAsymmetric :: Eq t => Relation t -> Bool
+isAsymmetric (Relation r) = and [ (b,a) `notElem` r | a <- elemSet (Relation r), b <- elemSet (Relation r), (a,b) `elem` r]
 
 
-isAntiSymmetric (Relation r) = and [ a == b | a <- elemSet r, b <- elemSet r, (a,b) `elem` r, (b,a) `elem` r]
+{-|
+    The 'isAntiSymmetric' function checks if a 'Relation' is anti-symmetric or not.
 
+    For example:
 
--- Checks if a relation is transitive or not
-{-
-    Usage:
-        isTransitive (Relation [(1,1),(1,2),(2,1)])
-        >>> False
+    >>> r2
+    {(1,1),(2,2),(3,3)}
 
-        isTransitive (Relation [(1,1),(1,2),(2,1),(2,2)])
-        >>> True
+    >>> isAntiSymmetric r2
+    True
 
-        isTransitive (Relation [(1,1),(2,2)])
-        >>> True
+    >>> r1
+    {(1,1),(1,2),(1,3),(2,1),(2,2),(2,3),(3,1),(3,2),(3,3)}
+
+    >>> isAntiSymmetric r1
+    False
 -}
-isTransitive (Relation r) = and [(a,c) `elem` r | a <- elemSet r, b <- elemSet r, c <- elemSet r, (a,b) `elem` r, (b,c) `elem` r]
+isAntiSymmetric :: Eq a => Relation a -> Bool
+isAntiSymmetric (Relation r) = and [ a == b | a <- elemSet (Relation r), b <- elemSet (Relation r), (a,b) `elem` r, (b,a) `elem` r]
 
 
--- Returns union of two relations
-{-
-    Usage:
-        rUnion (Relation [(1,1),(1,2)]) (Relation [(2,3),(2,2)])
-        >>> {(1,1),(1,2),(2,2),(2,3)}
+{-|
+    The 'isTransitive' function checks if a 'Relation' is transitive or not.
 
-        rUnion (Relation [(1,1),(1,2)]) (Relation [(1,1)])
-        >>> {(1,1),(1,2)}
+    For example:
+
+    >>> isTransitive (Relation [(1,1),(1,2),(2,1)])
+    False
+
+    >>> isTransitive (Relation [(1,1),(1,2),(2,1),(2,2)])
+    True
+
+    >>> isTransitive (Relation [(1,1),(2,2)])
+    True
 -}
+isTransitive :: Eq a => Relation a -> Bool
+isTransitive (Relation r) = and [(a,c) `elem` r | a <- elemSet (Relation r), b <- elemSet (Relation r), c <- elemSet (Relation r), (a,b) `elem` r, (b,c) `elem` r]
+
+
+{-|
+    The 'rUnion' function returns the union of two relations.
+
+    For example:
+
+    >>> rUnion (Relation [(1,1),(1,2)]) (Relation [(2,3),(2,2)])
+    {(1,1),(1,2),(2,2),(2,3)}
+
+    >>> rUnion (Relation [(1,1),(1,2)]) (Relation [(1,1)])
+    {(1,1),(1,2)}
+-}
+rUnion :: Ord a => Relation a -> Relation a -> Relation a
 rUnion (Relation r1) (Relation r2) = Relation ((L.sort . L.nub) (r1 ++ [e | e <- r2, e `notElem` r1]))
 
 
--- Returns union of list of relations
-{-
-    Usage:
-        r1
-        >>> {(1,1),(1,2),(1,3),(2,1),(2,2),(2,3),(3,1),(3,2),(3,3)}
+{-|
+    The 'rUnionL' function returns the union of a list of 'Relation'.
 
-        r2
-        >>> {(1,1),(2,2),(3,3)}
+    For example:
+        
+    >>> r1
+    {(1,1),(1,2),(1,3),(2,1),(2,2),(2,3),(3,1),(3,2),(3,3)}
 
-        rUnionL [r1,r2]
-        >>> {(1,1),(1,2),(1,3),(2,1),(2,2),(2,3),(3,1),(3,2),(3,3)}
+    >>> r2
+    {(1,1),(2,2),(3,3)}
+
+    >>> rUnionL [r1,r2]
+    {(1,1),(1,2),(1,3),(2,1),(2,2),(2,3),(3,1),(3,2),(3,3)}
 -}
 rUnionL :: (Ord t1, Foldable t) => t (Relation t1) -> Relation t1
 rUnionL = foldl1 rUnion
 
 
--- Returns intersection of two relations
-{-
-    Usage:
-        rIntersection (Relation [(1,1),(1,2)]) (Relation [(1,1)])
-        >>> {(1,1)}
+{-|
+    The 'rIntersection' function returns the intersection of two relations.
 
-        rIntersection (Relation [(1,1),(1,2)]) (Relation [(2,3),(2,2)])
-        >>> {}
+    For example:
+
+    >>> rIntersection (Relation [(1,1),(1,2)]) (Relation [(1,1)])
+    {(1,1)}
+
+    >>> rIntersection (Relation [(1,1),(1,2)]) (Relation [(2,3),(2,2)])
+    {}
 -}
+rIntersection :: Ord a => Relation a -> Relation a -> Relation a
 rIntersection (Relation r1) (Relation r2) = Relation ((L.sort . L.nub) [e | e <- r1, e `elem` r2])
 
 
--- Returns intersection of a list of relations
-{-
-    Usage:
-        r1
-        >>> {(1,1),(1,2),(1,3),(2,1),(2,2),(2,3),(3,1),(3,2),(3,3)}
+{-|
+    The 'rIntersectionL' function returns the intersection of a list of 'Relation'.
 
-        r2
-        >>> {(1,1),(2,2),(3,3)}
+    For example:
 
-        rIntersectionL [r1,r2]
-        >>> {(1,1),(2,2),(3,3)}
+    >>> r1
+    {(1,1),(1,2),(1,3),(2,1),(2,2),(2,3),(3,1),(3,2),(3,3)}
+
+    >>> r2
+    {(1,1),(2,2),(3,3)}
+
+    >>> rIntersectionL [r1,r2]
+    {(1,1),(2,2),(3,3)}
 -}
 rIntersectionL :: (Ord a, Foldable t) => t (Relation a) -> Relation a
 rIntersectionL = foldl1 rIntersection
 
 
--- Returns difference of two relations
-{-
-    Usage:
-        rDifference (Relation [(1,1),(1,2)]) (Relation [(1,1)])
-        >>> {(1,2)}
+{-|
+    The 'rDifference' function returns the difference of two relations.
 
-        rDifference (Relation [(1,1),(1,2)]) (Relation [(2,3),(2,2)])
-        >>> {(1,1),(1,2)}
+    For example:
+
+    >>> rDifference (Relation [(1,1),(1,2)]) (Relation [(1,1)])
+    {(1,2)}
+
+    >>> rDifference (Relation [(1,1),(1,2)]) (Relation [(2,3),(2,2)])
+    {(1,1),(1,2)}
 -}
+rDifference :: Ord a => Relation a -> Relation a -> Relation a
 rDifference (Relation r1) (Relation r2) = Relation ((L.sort . L.nub) [e | e <- r1, e `notElem` r2])
 
 
--- Returns composite of two relations
-{-
-    Usage:
-        rComposite (Relation [(1,1),(1,2)]) (Relation [(2,3),(2,2)])
-        >>> {(1,2),(1,3)}
+{-|
+    The 'rComposite' function returns the composite of two relations.
 
-        rComposite (Relation [(1,1),(1,2)]) (Relation [(1,1)])
-        >>> {(1,1)}
+    For example:
+
+    >>> rComposite (Relation [(1,1),(1,2)]) (Relation [(2,3),(2,2)])
+    {(1,2),(1,3)}
+
+    >>> rComposite (Relation [(1,1),(1,2)]) (Relation [(1,1)])
+    {(1,1)}
 -}
-rComposite (Relation r1) (Relation r2) = Relation $ L.nub [(a,c) | a <- elemSet r1, b <- elemSet r1, b <- elemSet r2, c <- elemSet r2, (a,b) `elem` r1, (b,c) `elem` r2]
+rComposite :: Eq a => Relation a -> Relation a -> Relation a
+rComposite (Relation r1) (Relation r2) = Relation $ L.nub [(a,c) | a <- elemSet (Relation r1), b <- elemSet (Relation r1), b <- elemSet (Relation r2), c <- elemSet (Relation r2), (a,b) `elem` r1, (b,c) `elem` r2]
 
 
--- Returns power of a relation
-{-
-    Usage:
-        rPower (Relation [(1,1),(1,2),(4,5)]) 3
-        >>> {(1,1),(1,2)}
+{-|
+    The 'rPower' function returns the power of a 'Relation'.
 
-        rPower (Relation [(1,1),(1,2),(2,4),(4,5)]) 3
-        >>> {(1,1),(1,2),(1,4),(1,5)}
+    For example:
+
+    >>> let r4 = Relation [(1,2), (2,3), (2,4), (3,3)]
+    >>> r4
+    {(1,2),(2,3),(2,4),(3,3)}
+
+    >>> rPower r4 2
+    {(1,3),(1,4),(2,3),(3,3)}
+
+    >>> rPower r4 (-2)
+    {(3,1),(3,2),(3,3),(4,1)}
 -}
+rPower :: (Eq a, Eq a1, Integral a1) => Relation a -> a1 -> Relation a
 rPower (Relation r) pow
-    | pow == (-1) = Relation [(b, a) | (a, b) <- r]
+    | pow < 0 = rPower (Relation [(b, a) | (a, b) <- r]) (-pow)
     | pow == 1 = Relation r
     | otherwise = rComposite (rPower (Relation r) (pow - 1)) (Relation r)
 
 
--- Reflexive closure
-{-
-    Usage:
-        reflClosure (Relation [(1,1),(1,2),(4,5)])
-        >>> {(1,1),(1,2),(2,2),(4,4),(4,5),(5,5)}
+{-|
+    The 'reflClosure' function returns the Reflecive Closure of a 'Relation'.
 
-        reflClosure (Relation [(1,1),(1,3)])
-        >>> {(1,1),(1,3),(3,3)}
+    For example:
+
+    >>> reflClosure (Relation [(1,1),(1,2),(4,5)])
+    {(1,1),(1,2),(2,2),(4,4),(4,5),(5,5)}
+
+    >>> reflClosure (Relation [(1,1),(1,3)])
+    {(1,1),(1,3),(3,3)}
 -}
+reflClosure :: Ord a => Relation a -> Relation a
 reflClosure (Relation r) = rUnion (Relation r) (delta (Relation r))
     where
-        delta (Relation r) = Relation [(a,b) | a <- elemSet r, b <- elemSet r, a == b]
+        delta (Relation r) = Relation [(a,b) | a <- elemSet (Relation r), b <- elemSet (Relation r), a == b]
 
 
--- Symmetric closure
-{-
-    Usage:
-        symmClosure (Relation [(1,1),(1,2),(4,5)])
-        >>> {(1,1),(1,2),(2,1),(4,5),(5,4)}
+{-|
+    The 'symmClosure' function returns the Symmetric Closure of a 'Relation'.
 
-        symmClosure (Relation [(1,1),(1,3)])
-        >>> {(1,1),(1,3),(3,1)}
+    For example:
+    
+    >>> symmClosure (Relation [(1,1),(1,2),(4,5)])
+    {(1,1),(1,2),(2,1),(4,5),(5,4)}
+
+    >>> symmClosure (Relation [(1,1),(1,3)])
+    {(1,1),(1,3),(3,1)}
 -}
+symmClosure :: Ord a => Relation a -> Relation a
 symmClosure (Relation r) = rUnion (Relation r) (rPower (Relation r) (-1))
 
 
--- Transitive closure
-{-
-    Usage:
-        tranClosure (Relation [(1,1),(1,2),(2,1)])
-        >>> {(1,1),(1,2),(2,1),(2,2)}
+{-|
+    The 'tranClosure' function returns the Transitive Closure of a 'Relation'.
 
-        tranClosure (Relation [(1,1),(1,2),(1,3),(2,2),(3,1),(3,2)])
-        >>> {(1,1),(1,2),(1,3),(2,2),(3,1),(3,2),(3,3)}
+    For example:
+
+    >>> tranClosure (Relation [(1,1),(1,2),(2,1)])
+    {(1,1),(1,2),(2,1),(2,2)}
+
+    >>> tranClosure (Relation [(1,1),(1,2),(1,3),(2,2),(3,1),(3,2)])
+    {(1,1),(1,2),(1,3),(2,2),(3,1),(3,2),(3,3)}
 -}
-tranClosure (Relation r) = foldl1 rUnion [ rPower (Relation r) n | n <- [1 .. length (elemSet r) ]]
+tranClosure :: Ord a => Relation a -> Relation a
+tranClosure (Relation r) = foldl1 rUnion [ rPower (Relation r) n | n <- [1 .. length (elemSet (Relation r)) ]]
 
 
+{-|
+    The 'isEquivalent' function checks if a 'Relation' is equivalent (reflexive, symmetric and transitive).
+
+    For example:
+
+    >>> r2
+    {(1,1),(2,2),(3,3)}
+
+    >>> isEquivalent r2
+    True
+
+    >>> r1
+    {(1,1),(1,2),(1,3),(2,1),(2,2),(2,3),(3,1),(3,2),(3,3)}
+
+    >>> isEquivalent r1
+    True
+
+    >>> isEquivalent (Relation [(1,2), (2,3)])
+    False
+-}
+isEquivalent :: Eq a => Relation a -> Bool
 isEquivalent (Relation r) = isReflexive (Relation r) && isSymmetric (Relation r) && isTransitive (Relation r)
 
 
+{-|
+    The 'isWeakPartialOrder' function checks if a 'Relation' is a weak partial order (reflexive, anti-symmetric and transitive).
+
+    For example:
+
+    >>> r1
+    {(1,1),(1,2),(1,3),(2,1),(2,2),(2,3),(3,1),(3,2),(3,3)}
+
+    >>> isWeakPartialOrder r1
+    False
+
+    >>> r2
+    {(1,1),(2,2),(3,3)}
+
+    >>> isWeakPartialOrder r2
+    True
+-}
+isWeakPartialOrder :: Eq a => Relation a -> Bool
 isWeakPartialOrder (Relation r) = isReflexive (Relation r) && isAntiSymmetric (Relation r) && isTransitive (Relation r)
 
+{-|
+    The 'isWeakTotalOrder' function checks if a 'Relation' is a Weak Total Order, i.e. it is a Weak Partial Order and for all "a" and "b" in 'Relation' "r", (a,b) or (b,a) are elements of r.
+-}
+isWeakTotalOrder :: Eq a => Relation a -> Bool
+isWeakTotalOrder (Relation r) = isWeakPartialOrder (Relation r) && and [ ((a,b) `elem` r) || ((b,a) `elem` r) | a <- elemSet (Relation r), b <- elemSet (Relation r) ]
 
-isWeakTotalOrder (Relation r) = isWeakPartialOrder (Relation r) && and [ ((a,b) `elem` r) || ((b,a) `elem` r) | a <- elemSet r, b <- elemSet r ]
 
-
+{-|
+    The 'isStrictPartialOrder' function checks if a 'Relation' is a Strict Partial Order, i.e. it is irreflexive, asymmetric and transitive.
+-}
+isStrictPartialOrder :: Eq a => Relation a -> Bool
 isStrictPartialOrder (Relation r) = isIrreflexive (Relation r) && isAsymmetric (Relation r) && isTransitive (Relation r)
 
 
-isStrictTotalOrder (Relation r) = isStrictPartialOrder (Relation r) && and [ ((a,b) `elem` r) || ((b,a) `elem` r) || a==b | a <- elemSet r, b <- elemSet r ]
+{-|
+    The 'isStrictTotalOrder' function checks if a 'Relation' is a Strict Total Order, i.e. it is a Strict Partial Order, and for all "a" and "b" in 'Relation' "r", either (a,b) or (b,a) are elements of r or a == b.
+-}
+isStrictTotalOrder :: Eq a => Relation a -> Bool
+isStrictTotalOrder (Relation r) = isStrictPartialOrder (Relation r) && and [ ((a,b) `elem` r) || ((b,a) `elem` r) || a==b | a <- elemSet (Relation r), b <- elemSet (Relation r) ]
 
 
 -- SAMPLE RELATIONS --

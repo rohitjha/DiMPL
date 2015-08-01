@@ -1,7 +1,8 @@
 import Data.List
-import qualified Data.List.Key as K	--cabal install utility-ht
+--Run "cabal install utility-ht" to install Data.List.Key
+import qualified Data.List.Key as K
 import Data.Map ((!), fromList, fromListWith, adjust, keys, Map)
-import MPL.GraphTheory.Graph
+import Graph
 
 
 buildGraph :: (Ord a) => [(a, a, Int)] -> Map a [(a, Int)]

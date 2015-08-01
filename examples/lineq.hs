@@ -1,18 +1,18 @@
 -- Solution to Simultaneous Linear Equations using Matrices
 
 
-import MPL.LinearAlgebra.Matrix
+import Matrix
 
 
 solveEqns (Matrix coeff) (Matrix const) = (inverse (Matrix coeff)) |><| (Matrix const)
 
 
 main = do
-	putStrLn "\nEnter the coefficient matrix -"
-	mat <- getLine
-	putStrLn "\nEnter the constant matrix -"
-	con <- getLine
-	putStrLn ("\n\nSolution matrix -\n" ++ show (solveEqns (Matrix $ read mat) (Matrix $ read con)))
+    putStrLn "\nEnter the coefficient matrix -"
+    mat <- getLine
+    putStrLn "\nEnter the constant matrix -"
+    con <- getLine
+    putStrLn ("\n\nSolution matrix -\n" ++ show (solveEqns (Matrix $ read mat) (Matrix $ read con)))
 
 
 

@@ -2,7 +2,7 @@
 
 import Data.List(sort)
 import Data.Set (Set, member, fromList, insert, union)
-import MPL.GraphTheory.Graph
+import Graph
 
 
 data Edge a = Edge a a Double deriving Show

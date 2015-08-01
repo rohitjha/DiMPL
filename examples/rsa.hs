@@ -1,9 +1,9 @@
 -- Implementation of the RSA algorithm in Haskell
 
 
-import MPL.NumberTheory.Primes
-import MPL.NumberTheory.Modular
-import MPL.NumberTheory.Base
+import Primes
+import Modular
+import Base
 import Data.Char
 
 
@@ -78,7 +78,7 @@ rsaDecryptL cipher privKey = [rsaDecrypt c privKey | c <- cipher]
 		n' = snd privKey
 -}
 
-str2int :: String -> Int
+str2int :: String -> Integer
 str2int string = fromBase 10 (map char2int string)
 	where
 		char2int char = ord(char) - ord('0')

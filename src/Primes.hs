@@ -191,7 +191,7 @@ isTrialDivisionPrime 2 = True
 isTrialDivisionPrime n = trialDivision (primesTo10000 ++ [10001,10003..]) n
 
 
-{-|
+{--
     The 'isStrongPseudoPrime' function is an internal function to check if number is a pseudo-prime (probable)
 -}
 isStrongPseudoPrime :: Integer -> (Int,Integer) -> Integer -> Bool

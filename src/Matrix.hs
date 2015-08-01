@@ -33,6 +33,7 @@ module Matrix
     mAddL,
     (|+|),
     mSub,
+    mSubL,
     (|-|),
     mTranspose,
     mScalarMult,
@@ -328,7 +329,7 @@ numCols :: Num a => Matrix a -> Int
 numCols (Matrix a) = numRows (mTranspose (Matrix a))
 
 
-{-|
+{--
     The 'coords' function returns the row and column indices for all the elements in a matrix.
 
     For example:

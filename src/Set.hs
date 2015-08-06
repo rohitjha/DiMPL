@@ -31,6 +31,7 @@ module Set
     intersectionL,
     difference,
     isMemberOf,
+    isNotMemberOf,
     cardinality,
     isNullSet,
     isSubset,
@@ -252,6 +253,25 @@ difference (Set set1) (Set set2)
 isMemberOf :: Eq a => a -> Set a -> Bool
 isMemberOf a (Set []) = False
 isMemberOf a (Set set) = a `elem` set
+
+
+{-|
+    The 'isNotMemberOf' function checks if an element is not a member of a 'Set'.
+
+    For example:
+    
+    >>> s1
+    {1,3,5,7,9}
+
+    >>> isNotMemberOf 2 s1
+    True
+
+    >>> isNotMemberOf 3 s1
+    False
+-}
+isNotMemberOf :: Eq a => a -> Set a -> Bool
+isNotMemberOf a (Set []) = True
+isNotMemberOf a (Set set) = a `notElem` set
 
 
 {-|

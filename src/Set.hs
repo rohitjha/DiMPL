@@ -25,6 +25,7 @@ module Set
 (
     Set(..),
     set2list,
+    list2set,
     union,
     unionL,
     intersection,
@@ -34,7 +35,9 @@ module Set
     isNotMemberOf,
     cardinality,
     isNullSet,
+    isNotNullSet,
     isSubset,
+    isProperSubset,
     isSuperset,
     powerSet,
     cartProduct,
@@ -102,9 +105,40 @@ isSubset (Set []) _ = True
 isSubset (Set (x:xs)) set = isMemberOf x set && isSubset (Set xs) set
 
 
---type Element a = a
+{-|
+    The 'isProperSubset' function takes two 'Set's as arguments and checks if the first 'Set' is a proper subset of the second 'Set'.
+    
+    For example:
 
---internal function
+    >>> s1
+    {1,3,5,7,9}
+
+    >>> s4
+    {1,3,5}
+
+    >>> isProperSubset s4 s1
+    True
+
+    >>> s5
+    {1,3,5,7,9}
+
+    >>> isProperSubset s5 s1
+    False
+-}
+isProperSubset :: (Eq a) => Set a -> Set a -> Bool
+isProperSubset (Set set1) (Set set2) = (set1 /= set2) && (isSubset (Set set1) (Set set2))
+
+
+{-|
+    The 'list2set' function converts a list to 'Set'.
+
+    For example:
+
+    >>> let l = [1,2,3]
+    >>> let s = list2set l
+    >>> s
+    Set {1,2,3}
+-}
 list2set :: Ord a => [a] -> Set a
 list2set [] = Set []
 list2set list = Set ((L.sort . L.nub) list)
@@ -259,7 +293,7 @@ isMemberOf a (Set set) = a `elem` set
     The 'isNotMemberOf' function checks if an element is not a member of a 'Set'.
 
     For example:
-    
+
     >>> s1
     {1,3,5,7,9}
 
@@ -314,6 +348,27 @@ cardinality (Set set) = (L.length . L.nub) set
 -}
 isNullSet :: Eq a => Set a -> Bool
 isNullSet (Set set) = cardinality (Set set) == 0
+
+
+{-|
+    The 'isNotNullSet' function checks if a 'Set' is not null/empty.
+
+    For example:
+
+    >>> isNotNullSet (Set [1,2,3])
+    True
+
+    >>> isNotNullSet (Set [])
+    False
+
+    >>> isNotNullSet (Set [Set[1,2]])
+    True
+
+    >>> isNotNullSet (Set [Set[]])
+    True
+-}
+isNotNullSet :: Eq a => Set a -> Bool
+isNotNullSet (Set set) = cardinality (Set set) /= 0
 
 
 {-|

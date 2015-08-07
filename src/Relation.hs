@@ -23,6 +23,7 @@ module Relation
 (
     Relation(..),
     relation2list,
+    list2relation,
     getFirst,
     getSecond,
     elemSet,
@@ -92,6 +93,20 @@ showRelation (x:xs) str = showChar '{' (shows x (showl xs str))
 -}
 relation2list :: Relation t -> [(t, t)]
 relation2list (Relation r) = r
+
+
+{-|
+    The 'list2relation' function converts a list to a relation.
+
+    For example:
+
+    >>> let l = [(1,2),(2,3),(1,3)]
+    >>> let r = list2relation l
+    >>> r
+    {(1,2),(2,3),(1,3)}
+-}
+list2relation :: [(a, a)] -> Relation a
+list2relation r = (Relation r)
 
 
 {-|

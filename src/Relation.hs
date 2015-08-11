@@ -24,6 +24,7 @@ module Relation
     Relation(..),
     relation2list,
     list2relation,
+    inverse,
     getFirst,
     getSecond,
     elemSet,
@@ -107,6 +108,27 @@ relation2list (Relation r) = r
 -}
 list2relation :: [(a, a)] -> Relation a
 list2relation r = (Relation r)
+
+
+{-|
+    The 'inverse' function returns the inverse 'Relation' of a specified 'Relation'.
+
+    For example:
+
+    >>> r1
+    {(1,1),(1,2),(1,3),(2,1),(2,2),(2,3),(3,1),(3,2),(3,3)}
+
+    >>> inverse r1
+    {(1,1),(2,1),(3,1),(1,2),(2,2),(3,2),(1,3),(2,3),(3,3)}
+
+    >>> r2
+    {(1,1),(2,2),(3,3)}
+
+    >>> inverse r2
+    {(1,1),(2,2),(3,3)}
+-}
+inverse :: Relation a -> Relation a
+inverse (Relation a) = list2relation [ (y,x) | (x,y) <- a ]
 
 
 {-|
@@ -396,10 +418,11 @@ rComposite (Relation r1) (Relation r2) = Relation $ L.nub [(a,c) | a <- elemSet 
 
     >>> rPower r4 (-2)
     {(3,1),(3,2),(3,3),(4,1)}
+    --| pow < 0 = rPower (Relation [(b, a) | (a, b) <- r]) (-pow)
 -}
 rPower :: (Eq a, Eq a1, Integral a1) => Relation a -> a1 -> Relation a
 rPower (Relation r) pow
-    | pow < 0 = rPower (Relation [(b, a) | (a, b) <- r]) (-pow)
+    | pow < 0 = rPower (inverse (Relation r)) (-pow)
     | pow == 1 = Relation r
     | otherwise = rComposite (rPower (Relation r) (pow - 1)) (Relation r)
 

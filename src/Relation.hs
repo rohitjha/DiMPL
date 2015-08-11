@@ -25,11 +25,11 @@ module Relation
     relation2list,
     list2relation,
     inverse,
-    getFirst,
-    getSecond,
-    elemSet,
-    returnFirstElems,
-    returnSecondElems,
+    getDomain,
+    getRange,
+    elements,
+    returnDomainElems,
+    returnRangeElems,
     isReflexive,
     isIrreflexive,
     isSymmetric,
@@ -132,48 +132,48 @@ inverse (Relation a) = list2relation [ (y,x) | (x,y) <- a ]
 
 
 {-|
-    The 'getFirst' function returns the list of all "a" where (a,b) <- 'Relation'.
+    The 'getDomain' function returns the list of all "a" where (a,b) <- 'Relation'.
 
     For example:
         
-    >>> getFirst (Relation [(1,2),(3,4),(2,5)])
+    >>> getDomain (Relation [(1,2),(3,4),(2,5)])
     [1,3,2]
 
-    >>> getFirst (Relation [])
+    >>> getDomain (Relation [])
     []
 -}
-getFirst :: Eq a => Relation a -> [a]
-getFirst (Relation r) = L.nub [fst x | x <- r]
+getDomain :: Eq a => Relation a -> [a]
+getDomain (Relation r) = L.nub [fst x | x <- r]
 
 
 {-|
-    The 'getSecond' function returns the list of all "b" where (a,b) <- 'Relation'.
+    The 'getRange' function returns the list of all "b" where (a,b) <- 'Relation'.
 
     For example:
         
-    >>> getSecond (Relation [(1,2),(3,4),(2,5)])
+    >>> getRange (Relation [(1,2),(3,4),(2,5)])
     [2,4,5]
 
-    >>> getSecond (Relation [])
+    >>> getRange (Relation [])
     []
 -}
-getSecond :: Eq a => Relation a -> [a]
-getSecond (Relation r) = L.nub [snd x | x <- r]
+getRange :: Eq a => Relation a -> [a]
+getRange (Relation r) = L.nub [snd x | x <- r]
 
 
 {-|
-    The 'elemSet' function returns a list of all elements in a 'Relation'.
+    The 'elements' function returns a list of all elements in a 'Relation'.
 
     For example:
 
     >>> r1
     {(1,1),(1,2),(1,3),(2,1),(2,2),(2,3),(3,1),(3,2),(3,3)}
 
-    >>> elemSet r1
+    >>> elements r1
     [1,2,3]
 -}
-elemSet :: Eq a => Relation a -> [a]
-elemSet (Relation r) = getFirst (Relation r) `L.union` getSecond (Relation r)
+elements :: Eq a => Relation a -> [a]
+elements (Relation r) = getDomain (Relation r) `L.union` getRange (Relation r)
 
 
 {-|
@@ -190,8 +190,8 @@ elemSet (Relation r) = getFirst (Relation r) `L.union` getSecond (Relation r)
     >>> returnFirstElems (Relation [(1,2),(1,3),(2,3),(3,3),(3,4)]) 3
     [1,2,3]
 -}
-returnFirstElems :: Eq a => Relation a -> a -> [a]
-returnFirstElems (Relation r) x = L.nub [a | a <- getFirst (Relation r), (a,x) `elem` r]
+returnDomainElems :: Eq a => Relation a -> a -> [a]
+returnDomainElems (Relation r) x = L.nub [a | a <- getDomain (Relation r), (a,x) `elem` r]
 
 
 {-|
@@ -205,8 +205,8 @@ returnFirstElems (Relation r) x = L.nub [a | a <- getFirst (Relation r), (a,x) `
     >>> returnSecondElems (Relation [(1,2),(1,3),(2,5)]) 1
     [2,3]
 -}
-returnSecondElems :: Eq a => Relation a -> a -> [a]
-returnSecondElems (Relation r) x = L.nub [b | b <- getSecond (Relation r), (x,b) `elem` r]
+returnRangeElems :: Eq a => Relation a -> a -> [a]
+returnRangeElems (Relation r) x = L.nub [b | b <- getRange (Relation r), (x,b) `elem` r]
 
 
 {-|
@@ -221,7 +221,7 @@ returnSecondElems (Relation r) x = L.nub [b | b <- getSecond (Relation r), (x,b)
     True
 -}
 isReflexive :: Eq t => Relation t -> Bool
-isReflexive (Relation r) = and [(a,a) `elem` r | a <- elemSet (Relation r)]
+isReflexive (Relation r) = and [(a,a) `elem` r | a <- elements (Relation r)]
 
 
 {-|
@@ -251,7 +251,7 @@ isIrreflexive (Relation r) = not $ isReflexive (Relation r)
     True
 -}
 isSymmetric :: Eq a => Relation a -> Bool
-isSymmetric (Relation r) = and [(b, a) `elem` r | a <- elemSet (Relation r), b <- elemSet (Relation r), (a, b) `elem` r]
+isSymmetric (Relation r) = and [(b, a) `elem` r | a <- elements (Relation r), b <- elements (Relation r), (a, b) `elem` r]
 
 
 {-|
@@ -266,7 +266,7 @@ isSymmetric (Relation r) = and [(b, a) `elem` r | a <- elemSet (Relation r), b <
     True
 -}
 isAsymmetric :: Eq t => Relation t -> Bool
-isAsymmetric (Relation r) = and [ (b,a) `notElem` r | a <- elemSet (Relation r), b <- elemSet (Relation r), (a,b) `elem` r]
+isAsymmetric (Relation r) = and [ (b,a) `notElem` r | a <- elements (Relation r), b <- elements (Relation r), (a,b) `elem` r]
 
 
 {-|
@@ -287,7 +287,7 @@ isAsymmetric (Relation r) = and [ (b,a) `notElem` r | a <- elemSet (Relation r),
     False
 -}
 isAntiSymmetric :: Eq a => Relation a -> Bool
-isAntiSymmetric (Relation r) = and [ a == b | a <- elemSet (Relation r), b <- elemSet (Relation r), (a,b) `elem` r, (b,a) `elem` r]
+isAntiSymmetric (Relation r) = and [ a == b | a <- elements (Relation r), b <- elements (Relation r), (a,b) `elem` r, (b,a) `elem` r]
 
 
 {-|
@@ -305,7 +305,7 @@ isAntiSymmetric (Relation r) = and [ a == b | a <- elemSet (Relation r), b <- el
     True
 -}
 isTransitive :: Eq a => Relation a -> Bool
-isTransitive (Relation r) = and [(a,c) `elem` r | a <- elemSet (Relation r), b <- elemSet (Relation r), c <- elemSet (Relation r), (a,b) `elem` r, (b,c) `elem` r]
+isTransitive (Relation r) = and [(a,c) `elem` r | a <- elements (Relation r), b <- elements (Relation r), c <- elements (Relation r), (a,b) `elem` r, (b,c) `elem` r]
 
 
 {-|
@@ -390,7 +390,7 @@ rDifference (Relation r1) (Relation r2) = Relation ((L.sort . L.nub) [e | e <- r
 
 
 {-|
-    The 'rComposite' function returns the composite of two relations.
+    The 'rComposite' function returns the composite / concatenation of two relations.
 
     For example:
 
@@ -401,7 +401,7 @@ rDifference (Relation r1) (Relation r2) = Relation ((L.sort . L.nub) [e | e <- r
     {(1,1)}
 -}
 rComposite :: Eq a => Relation a -> Relation a -> Relation a
-rComposite (Relation r1) (Relation r2) = Relation $ L.nub [(a,c) | a <- elemSet (Relation r1), b <- elemSet (Relation r1), b <- elemSet (Relation r2), c <- elemSet (Relation r2), (a,b) `elem` r1, (b,c) `elem` r2]
+rComposite (Relation r1) (Relation r2) = Relation $ L.nub [(a,c) | a <- elements (Relation r1), b <- elements (Relation r1), b <- elements (Relation r2), c <- elements (Relation r2), (a,b) `elem` r1, (b,c) `elem` r2]
 
 
 {-|
@@ -441,7 +441,7 @@ rPower (Relation r) pow
 reflClosure :: Ord a => Relation a -> Relation a
 reflClosure (Relation r) = rUnion (Relation r) (delta (Relation r))
     where
-        delta (Relation r) = Relation [(a,b) | a <- elemSet (Relation r), b <- elemSet (Relation r), a == b]
+        delta (Relation r) = Relation [(a,b) | a <- elements (Relation r), b <- elements (Relation r), a == b]
 
 
 {-|
@@ -471,7 +471,7 @@ symmClosure (Relation r) = rUnion (Relation r) (rPower (Relation r) (-1))
     {(1,1),(1,2),(1,3),(2,2),(3,1),(3,2),(3,3)}
 -}
 tranClosure :: Ord a => Relation a -> Relation a
-tranClosure (Relation r) = foldl1 rUnion [ rPower (Relation r) n | n <- [1 .. length (elemSet (Relation r)) ]]
+tranClosure (Relation r) = foldl1 rUnion [ rPower (Relation r) n | n <- [1 .. length (elements (Relation r)) ]]
 
 
 {-|
@@ -522,7 +522,7 @@ isWeakPartialOrder (Relation r) = isReflexive (Relation r) && isAntiSymmetric (R
     The 'isWeakTotalOrder' function checks if a 'Relation' is a Weak Total Order, i.e. it is a Weak Partial Order and for all "a" and "b" in 'Relation' "r", (a,b) or (b,a) are elements of r.
 -}
 isWeakTotalOrder :: Eq a => Relation a -> Bool
-isWeakTotalOrder (Relation r) = isWeakPartialOrder (Relation r) && and [ ((a,b) `elem` r) || ((b,a) `elem` r) | a <- elemSet (Relation r), b <- elemSet (Relation r) ]
+isWeakTotalOrder (Relation r) = isWeakPartialOrder (Relation r) && and [ ((a,b) `elem` r) || ((b,a) `elem` r) | a <- elements (Relation r), b <- elements (Relation r) ]
 
 
 {-|
@@ -536,7 +536,7 @@ isStrictPartialOrder (Relation r) = isIrreflexive (Relation r) && isAsymmetric (
     The 'isStrictTotalOrder' function checks if a 'Relation' is a Strict Total Order, i.e. it is a Strict Partial Order, and for all "a" and "b" in 'Relation' "r", either (a,b) or (b,a) are elements of r or a == b.
 -}
 isStrictTotalOrder :: Eq a => Relation a -> Bool
-isStrictTotalOrder (Relation r) = isStrictPartialOrder (Relation r) && and [ ((a,b) `elem` r) || ((b,a) `elem` r) || a==b | a <- elemSet (Relation r), b <- elemSet (Relation r) ]
+isStrictTotalOrder (Relation r) = isStrictPartialOrder (Relation r) && and [ ((a,b) `elem` r) || ((b,a) `elem` r) || a==b | a <- elements (Relation r), b <- elements (Relation r) ]
 
 
 -- SAMPLE RELATIONS --

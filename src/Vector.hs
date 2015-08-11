@@ -26,9 +26,9 @@ Functionality for:
 module Vector
 (
     Vector(..),
-    vDim,
-    vMag,
-    vec2list,
+    dimension,
+    magnitude,
+    vector2list,
     vAdd,
     vAddL,
     (<+>),
@@ -37,19 +37,19 @@ module Vector
     (<->),
     innerProd,
     (<.>),
-    vAngle,
+    angle,
     scalarMult,
     (<*>),
     isNullVector,
-    crossProd,
+    crossProduct,
     (><),
-    scalarTripleProd,
-    vectorTripleProd,
+    scalarTripleProduct,
+    vectorTripleProduct,
     extract,
     extractRange,
     areOrthogonal,
     vMap,
-    vNorm
+    normalize
 )
 where
 
@@ -82,56 +82,56 @@ showVector (x:xs) str = showChar '<' (shows x (showl xs str))
 
 
 {-|
-    The 'vec2list' function converts a 'Vector' to a list.
+    The 'vector2list' function converts a 'Vector' to a list.
 
     For example:
 
     >>> v4
     <1,2,3>
 
-    >>> vec2list v4
+    >>> vector2list v4
     [1,2,3]
 -}
-vec2list :: Eq a => Vector a -> [a]
-vec2list (Vector []) = []
-vec2list (Vector v) = v
+vector2list :: Eq a => Vector a -> [a]
+vector2list (Vector []) = []
+vector2list (Vector v) = v
 
 
 {-|
-    The 'vDim' function returns the dimension or order of a 'Vector'.
+    The 'dimension' function returns the dimension or order of a 'Vector'.
 
     For example:
 
-    >>> vDim (Vector [1,1,3])
+    >>> dimension (Vector [1,1,3])
     3
     
-    >>> vDim (Vector [1..27])
+    >>> dimension (Vector [1..27])
     27
     
-    >>> vDim (Vector [])
+    >>> dimension (Vector [])
     0
 -}
-vDim :: Vector a -> Int
-vDim (Vector vector) = length vector
+dimension :: Vector a -> Int
+dimension (Vector vector) = length vector
 
 
 {-|
-    The 'vMag' function returns the magnitude of a 'Vector'.
+    The 'magnitude' function returns the magnitude of a 'Vector'.
 
     For example:
 
-    >>> vMag (Vector [1,1])
+    >>> magnitude (Vector [1,1])
     1.4142135623730951
     
-    >>> vMag (Vector [0,0,2.5])
+    >>> magnitude (Vector [0,0,2.5])
     2.5
     
-    >>> vMag (Vector [])
+    >>> magnitude (Vector [])
     0.0
 -}
-vMag :: Floating a => Vector a -> a
-vMag (Vector []) = 0
-vMag (Vector v) = sqrt (sum [x*x | x <- v])
+magnitude :: (Num a, Floating a) => Vector a -> a
+magnitude (Vector []) = 0
+magnitude (Vector v) = sqrt (sum [x*x | x <- v])
 
 
 {-|
@@ -290,28 +290,28 @@ innerProd (Vector (a:as)) (Vector (b:bs))
 
 
 {-|
-    The 'vAngle' function returns the angle (in degree) between two vectors.
+    The 'angle' function returns the angle (in degree) between two vectors.
 
     For example:
 
-    >>> vAngle (Vector [1,1,1]) (Vector [1..10])
+    >>> angle (Vector [1,1,1]) (Vector [1..10])
     79.83130545524068
 
-    >>> vAngle (Vector [1,1,1]) (Vector [2,2,2])
+    >>> angle (Vector [1,1,1]) (Vector [2,2,2])
     NaN
 
-    >>> vAngle (Vector [1,1,1]) (Vector [0,0,0])
+    >>> angle (Vector [1,1,1]) (Vector [0,0,0])
     NaN
 
-    >>> vAngle (Vector [1,1,1]) (Vector [2.5,2.5])
+    >>> angle (Vector [1,1,1]) (Vector [2.5,2.5])
     35.264389682754654
 
-    >>> vAngle (Vector [1..4]) (Vector [1..4])
+    >>> angle (Vector [1..4]) (Vector [1..4])
     0.0
 -}
-vAngle :: Floating a => Vector a -> Vector a -> a
-vAngle (Vector []) (Vector []) = 0
-vAngle (Vector v1) (Vector v2) = (180/pi) * acos (innerProd (Vector v1) (Vector v2) / ( vMag (Vector v1) * vMag (Vector v2) ))
+angle :: Floating a => Vector a -> Vector a -> a
+angle (Vector []) (Vector []) = 0
+angle (Vector v1) (Vector v2) = (180/pi) * acos (innerProd (Vector v1) (Vector v2) / ( magnitude (Vector v1) * magnitude (Vector v2) ))
 
 
 {-|
@@ -365,27 +365,27 @@ scalarMult scalar (Vector vector) = Vector $ map (* scalar) vector
     True
 -}
 isNullVector :: (Eq a, Floating a) => Vector a -> Bool
-isNullVector (Vector v) = vMag (Vector v) == 0
+isNullVector (Vector v) = magnitude (Vector v) == 0
 
 
 {-|
-    The 'crossProd' function returns the cross-product of two vectors.
+    The 'crossProduct' function returns the cross-product of two vectors.
 
     For example:
 
-    >>> crossProd (Vector [1,1,1]) (Vector [1,1,1])
+    >>> crossProduct (Vector [1,1,1]) (Vector [1,1,1])
     <0,0,0>
 
-    >>> crossProd (Vector [1,1,1]) (Vector [])
+    >>> crossProduct (Vector [1,1,1]) (Vector [])
     <0,0,0>
 
-    >>> crossProd (Vector [1,1,1]) (Vector [3,4,5,6])
+    >>> crossProduct (Vector [1,1,1]) (Vector [3,4,5,6])
     *** Exception: Order of vectors must not exceed 3.
 -}
-crossProd :: Num a => Vector a -> Vector a -> Vector a
-crossProd (Vector a) (Vector b)
-    | length a < 3 = crossProd (Vector (a ++ [0])) (Vector b)
-    | length b < 3 = crossProd (Vector a) (Vector (b ++ [0]))
+crossProduct :: Num a => Vector a -> Vector a -> Vector a
+crossProduct (Vector a) (Vector b)
+    | length a < 3 = crossProduct (Vector (a ++ [0])) (Vector b)
+    | length b < 3 = crossProduct (Vector a) (Vector (b ++ [0]))
     | (length a == 3) && (length b == 3) = Vector [ (a!!1 * b!!2) - (a!!2 * b!!1), (a!!2 * head b) - (head a * b!!2), (head a * b!!1) - (a!!1 * head b) ]
     | (length a > 3) || (length b > 3) = error "Order of vectors must not exceed 3.\n"
 
@@ -399,46 +399,46 @@ crossProd (Vector a) (Vector b)
     <0,0,0>
 -}
 (><) :: Num a => Vector a -> Vector a -> Vector a
-(><) = crossProd
+(><) = crossProduct
 
 
 {-|
-    The 'scalarTripleProd' function returns the Scalar Triple Product of three vectors.
+    The 'scalarTripleProduct' function returns the Scalar Triple Product of three vectors.
     
     For example:
 
-    >>> scalarTripleProd (Vector [1,1,1]) (Vector [2,3,4]) (Vector [1,2,0])
+    >>> scalarTripleProduct (Vector [1,1,1]) (Vector [2,3,4]) (Vector [1,2,0])
     -3
 
-    >>> scalarTripleProd (Vector [0]) (Vector [0,0]) (Vector [0,0,0])
+    >>> scalarTripleProduct (Vector [0]) (Vector [0,0]) (Vector [0,0,0])
     0
 
-    >>> scalarTripleProd (Vector []) (Vector []) (Vector [])
+    >>> scalarTripleProduct (Vector []) (Vector []) (Vector [])
     0
 
-    >>> scalarTripleProd (Vector [2,7.9]) (Vector [3]) (Vector [(-1)])
+    >>> scalarTripleProduct (Vector [2,7.9]) (Vector [3]) (Vector [(-1)])
     0.0
 -}
-scalarTripleProd :: Num a => Vector a -> Vector a -> Vector a -> a
-scalarTripleProd a b c = innerProd a (crossProd b c)
+scalarTripleProduct :: Num a => Vector a -> Vector a -> Vector a -> a
+scalarTripleProduct a b c = innerProd a (crossProduct b c)
 
 
 {-|
-    The 'vectorTripleProd' function returns the Vector Triple Product of three vectors.
+    The 'vectorTripleProduct' function returns the Vector Triple Product of three vectors.
 
     For example:
     
-    >>> vectorTripleProd (Vector [1,1]) (Vector [2,3]) (Vector [4,5,6])
+    >>> vectorTripleProduct (Vector [1,1]) (Vector [2,3]) (Vector [4,5,6])
     <-2,2,-30>
 
-    >>> vectorTripleProd (Vector [0,0,0]) (Vector [1.3,2.8]) (Vector [4,5.5])
+    >>> vectorTripleProduct (Vector [0,0,0]) (Vector [1.3,2.8]) (Vector [4,5.5])
     <-0.0,0.0,0.0>
 
-    >>> vectorTripleProd (Vector []) (Vector []) (Vector [])
+    >>> vectorTripleProduct (Vector []) (Vector []) (Vector [])
     <0,0,0>
 -}
-vectorTripleProd :: Num a => Vector a -> Vector a -> Vector a -> Vector a
-vectorTripleProd a b c = crossProd a (crossProd b c)
+vectorTripleProduct :: Num a => Vector a -> Vector a -> Vector a -> Vector a
+vectorTripleProduct a b c = crossProduct a (crossProduct b c)
 
 
 {-|
@@ -460,7 +460,7 @@ vectorTripleProd a b c = crossProd a (crossProd b c)
 -}
 extract :: Int -> Vector a -> a
 extract n (Vector vector)
-    | n <= vDim (Vector vector) = vector !! n
+    | n <= dimension (Vector vector) = vector !! n
     | otherwise = error "The index mentioned is larger than the dimension of the Vector."
 
 
@@ -522,7 +522,8 @@ vMap f (Vector v) = Vector $ map f v
     >>> vNorm (Vector [1..5])
     <0.13483997249264842,0.26967994498529685,0.40451991747794525,0.5393598899705937,0.6741998624632421>
 -}
-vNorm (Vector v) = scalarMult (1 / vMag (Vector v)) (Vector v)
+normalize :: (Num a, Floating a, Fractional a) => Vector a -> Vector a
+normalize (Vector v) = scalarMult (1 / magnitude (Vector v)) (Vector v)
 
 
 -- SAMPLE VECTORS --

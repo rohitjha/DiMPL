@@ -24,7 +24,7 @@ module Modular
     modExp,
     isCongruent,
     findCongruentPair,
-    findCongruentPair1
+    findCongruentPair'
 )
 where
 
@@ -145,14 +145,14 @@ findCongruentPair a b m limit = [ x | x <- [0..limit], modMult a x m == b ]
 
 
 {-|
-    The 'findCongruentPair1' function uses the linear congruence formula a + b = b (mod m) or (a + x) mod m = b to find x, when a, b and m are given.
+    The 'findCongruentPair'' function uses the linear congruence formula a + b = b (mod m) or (a + x) mod m = b to find x, when a, b and m are given.
 
     For example:
 
-    >>> findCongruentPair1 10 4 5 100
+    >>> findCongruentPair' 10 4 5 100
     [4,9,14,19,24,29,34,39,44,49,54,59,64,69,74,79,84,89,94,99]
     
-    >>> findCongruentPair1 113 20 40 100
+    >>> findCongruentPair' 113 20 40 100
     [27,67]
 
     >>> isCongruent (113 + 27) 20 40
@@ -161,5 +161,5 @@ findCongruentPair a b m limit = [ x | x <- [0..limit], modMult a x m == b ]
     >>> isCongruent (113 + 67) 20 40
     True
 -}
-findCongruentPair1 :: Integral t => t -> t -> t -> t -> [t]
-findCongruentPair1 a b m limit = [ x | x <- [0..limit], ((a+x) `mod` m) == b ]
+findCongruentPair' :: Integral t => t -> t -> t -> t -> [t]
+findCongruentPair' a b m limit = [ x | x <- [0..limit], ((a+x) `mod` m) == b ]

@@ -22,8 +22,8 @@ Functionality for
 module Relation
 (
     Relation(..),
-    relation2list,
-    list2relation,
+    relationToList,
+    listToRelation,
     inverse,
     getDomain,
     getRange,
@@ -82,32 +82,32 @@ showRelation (x:xs) str = showChar '{' (shows x (showl xs str))
 
 
 {-|
-    The 'relation2list' function converts a 'Relation' to a list representation.
+    The 'relationToList' function converts a 'Relation' to a list representation.
 
     For example:
 
     >>> r2
     {(1,1),(2,2),(3,3)}
 
-    >>> relation2list r2
+    >>> relationToList r2
     [(1,1),(2,2),(3,3)]
 -}
-relation2list :: Relation t -> [(t, t)]
-relation2list (Relation r) = r
+relationToList :: Relation t -> [(t, t)]
+relationToList (Relation r) = r
 
 
 {-|
-    The 'list2relation' function converts a list to a relation.
+    The 'listToRelation' function converts a list to a relation.
 
     For example:
 
     >>> let l = [(1,2),(2,3),(1,3)]
-    >>> let r = list2relation l
+    >>> let r = listToRelation l
     >>> r
     {(1,2),(2,3),(1,3)}
 -}
-list2relation :: [(a, a)] -> Relation a
-list2relation r = (Relation r)
+listToRelation :: [(a, a)] -> Relation a
+listToRelation r = Relation r
 
 
 {-|
@@ -128,7 +128,7 @@ list2relation r = (Relation r)
     {(1,1),(2,2),(3,3)}
 -}
 inverse :: Relation a -> Relation a
-inverse (Relation a) = list2relation [ (y,x) | (x,y) <- a ]
+inverse (Relation a) = listToRelation [ (y,x) | (x,y) <- a ]
 
 
 {-|

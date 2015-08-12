@@ -25,8 +25,8 @@ module Tree
     preorder,
     postorder,
     singleton,
-    treeInsert,
-    treeElem,
+    addNode,
+    hasValue,
     reflect,
     height,
     depth,
@@ -124,46 +124,46 @@ singleton x = Node x Leaf Leaf
 
 
 {-|
-    The 'treeInsert' function inserts a node into a 'BinTree'.
+    The 'addNode' function inserts a node into a 'BinTree'.
 
     The function takes two arguments - the first is the value to be inserted and the second is the 'BinTree' into which the value is to be inserted.
 
     For example:
 
-    >>> treeInsert 10 (Leaf)
+    >>> addNode 10 (Leaf)
     Node 10 Leaf Leaf
 
-    >>> treeInsert 10 tree2
+    >>> addNode 10 tree2
     Node 4 (Node 2 (Node 1 Leaf Leaf) (Node 3 Leaf Leaf)) (Node 7 (Node 5 Leaf (Node 6 Leaf Leaf)) (Node 8 Leaf (Node 10 Leaf Leaf)))
 -}
-treeInsert :: ( Ord a ) => a -> BinTree a -> BinTree a
-treeInsert x Leaf = singleton x
-treeInsert x ( Node a left right )
+addNode :: ( Ord a ) => a -> BinTree a -> BinTree a
+addNode x Leaf = singleton x
+addNode x ( Node a left right )
     | x == a = Node x left right            --the element is equal to root node
-    | x < a  = Node a ( treeInsert x left ) right   --element smaller than root node, inserted on it's left
-    | x > a  = Node a left ( treeInsert x right )   --element smaller than root node, inserted on it's right
+    | x < a  = Node a ( addNode x left ) right   --element smaller than root node, inserted on it's left
+    | x > a  = Node a left ( addNode x right )   --element smaller than root node, inserted on it's right
 
 
 {-|
-    The 'treeElem' function checks if an elements exists in a 'BinTree' by using binary search.
+    The 'hasValue' function checks if an elements exists in a 'BinTree' by using binary search.
 
     For example:
 
     >>> tree2
     Node 4 (Node 2 (Node 1 Leaf Leaf) (Node 3 Leaf Leaf)) (Node 7 (Node 5 Leaf (Node 6 Leaf Leaf)) (Node 8 Leaf Leaf))
 
-    >>> treeElem 5 tree2
+    >>> hasValue 5 tree2
     True
 
-    >>> treeElem 10 tree2
+    >>> hasValue 10 tree2
     False
 -}
-treeElem :: ( Ord a ) => a -> BinTree a -> Bool
-treeElem x Leaf = False 
-treeElem x ( Node a left right )
+hasValue :: ( Ord a ) => a -> BinTree a -> Bool
+hasValue x Leaf = False 
+hasValue x ( Node a left right )
     | x == a = True
-    | x < a = treeElem x left
-    | x > a = treeElem x right
+    | x < a = hasValue x left
+    | x > a = hasValue x right
 
 
 {-|

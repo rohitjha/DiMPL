@@ -25,7 +25,7 @@ import Data.Maybe (fromJust)
 
 
 -- The first term in the Fibonacci Sequence
-first = 1
+first = 0
 
 -- The second term in the Fibonacci Sequence
 second = 1
@@ -41,10 +41,10 @@ fibs = first : second : zipWith (+) fibs (tail fibs)
   	Below are a few examples:
 
   	>>> fib 10
-  	55
+  	34
 
   	>>> fib 100
-  	354224848179261915075
+  	218922995834555169026
 -}
 fib :: Integer -> Integer
 fib n
@@ -59,10 +59,10 @@ fib n
   	Below are a few examples:
 
   	>>> fibSeq 10
-  	[1,1,2,3,5,8,13,21,34,55]
+  	[0,1,1,2,3,5,8,13,21,34]
   	
   	>>> fibSeq 20
-  	[1,1,2,3,5,8,13,21,34,55,89,144,233,377,610,987,1597,2584,4181,6765]
+  	[0,1,1,2,3,5,8,13,21,34,55,89,144,233,377,610,987,1597,2584,4181]
 -}
 fibSeq :: Integer -> [Integer]
 fibSeq n
@@ -98,10 +98,10 @@ isFibNum f
   	Below are a few examples:
 
   	>>> fibIndex 144
-  	12
+  	13
 
   	>>> fibIndex 6765
-  	20
+  	21
 
   	>>> fibIndex (fib 10000)
   	10000

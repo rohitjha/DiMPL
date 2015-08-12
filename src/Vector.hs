@@ -28,7 +28,8 @@ module Vector
     Vector(..),
     dimension,
     magnitude,
-    vector2list,
+    vectorToList,
+    listToVector,
     vAdd,
     vAddL,
     (<+>),
@@ -82,19 +83,31 @@ showVector (x:xs) str = showChar '<' (shows x (showl xs str))
 
 
 {-|
-    The 'vector2list' function converts a 'Vector' to a list.
+    The 'vectorToList' function converts a 'Vector' to a list.
 
     For example:
 
     >>> v4
     <1,2,3>
 
-    >>> vector2list v4
+    >>> vectorToList v4
     [1,2,3]
 -}
-vector2list :: Eq a => Vector a -> [a]
-vector2list (Vector []) = []
-vector2list (Vector v) = v
+vectorToList :: Eq a => Vector a -> [a]
+vectorToList (Vector []) = []
+vectorToList (Vector v) = v
+
+
+{-|
+    The 'listToVector' function converts a list to a 'Vector'.
+
+    For example:
+
+    >>> listToVector [1,2,3]
+    <1,2,3>
+-}
+listToVector :: [a] -> Vector a
+listToVector v = Vector v
 
 
 {-|

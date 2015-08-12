@@ -35,7 +35,7 @@ module Matrix
     mSub,
     mSubL,
     (|-|),
-    mTranspose,
+    transpose,
     mScalarMult,
     (|*|),
     mMult,
@@ -43,7 +43,8 @@ module Matrix
     (|><|),
     numRows,
     numCols,
-    mat2list,
+    matrixToList,
+    listToMatrix,
     determinant,
     inverse,
     mDiv,
@@ -187,23 +188,23 @@ mSubL = foldl1 mSub
 
 
 {-|
-    The 'mTranspose' function returns the transpose of a matrix.
+    The 'transpose' function returns the transpose of a matrix.
 
     For example:
     
-    >>> mTranspose (Matrix [[1,0,1],[0,1,2]])
+    >>> transpose (Matrix [[1,0,1],[0,1,2]])
     1 0
     0 1
     1 2
 
-    >>> mTranspose (Matrix [[1,0],[2,1],[3,2],[4,3]])
+    >>> transpose (Matrix [[1,0],[2,1],[3,2],[4,3]])
     1 2 3 4
     0 1 2 3
 -}
-mTranspose :: Matrix a -> Matrix a
-mTranspose (Matrix []) = Matrix []
-mTranspose (Matrix [[]]) = Matrix [[]]
-mTranspose xs = Matrix $ foldr (zipWith (:)) (repeat []) (mat2list xs)
+transpose :: Matrix a -> Matrix a
+transpose (Matrix []) = Matrix []
+transpose (Matrix [[]]) = Matrix [[]]
+transpose xs = Matrix $ foldr (zipWith (:)) (repeat []) (matrixToList xs)
 
 
 {-|
@@ -250,7 +251,7 @@ mScalarMult x (Matrix m) = Matrix $ map (map (x*)) m
 mMult :: Num a => Matrix a -> Matrix a -> Matrix a
 mMult (Matrix m1) (Matrix m2) = Matrix [ map (multRow r) m2t | r <- m1 ]
     where 
-        (Matrix m2t) = mTranspose (Matrix m2)
+        (Matrix m2t) = transpose (Matrix m2)
         multRow r1 r2 = sum $ zipWith (*) r1 r2
 
 
@@ -326,7 +327,7 @@ numRows (Matrix a) = length a
     10
 -}
 numCols :: Num a => Matrix a -> Int
-numCols (Matrix a) = numRows (mTranspose (Matrix a))
+numCols (Matrix a) = numRows (transpose (Matrix a))
 
 
 {--
@@ -346,18 +347,31 @@ coords (Matrix a) = zipWith (map . (,)) [0..] $ map (zipWith const [0..]) a
 
 
 {-|
-    The 'mat2list' function converts a 'Matrix' into a two-dimensional list.
+    The 'matrixToList' function converts a 'Matrix' into a two-dimensional list.
 
     For example:
     
-    >>> mat2list (Matrix [[1..10],[2,4..20]])
+    >>> matrixToList (Matrix [[1..10],[2,4..20]])
     [[1,2,3,4,5,6,7,8,9,10],[2,4,6,8,10,12,14,16,18,20]]
 
-    >>> mat2list (Matrix [[1],[2],[3],[4]])
+    >>> matrixToList (Matrix [[1],[2],[3],[4]])
     [[1],[2],[3],[4]]
 -}
-mat2list :: Matrix a -> [[a]]
-mat2list (Matrix m) = m
+matrixToList :: Matrix a -> [[a]]
+matrixToList (Matrix m) = m
+
+
+{-|
+    The 'listToMatrix' functionc converts a two-dimensional list into a 'Matrix'.
+
+    For example:
+
+    >>> listToMatrix [[1,2],[3,4]]
+    1   2
+    3   4
+-}
+listToMatrix :: [[a]] -> Matrix a
+listToMatrix m = Matrix m
 
 
 {-|
@@ -487,7 +501,7 @@ extractRow (Matrix m) n = m !! n
     [1]
 -}
 extractCol :: Matrix a -> Int -> [a]
-extractCol (Matrix m) n = mat2list (mTranspose (Matrix m)) !! n
+extractCol (Matrix m) n = matrixToList (transpose (Matrix m)) !! n
 
 
 {-|
@@ -598,7 +612,7 @@ isInvertible (Matrix m) = determinant (Matrix m) /= 0
     False
 -}
 isSymmetric :: Eq a => Matrix a -> Bool
-isSymmetric (Matrix m) = Matrix m == mTranspose (Matrix m)
+isSymmetric (Matrix m) = Matrix m == transpose (Matrix m)
 
 
 {-|
@@ -613,7 +627,7 @@ isSymmetric (Matrix m) = Matrix m == mTranspose (Matrix m)
     False
 -}
 isSkewSymmetric :: (Eq a, Num a) => Matrix a -> Bool
-isSkewSymmetric (Matrix m) = Matrix m == mScalarMult (-1) (mTranspose (Matrix m))
+isSkewSymmetric (Matrix m) = Matrix m == mScalarMult (-1) (transpose (Matrix m))
 
 
 {-|
@@ -673,7 +687,7 @@ isSquare (Matrix m) = numRows (Matrix m) == numCols (Matrix m)
     False
 -}
 isOrthogonal :: (Eq a, Fractional a) => Matrix a -> Bool
-isOrthogonal (Matrix m) = mTranspose (Matrix m) == inverse (Matrix m)
+isOrthogonal (Matrix m) = transpose (Matrix m) == inverse (Matrix m)
 
 
 {-|
@@ -868,7 +882,7 @@ one' m n = Matrix $ chunk' m (replicate (m * n) 1)
     0   0   1
 -}
 unit :: Num a => Int -> Matrix a
-unit n = Matrix $ chunk' n (L.intercalate (replicate n 0) (mat2list (one' 1 n)))
+unit n = Matrix $ chunk' n (L.intercalate (replicate n 0) (matrixToList (one' 1 n)))
 
 
 -- SAMPLE MATRICES --

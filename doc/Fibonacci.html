@@ -5,19 +5,19 @@ window.onload = function () {pageLoad();setSynopsis("mini_Fibonacci.html");};
   * Calculating the nth term in the Fibonacci Series
   * Generating Fibonacci Series with n terms</p></div></div><div id="synopsis"><p id="control.syn" class="caption expander" onclick="toggleSection('syn')">Synopsis</p><ul id="section.syn" class="hide" onclick="toggleSection('syn')"><li class="src short"><a href="#v:fib">fib</a> :: Integer -&gt; Integer</li><li class="src short"><a href="#v:fibSeq">fibSeq</a> :: Integer -&gt; [Integer]</li><li class="src short"><a href="#v:fibIndex">fibIndex</a> :: Integer -&gt; Integer</li><li class="src short"><a href="#v:isFibNum">isFibNum</a> :: Integer -&gt; Bool</li></ul></div><div id="interface"><h1>Documentation</h1><div class="top"><p class="src"><a name="v:fib" class="def">fib</a> :: Integer -&gt; Integer</p><div class="doc"><p>The <code><a href="Fibonacci.html#v:fib">fib</a></code> function returns the nth term of the Fibonacci sequence.
   	The function takes one argument of type Integer, whose value should be positive.</p><p>Below are a few examples:</p><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>fib 10
-</code></strong>55
+</code></strong>34
 </pre><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>fib 100
-</code></strong>354224848179261915075
+</code></strong>218922995834555169026
 </pre></div></div><div class="top"><p class="src"><a name="v:fibSeq" class="def">fibSeq</a> :: Integer -&gt; [Integer]</p><div class="doc"><p>The <code><a href="Fibonacci.html#v:fibSeq">fibSeq</a></code> function returns the first n terms of the Fibonacci sequence.
   	The function takes one argument of type Integer.</p><p>Below are a few examples:</p><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>fibSeq 10
-</code></strong>[1,1,2,3,5,8,13,21,34,55]
+</code></strong>[0,1,1,2,3,5,8,13,21,34]
 </pre><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>fibSeq 20
-</code></strong>[1,1,2,3,5,8,13,21,34,55,89,144,233,377,610,987,1597,2584,4181,6765]
+</code></strong>[0,1,1,2,3,5,8,13,21,34,55,89,144,233,377,610,987,1597,2584,4181]
 </pre></div></div><div class="top"><p class="src"><a name="v:fibIndex" class="def">fibIndex</a> :: Integer -&gt; Integer</p><div class="doc"><p>The <code><a href="Fibonacci.html#v:fibIndex">fibIndex</a></code> function returns the index of the passed Fibonacci number in the Fibonacci sequence.
   	The function takes one argument of type Integer.</p><p>Below are a few examples:</p><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>fibIndex 144
-</code></strong>12
+</code></strong>13
 </pre><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>fibIndex 6765
-</code></strong>20
+</code></strong>21
 </pre><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>fibIndex (fib 10000)
 </code></strong>10000
 </pre></div></div><div class="top"><p class="src"><a name="v:isFibNum" class="def">isFibNum</a> :: Integer -&gt; Bool</p><div class="doc"><p>The <code><a href="Fibonacci.html#v:isFibNum">isFibNum</a></code> function checks whether an integer is a Fibonacci number.

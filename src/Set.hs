@@ -24,8 +24,8 @@ Functionality for:
 module Set 
 (
     Set(..),
-    set2list,
-    list2set,
+    setToList,
+    listToSet,
     union,
     unionL,
     intersection,
@@ -130,33 +130,33 @@ isProperSubset (Set set1) (Set set2) = (set1 /= set2) && (isSubset (Set set1) (S
 
 
 {-|
-    The 'list2set' function converts a list to 'Set'.
+    The 'listToSet' function converts a list to 'Set'.
 
     For example:
 
     >>> let l = [1,2,3]
-    >>> let s = list2set l
+    >>> let s = listToSet l
     >>> s
     Set {1,2,3}
 -}
-list2set :: Ord a => [a] -> Set a
-list2set [] = Set []
-list2set list = Set ((L.sort . L.nub) list)
+listToSet :: Ord a => [a] -> Set a
+listToSet [] = Set []
+listToSet list = Set ((L.sort . L.nub) list)
 
 
 {-|
-    The 'set2list' function converts a 'Set' into a list and returns the list.
+    The 'setToList' function converts a 'Set' into a list and returns the list.
 
     For example:
 
     >>> s1
     {1,2,3,4,5,6,7,8,9,10}
     
-    >>> set2list s1
+    >>> setToList s1
     [1,2,3,4,5,6,7,8,9,10]
 -}
-set2list :: Set a -> [a]
-set2list (Set s) = s
+setToList :: Set a -> [a]
+setToList (Set s) = s
 
 
 {-|
@@ -413,7 +413,7 @@ isSuperset (Set set1) (Set set2) = null [e | e <- set2', e `notElem` set1']
     4
 -}
 powerSet :: Ord a => Set a -> Set (Set a)
-powerSet (Set s) = Set $ map Set (L.subsequences $ set2list (Set s))
+powerSet (Set s) = Set $ map Set (L.subsequences $ setToList (Set s))
 
 
 {-
@@ -541,7 +541,7 @@ whole' n = Set [0,1..n]
     >>> sMap (show) (Set [1..10])
     {"1","10","2","3","4","5","6","7","8","9"}
 -}
-sMap f (Set s) = list2set $ map f s
+sMap f (Set s) = listToSet $ map f s
 
 
 -- SAMPLE SETS --

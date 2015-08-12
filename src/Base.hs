@@ -23,8 +23,8 @@ module Base
   fromOct,
   fromDec,
   fromHex,
-  toAlphaDigits,
-  fromAlphaDigits
+  toAlpha,
+  fromAlpha
 )
 where
 
@@ -209,25 +209,25 @@ fromHex = fromBase 16
 
 
 {-|
-  	The 'toAlphaDigits' function converts a number from a list of Integer to corresponding String representation.
+  	The 'toAlpha' function converts a number from a list of Integer to corresponding String representation.
   	The function takes one argument of type [Integer], which contains the list of digits.
 	
   	Below are a few examples:
   
-  	>>> toAlphaDigits $ toBase 16 23432
+  	>>> toAlpha $ toBase 16 23432
   	"5b88"
 		
-  	>>> toAlphaDigits $ toBase 16 255
+  	>>> toAlpha $ toBase 16 255
   	"ff"
 		
-  	>>> toAlphaDigits [38,12,1]
+  	>>> toAlpha [38,12,1]
   	"}c1"
 		
-  	>>> toAlphaDigits [21,12,1]
+  	>>> toAlpha [21,12,1]
   	"lc1"
 -}
-toAlphaDigits :: [Integer] -> String
-toAlphaDigits = map convert where
+toAlpha :: [Integer] -> String
+toAlpha = map convert where
   convert n | n < 10    = chr (fromInteger n + ord '0')
             | otherwise = chr (fromInteger n + ord 'a' - 10)
 
@@ -238,14 +238,14 @@ toAlphaDigits = map convert where
 
   	Below are a few examples:
 
-  	>>> fromAlphaDigits "j43hbrh"
+  	>>> fromAlpha "j43hbrh"
   	[19,4,3,17,11,27,17]
   		
-  	>>> fromAlphaDigits "ffff"
+  	>>> fromAlpha "ffff"
   	[15,15,15,15]
 -}
-fromAlphaDigits :: String -> [Integer]
-fromAlphaDigits = map convert where
+fromAlpha :: String -> [Integer]
+fromAlpha = map convert where
  convert c | isDigit c = toInteger (ord c - ord '0')
            | isUpper c = toInteger (ord c - ord 'A' + 10)
            | isLower c = toInteger (ord c - ord 'a' + 10)

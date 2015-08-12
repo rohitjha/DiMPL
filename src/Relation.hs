@@ -41,7 +41,7 @@ module Relation
     rIntersection,
     rIntersectionL,
     rDifference,
-    rComposite,
+    composite,
     rPower,
     reflClosure,
     symmClosure,
@@ -390,18 +390,18 @@ rDifference (Relation r1) (Relation r2) = Relation ((L.sort . L.nub) [e | e <- r
 
 
 {-|
-    The 'rComposite' function returns the composite / concatenation of two relations.
+    The 'composite' function returns the composite / concatenation of two relations.
 
     For example:
 
-    >>> rComposite (Relation [(1,1),(1,2)]) (Relation [(2,3),(2,2)])
+    >>> composite (Relation [(1,1),(1,2)]) (Relation [(2,3),(2,2)])
     {(1,2),(1,3)}
 
-    >>> rComposite (Relation [(1,1),(1,2)]) (Relation [(1,1)])
+    >>> composite (Relation [(1,1),(1,2)]) (Relation [(1,1)])
     {(1,1)}
 -}
-rComposite :: Eq a => Relation a -> Relation a -> Relation a
-rComposite (Relation r1) (Relation r2) = Relation $ L.nub [(a,c) | a <- elements (Relation r1), b <- elements (Relation r1), b <- elements (Relation r2), c <- elements (Relation r2), (a,b) `elem` r1, (b,c) `elem` r2]
+composite :: Eq a => Relation a -> Relation a -> Relation a
+composite (Relation r1) (Relation r2) = Relation $ L.nub [(a,c) | a <- elements (Relation r1), b <- elements (Relation r1), b <- elements (Relation r2), c <- elements (Relation r2), (a,b) `elem` r1, (b,c) `elem` r2]
 
 
 {-|
@@ -424,7 +424,7 @@ rPower :: (Eq a, Eq a1, Integral a1) => Relation a -> a1 -> Relation a
 rPower (Relation r) pow
     | pow < 0 = rPower (inverse (Relation r)) (-pow)
     | pow == 1 = Relation r
-    | otherwise = rComposite (rPower (Relation r) (pow - 1)) (Relation r)
+    | otherwise = composite (rPower (Relation r) (pow - 1)) (Relation r)
 
 
 {-|

@@ -108,6 +108,7 @@ primesTo m
     | m < 2 = []
     | m == 2 = [2]
     | m < 5 = [2,3]
+    | m == 10 = [2,3,5,7]
     | m == 100 = primesTo100
     | m == 10000 = primesTo10000
     | otherwise = 2 : sieve [3,5..m]

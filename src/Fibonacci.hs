@@ -24,14 +24,8 @@ import Data.List (findIndex)
 import Data.Maybe (fromJust)
 
 
--- The first term in the Fibonacci Sequence
-first = 0
-
--- The second term in the Fibonacci Sequence
-second = 1
-
 -- Function to generate the entire Fibonacci sequence
-fibs = first : second : zipWith (+) fibs (tail fibs)
+fibs = 0 : 1 : zipWith (+) fibs (tail fibs)
 
 
 {-|
@@ -46,9 +40,9 @@ fibs = first : second : zipWith (+) fibs (tail fibs)
   	>>> fib 100
   	218922995834555169026
 -}
-fib :: Integer -> Integer
+fib :: Int -> Integer
 fib n
-    | n > 0 = fibs !! fromInteger (n - 1)
+    | n > 0 = fibs !! (n - 1)
     | otherwise = error "Usage - fib n, where n is a positive integer."
 
 

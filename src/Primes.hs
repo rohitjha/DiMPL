@@ -19,10 +19,6 @@ module Primes
     primesTo,
     primesBetween,
     nPrimes,
-    primesTo100,
-    primesTo10000,
-    isTrialDivisionPrime,
-    isMillerRabinPrime,
     isPrime,
     nextPrime,
     primeFactors,
@@ -153,7 +149,7 @@ nPrimes n = take n (sieve [2..])
           notdiv p n = n `mod` p /= 0
 
 
-{-|
+{-
     The 'primesTo100' function returns a list of all prime numbers less than 100.
 -}
 primesTo100 :: [Integer]
@@ -167,14 +163,14 @@ trialDivision ps n = doTrialDivision ps
           doTrialDivision [] = True
 
 
-{-|
+{-
     The 'primesTo100' function returns a list of all prime numbers less than 10000.
 -}
 primesTo10000 :: [Integer]
 primesTo10000 = primesTo100 ++ filter (trialDivision primesTo100) [101,103..9999]
 
 
-{-|
+{-
     The 'isTrialDivisionPrime' function is checks the primality of a number using trial division.
     
     For example:
@@ -193,7 +189,7 @@ isTrialDivisionPrime 2 = True
 isTrialDivisionPrime n = trialDivision (primesTo10000 ++ [10001,10003..]) n
 
 
-{--
+{-
     The 'isStrongPseudoPrime' function is an internal function to check if number is a pseudo-prime (probable)
 -}
 isStrongPseudoPrime :: Integer -> (Int,Integer) -> Integer -> Bool
@@ -208,7 +204,7 @@ isStrongPseudoPrime n (s,t) b =
             | otherwise = doSquaring (s-1) (x*x `mod` n)
 
 
-{-|
+{-
     The 'isMillerRabinPrime' function checks if number is prime using Miller-Rabin primality test
     
     For example:

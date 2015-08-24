@@ -27,8 +27,6 @@ $ cabal configure
 
 $ cabal build
 
-$ cabal haddock
-
 $ cabal install
 
 $ cabal clean (optional)

@@ -44,8 +44,8 @@ module Vector
     isNullVector,
     crossProduct,
     (><),
-    scalarTripleProduct,
-    vectorTripleProduct,
+    stp,
+    vtp,
     extract,
     extractRange,
     areOrthogonal,
@@ -416,42 +416,42 @@ crossProduct (Vector a) (Vector b)
 
 
 {-|
-    The 'scalarTripleProduct' function returns the Scalar Triple Product of three vectors.
+    The 'stp' function returns the Scalar Triple Product of three vectors.
     
     For example:
 
-    >>> scalarTripleProduct (Vector [1,1,1]) (Vector [2,3,4]) (Vector [1,2,0])
+    >>> stp (Vector [1,1,1]) (Vector [2,3,4]) (Vector [1,2,0])
     -3
 
-    >>> scalarTripleProduct (Vector [0]) (Vector [0,0]) (Vector [0,0,0])
+    >>> stp (Vector [0]) (Vector [0,0]) (Vector [0,0,0])
     0
 
-    >>> scalarTripleProduct (Vector []) (Vector []) (Vector [])
+    >>> stp (Vector []) (Vector []) (Vector [])
     0
 
-    >>> scalarTripleProduct (Vector [2,7.9]) (Vector [3]) (Vector [(-1)])
+    >>> stp (Vector [2,7.9]) (Vector [3]) (Vector [(-1)])
     0.0
 -}
-scalarTripleProduct :: Num a => Vector a -> Vector a -> Vector a -> a
-scalarTripleProduct a b c = innerProd a (crossProduct b c)
+stp :: Num a => Vector a -> Vector a -> Vector a -> a
+stp a b c = innerProd a (crossProduct b c)
 
 
 {-|
-    The 'vectorTripleProduct' function returns the Vector Triple Product of three vectors.
+    The 'vtp' function returns the Vector Triple Product of three vectors.
 
     For example:
     
-    >>> vectorTripleProduct (Vector [1,1]) (Vector [2,3]) (Vector [4,5,6])
+    >>> vtp (Vector [1,1]) (Vector [2,3]) (Vector [4,5,6])
     <-2,2,-30>
 
-    >>> vectorTripleProduct (Vector [0,0,0]) (Vector [1.3,2.8]) (Vector [4,5.5])
+    >>> vtp (Vector [0,0,0]) (Vector [1.3,2.8]) (Vector [4,5.5])
     <-0.0,0.0,0.0>
 
-    >>> vectorTripleProduct (Vector []) (Vector []) (Vector [])
+    >>> vtp (Vector []) (Vector []) (Vector [])
     <0,0,0>
 -}
-vectorTripleProduct :: Num a => Vector a -> Vector a -> Vector a -> Vector a
-vectorTripleProduct a b c = crossProduct a (crossProduct b c)
+vtp :: Num a => Vector a -> Vector a -> Vector a -> Vector a
+vtp a b c = crossProduct a (crossProduct b c)
 
 
 {-|

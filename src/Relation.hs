@@ -337,7 +337,8 @@ rUnion (Relation r1) (Relation r2) = Relation ((L.sort . L.nub) (r1 ++ [e | e <-
     >>> rUnionL [r1,r2]
     {(1,1),(1,2),(1,3),(2,1),(2,2),(2,3),(3,1),(3,2),(3,3)}
 -}
-rUnionL :: (Ord t1, Foldable t) => t (Relation t1) -> Relation t1
+{-rUnionL :: (Ord t1, Foldable t) => t (Relation t1) -> Relation t1-}
+rUnionL :: (Ord t) => [Relation t] -> Relation t
 rUnionL = foldl1 rUnion
 
 
@@ -370,7 +371,8 @@ rIntersection (Relation r1) (Relation r2) = Relation ((L.sort . L.nub) [e | e <-
     >>> rIntersectionL [r1,r2]
     {(1,1),(2,2),(3,3)}
 -}
-rIntersectionL :: (Ord a, Foldable t) => t (Relation a) -> Relation a
+{-rIntersectionL :: (Ord a, Foldable t) => t (Relation a) -> Relation a-}
+rIntersectionL :: (Ord a) => [Relation a] -> Relation a
 rIntersectionL = foldl1 rIntersection
 
 

@@ -71,7 +71,7 @@ c :: Integer -> Integer -> Integer
 c n r
   | n < 1 = error "Usage - c n r, where 'n' is positive."
   | r < 1 = error "Usage - c n r, where 'r' is positive."
-  | otherwise = factorial a `div` ( (factorial b) * (factorial (a-b)) )
+  | otherwise = product [(b+1) .. n] `div` product [2 .. (a-b)]
               where
                 a = max n r
                 b = min n r
@@ -94,10 +94,10 @@ p :: Integer -> Integer -> Integer
 p n r
   | n < 1 = error "Usage - p n r, where 'n' is positive."
   | r < 1 = error "Usage - p n r, where 'r' is positive."
-  | otherwise = (factorial a) `div` (factorial (a-b))
-  where
-    a = max n r
-    b = min n r
+  | otherwise = product [(a-b+1) .. a]
+                where
+                  a = max n r
+                  b = min n r
 
 
 {-|

@@ -72,8 +72,8 @@ newtype Set a = Set [a] deriving (Ord)
 instance Eq a => Eq (Set a) where
     set1 == set2 = isSubset set1 set2 && isSubset set2 set1
 
-instance (Show a) => Show (Set a) where
-    showsPrec _ (Set s) = showSet s
+instance (Show a, Ord a) => Show (Set a) where
+    showsPrec _ (Set s) = showSet ((L.sort . L.nub) s)
 
 
 showSet [] str = showString "{}" str

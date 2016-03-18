@@ -31,16 +31,19 @@ module Matrix
     Matrix(..),
     mAdd,
     mAddL,
-    (|+|),
+    (+),
+    --(|+|),
     mSub,
     mSubL,
-    (|-|),
+    (-),
+    --(|-|),
     transpose,
     mScalarMult,
     (|*|),
     mMult,
     mMultL,
-    (|><|),
+    (*),
+    --(|><|),
     numRows,
     numCols,
     matrixToList,
@@ -67,7 +70,8 @@ module Matrix
     isZero,
     isOne,
     isUnit,
-    mMap,
+    fmap,
+    --mMap,
     zero,
     zero',
     one,
@@ -94,6 +98,18 @@ newtype Matrix a = Matrix [[a]] deriving (Eq)
 instance Show a => Show (Matrix a) where
     show (Matrix a) = L.intercalate "\n" $ map (L.intercalate "\t" . map show) a
 
+instance (Num a) => Num (Matrix a) where
+    (+) (Matrix m1) (Matrix m2) = mAdd (Matrix m1) (Matrix m2)
+    (-) (Matrix m1) (Matrix m2) = mSub (Matrix m1) (Matrix m2)
+    (*) (Matrix m1) (Matrix m2) = mMult (Matrix m1) (Matrix m2)
+    negate (Matrix m1) = fmap (*(-1)) (Matrix m1)
+    abs = undefined
+    signum = undefined
+    fromInteger = undefined
+
+
+instance Functor Matrix where
+    fmap f (Matrix m) = Matrix $ map (map f) m
 
 {-|
     The 'mAdd' function adds two matrices, each of type 'Matrix', and returns their sum as a 'Matrix'.
@@ -108,17 +124,16 @@ mAdd :: Num a => Matrix a -> Matrix a -> Matrix a
 mAdd (Matrix a) (Matrix b) = Matrix $ zipWith (zipWith (+)) a b
 
 
-{-|
+{-
     The '|+|' operator can also be used for adding two matrices.
 
     For example:
 
     >>> (Matrix [[1,2,3]]) |+| (Matrix [[1,1,1]])
     2   3   4
--}
 (|+|) :: Num a => Matrix a -> Matrix a -> Matrix a
 (|+|) (Matrix a) (Matrix b) = mAdd (Matrix a) (Matrix b)
-
+-}
 
 {-|
     The 'mAddL' function can be used to add a list of matrices, each of type 'Matrix'.
@@ -154,7 +169,7 @@ mSub :: Num a => Matrix a -> Matrix a -> Matrix a
 mSub (Matrix a) (Matrix b) = Matrix $ zipWith (zipWith (-)) a b
 
 
-{-|
+{-
     The '|-|' can also be used to find the difference between two matrices.
 
     For example:
@@ -162,8 +177,8 @@ mSub (Matrix a) (Matrix b) = Matrix $ zipWith (zipWith (-)) a b
     (Matrix [[1,2,3],[4,5,6]]) |-| (Matrix [[1,1,1],[0,0,0]])
     >>> 0 1 2
     >>> 4 5 6
--}
 (|-|) (Matrix a) (Matrix b) = mSub (Matrix a) (Matrix b)
+-}
 
 
 {-|
@@ -255,7 +270,7 @@ mMult (Matrix m1) (Matrix m2) = Matrix [ map (multRow r) m2t | r <- m1 ]
         multRow r1 r2 = sum $ zipWith (*) r1 r2
 
 
-{-|
+{-
     The '|><|' function can also be used to multiply two matrices.
 
     For example:
@@ -263,8 +278,8 @@ mMult (Matrix m1) (Matrix m2) = Matrix [ map (multRow r) m2t | r <- m1 ]
     >>> (Matrix [[1,0],[0,1]]) |><| (Matrix [[4.5,8],[(-10),6]])
     4.5 8.0
     -10.0   6.0
--}
 (|><|) (Matrix a) (Matrix b) = mMult (Matrix a) (Matrix b)
+-}
 
 
 {-|
@@ -774,7 +789,7 @@ isUnit (Matrix [[1]]) = True
 isUnit (Matrix m) = and ([isSquare (Matrix m)] ++ [isOrthogonal (Matrix m)] ++ [isSymmetric (Matrix m)] ++ [trace (Matrix m) == fromIntegral (numRows (Matrix m))])
 
 
-{-|
+{-
     The 'mMap' function maps a function to a matrix, i.e. applies a function to all elements of a matrix.
 
     For example:
@@ -786,10 +801,10 @@ isUnit (Matrix m) = and ([isSquare (Matrix m)] ++ [isOrthogonal (Matrix m)] ++ [
     >>> mMap (*3) m
     3.0     0.0     6.0
     6.0     15.0    19.5
--}
+
 mMap :: (a1 -> a) -> Matrix a1 -> Matrix a
 mMap f (Matrix m) = Matrix $ map (map f) m
-
+-}
 
 -- Temp function (converts list to n-row matrix)
 chunk' n = takeWhile (not.null) . map (take n) . iterate (drop n)

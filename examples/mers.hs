@@ -11,13 +11,11 @@ str2int string = fromBase 10 (map char2int string)
     where
         char2int char = toInteger $ ord(char) - ord('0')
 
---str2int string = fromIntegral $  (str2int' string)
+
+mersPrimePowersTo n = Set [ e | e <- primesTo n, isPrime (2^e - 1) ]
 
 
-mersPrimePowersTo n = Set { e | e <- primesTo n, isPrime (2^e - 1) }
-
-
-mersPrimesToPower n = Set { 2^e - 1 | e <- primesTo n, isPrime (2^e - 1) }
+mersPrimesToPower n = Set [ 2^e - 1 | e <- primesTo n, isPrime (2^e - 1) ]
 
 
 
@@ -36,6 +34,7 @@ main = do
             putStrLn ("\nNumbers - \n" ++ show (mersPrimesToPower (str2int power)))
         "3" -> do
             putStrLn "Exiting."
+
 
 {-
 Choose an option:

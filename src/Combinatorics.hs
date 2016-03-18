@@ -71,7 +71,7 @@ c :: Integer -> Integer -> Integer
 c n r
   | n < 1 = error "Usage - c n r, where 'n' is positive."
   | r < 1 = error "Usage - c n r, where 'r' is positive."
-  | otherwise = product [(b+1) .. n] `div` product [2 .. (a-b)]
+  | otherwise = product [(b+1) .. n] `div` product [1 .. (a-b)]
               where
                 a = max n r
                 b = min n r

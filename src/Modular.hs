@@ -34,8 +34,6 @@ where
     
     prop> modAdd a b m = (a + b) mod m
 
-    prop> (a + b) mod m = (a mod m) + (b mod m)
-
     For example:
     
     >>> modAdd 17 44 11
@@ -45,15 +43,13 @@ where
     8
 -}
 modAdd :: Integral a => a -> a -> a -> a
-modAdd a b m = (a `mod` m) + (b `mod` m)
+modAdd a b m = (a + b) `mod` m
 
 
 {-|
     The 'modSub' function performs subtraction using modular arithmetic.
     
     prop> modSub a b m = (a - b) mod m
-
-    prop> (a - b) mod m = (a mod m) - (b mod m)
 
     For example:
 
@@ -64,7 +60,7 @@ modAdd a b m = (a `mod` m) + (b `mod` m)
     1751
 -}
 modSub :: Integral a => a -> a -> a -> a
-modSub a b m = (a `mod` m) - (b `mod` m)
+modSub a b m = (a - b) `mod` m
 
 
 {-|
@@ -83,7 +79,7 @@ modSub a b m = (a `mod` m) - (b `mod` m)
     2974
 -}
 modMult :: Integral a => a -> a -> a -> a
-modMult a b m = ( (a `mod` m) * (b `mod` m) ) `mod` m
+modMult a b m = (a * b) `mod` m
 
 
 {-|
@@ -162,4 +158,4 @@ findCongruentPair a b m limit = [ x | x <- [0..limit], modMult a x m == b ]
     True
 -}
 findCongruentPair' :: Integral t => t -> t -> t -> t -> [t]
-findCongruentPair' a b m limit = [ x | x <- [0..limit], ((a+x) `mod` m) == b ]
+findCongruentPair' a b m limit = [ x | x <- [0..limit], modAdd a x m == b ]

@@ -23,6 +23,8 @@ Functionality for:
     * Mapping of functions to vectors
 -}
 
+--{-# LANGUAGE DeriveFunctor #-}
+
 module Vector
 (
     Vector(..),
@@ -32,10 +34,12 @@ module Vector
     listToVector,
     vAdd,
     vAddL,
-    (<+>),
+    (+),
+    --(<+>),
     vSub,
     vSubL,
-    (<->),
+    (-),
+    --(<->),
     innerProd,
     (<.>),
     angle,
@@ -49,7 +53,8 @@ module Vector
     extract,
     extractRange,
     areOrthogonal,
-    vMap,
+    fmap,
+    --vMap,
     normalize
 )
 where
@@ -81,6 +86,18 @@ showVector (x:xs) str = showChar '<' (shows x (showl xs str))
         showl [] str = showChar '>' str
         showl (x:xs) str = showChar ',' (shows x (showl xs str))
 
+
+instance (Num a) => Num (Vector a) where
+    (+) (Vector a) (Vector b) = vAdd (Vector a) (Vector b)
+    (-) (Vector a) (Vector b) = vSub (Vector a) (Vector b)
+    negate (Vector a) = scalarMult (-1) (Vector a)
+    (*) = undefined
+    abs = undefined
+    signum = undefined
+    fromInteger = undefined
+
+instance Functor Vector where
+    fmap f (Vector a) = Vector $ map f a
 
 {-|
     The 'vectorToList' function converts a 'Vector' to a list.
@@ -177,16 +194,19 @@ vAdd' (Vector (a:as)) (Vector (b:bs))
     | length as > length bs = (a+b) : vAdd' (Vector as) (Vector (bs ++ [0]))
 
 
-{-|
+{-
+   Not required since we have instance Num for Vector.
+
     The '<+>' operator can also be used to add two vectors.
 
     For example:
 
     >>> (Vector [1]) <+> (Vector [1,2,0,3])
     <2,2,0,3>
--}
+
 (<+>) :: Num a => Vector a -> Vector a -> Vector a
 (<+>) = vAdd
+-}
 
 
 {-|
@@ -229,16 +249,17 @@ vSub (Vector v) (Vector []) = Vector v
 vSub (Vector v1) (Vector v2) = vAdd (Vector v1) (scalarMult (-1) (Vector v2))
 
 
-{-|
+{-
     The '<->' operator can also be used for 'Vector' subtraction.
 
     For example:
 
     >>> (Vector [7,8,0,5.2]) <-> (Vector [1,2,3])
     <6.0,6.0,-3.0,5.2>
--}
+
 (<->) :: Num a => Vector a -> Vector a -> Vector a
 (<->) = vSub
+-}
 
 
 {-|
@@ -345,7 +366,7 @@ angle (Vector v1) (Vector v2) = (180/pi) * acos (innerProd (Vector v1) (Vector v
     <0.0,0.0,0.0>
 -}
 scalarMult :: Num a => a -> Vector a -> Vector a
-scalarMult scalar (Vector vector) = Vector $ map (* scalar) vector
+scalarMult scalar (Vector vector) = Vector $ fmap (* scalar) vector
 
 
 {-|
@@ -510,7 +531,7 @@ areOrthogonal :: (Eq a, Num a) => Vector a -> Vector a -> Bool
 areOrthogonal (Vector v1) (Vector v2) = innerProd (Vector v1) (Vector v2) == 0
 
 
-{-|
+{-
     The 'vMap' function maps a function to a 'Vector' passed as argument.
 
     For example:
@@ -520,9 +541,9 @@ areOrthogonal (Vector v1) (Vector v2) = innerProd (Vector v1) (Vector v2) == 0
     
     >>> vMap (/2) (Vector [1,2,7])
     <0.5,1.0,3.5>
--}
-vMap f (Vector v) = Vector $ map f v
 
+vMap f (Vector v) = Vector $ map f v
+-}
 
 {-|
     The 'vNorm' function normalizes a 'Vector' passed as argument.

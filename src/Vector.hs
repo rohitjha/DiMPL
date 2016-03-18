@@ -1,7 +1,7 @@
 {-|
 Module      : Vector
-Description : Vector module for the MPL DSL
-Copyright   : (c) Rohit Jha, 2015
+Description : Vector module for the DiMPL DSL
+Copyright   : (c) Rohit Jha, 2016
 License     : BSD2
 Maintainer  : rohit305jha@gmail.com
 Stability   : Stable

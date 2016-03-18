@@ -1,7 +1,7 @@
 {-|
 Module      : Set
-Description : Set module for the MPL DSL
-Copyright   : (c) Rohit Jha, 2015
+Description : Set module for the DiMPL DSL
+Copyright   : (c) Rohit Jha, 2016
 License     : BSD2
 Maintainer  : rohit305jha@gmail.com
 Stability   : Stable
@@ -48,7 +48,8 @@ module Set
     natural',
     whole,
     whole',
-    sMap
+    fmap
+    --sMap
 )
 where
 
@@ -82,6 +83,9 @@ showSet (x:xs) str = showChar '{' (shows x (showl xs str))
         showl [] str = showChar '}' str
         showl (x:xs) str = showChar ',' (shows x (showl xs str))
 
+
+instance Functor Set where
+    fmap f (Set s) = Set $ map f s
 
 {-|
     The 'isSubset' function takes two 'Set's as arguments and checks if the first 'Set' is a subset of the second 'Set'.

@@ -23,7 +23,6 @@ Functionality for:
     * Mapping of functions to vectors
 -}
 
---{-# LANGUAGE DeriveFunctor #-}
 
 module Vector
 (
@@ -98,6 +97,7 @@ instance (Num a) => Num (Vector a) where
 
 instance Functor Vector where
     fmap f (Vector a) = Vector $ map f a
+
 
 {-|
     The 'vectorToList' function converts a 'Vector' to a list.

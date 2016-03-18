@@ -126,10 +126,10 @@ primesTo m
 -}
 primesBetween :: Integer -> Integer -> [Integer]
 primesBetween m n
-    | m > n = primesBetween n m
     | m < 0 || n < 0 = error "Usage - primesBetween m n, where m and n are non-negative."
+    | m > n = primesBetween n m
     | m <= 2 = primesTo n
-    | otherwise = primesTo n `minus` primesTo m --(nextPrime m) : sieve [((nextPrime m)+1) .. n]
+    | otherwise = primesTo n `minus` primesTo m
 
 
 {-|
@@ -258,7 +258,9 @@ isPrime n
 -}
 nextPrime :: Integer -> Integer
 nextPrime n
-    | n > 0 = head [p | p <- [n..], isPrime p]
+    | n > 0 = if even n
+              then head $ filter isPrime [n+1, n+3..]
+              else head $ filter isPrime [n+2, n+4..]
     | n < 2 = 2
 
 

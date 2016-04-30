@@ -1,7 +1,7 @@
 {-|
 Module 		  : Graph
-Description : Graph module for the MPL DSL
-Copyright	  : (c) Rohit Jha, 2015
+Description : Graph module for the DiMPL DSL
+Copyright	  : (c) Rohit Jha, 2016
 License     : BSD2
 Maintainer	: rohit305jha@gmail.com
 Stability	  : Stable
@@ -79,12 +79,14 @@ module Graph
   hasEulerPathNotCircuitG,
   hasEulerPathNotCircuitGM,
   isSubgraphG,
-  isSubgraphGM
+  isSubgraphGM,
+  writeGraphToFile,
+  writeGraphMatrixToFile
 )
 where
 
 import qualified Data.List as L
-
+import System.Environment
 
 {-|
   	'Vertices' is a data type for representing the vertices of a graph.
@@ -92,10 +94,10 @@ import qualified Data.List as L
   	'Vertices' are internally stored as a list.
 
   	Below are a few examples:
-  	
+
   	>>> Vertices []
   	{}
-  	
+
   	>>> Vertices [1,2,5]
   	{1,2,5}
 
@@ -109,7 +111,7 @@ instance (Show a) => Show (Vertices a) where
 
 showVertices [] str = showString "{}" str
 showVertices (x:xs) str = showChar '{' (shows x (showl xs str))
-  where 
+  where
     showl [] str = showChar '}' str
     showl (x:xs) str = showChar ',' (shows x (showl xs str))
 
@@ -123,7 +125,7 @@ showVertices (x:xs) str = showChar '{' (shows x (showl xs str))
 
   	>>> verticesToList v1
     [1,2,3,4]
--} 
+-}
 verticesToList :: Vertices t -> [t]
 verticesToList (Vertices v) = v
 
@@ -145,7 +147,7 @@ listToVertices v = Vertices v
   	It is the set of all edges in a graph, including their starting and ending vertices, and the weight of the edge.
 
   	Below are a few examples:
-  	
+
   	>>> Edges [(1,1,10)]
   	{(1,1,10)}
 
@@ -162,7 +164,7 @@ instance (Show a) => Show (Edges a) where
 
 showEdges [] str = showString "{}" str
 showEdges (x:xs) str = showChar '{' (shows x (showl xs str))
-  where 
+  where
     showl [] str = showChar '}' str
     showl (x:xs) str = showChar ',' (shows x (showl xs str))
 
@@ -210,11 +212,11 @@ third (a,b,c) = c
 	>>> let v = Vertices [1,2,3,4]
     >>> v
     {1,2,3,4}
-		
+
     >>> let e = Edges [(1,2,5),(1,3,7),(2,4,3)]
     >>> e
     {(1,2,5),(1,3,7),(2,4,3)}
-		
+
     >>> let g = Graph (v,e)
     >>> g
     Graph ({1,2,3,4},{(1,2,5),(1,3,7),(2,4,3)})
@@ -233,7 +235,7 @@ instance Show a => Show (Matrix a) where
     The 'GraphMatrix' data type is used here to represent a 'Graph' as a two-dimentional list.
 
     For example:
-    
+
     >>> GraphMatrix [[1,2,5],[3,5,7],[0,0,4]]
     1 2 5
     3 5 7
@@ -255,7 +257,7 @@ instance Show a => Show (GraphMatrix a) where
     4 0 2 6
     1 2 3 4
     0 0 1 6
-    
+
     >>> graphToMatrix gm1
     [[0,1,3,5],[4,0,2,6],[1,2,3,4],[0,0,1,6]]
 -}
@@ -270,7 +272,7 @@ graphToMatrix (GraphMatrix gm) = gm
 
     >>> m
     [[0,1],[4,0]]
-    
+
     >>> graphToMatrix m
     0   1
     4   0
@@ -300,7 +302,7 @@ getVerticesG (Graph g) = fst g
     The function takes one argument, which is of type 'Graph'.
 
     For example:
-		
+
     >>> g
     Graph ({1,2,3,4},{(1,2,5),(1,3,7),(2,4,3)})
 
@@ -357,8 +359,8 @@ getEdgesG (Graph g) = snd g
 	>>> getVerticesGM gm
 	{1,2,3}
 -}
-getVerticesGM :: GraphMatrix t -> Vertices Int
-getVerticesGM (GraphMatrix gm) = Vertices [1 .. length gm]
+getVerticesGM :: GraphMatrix t -> Vertices Integer
+getVerticesGM (GraphMatrix gm) = Vertices [1 .. toInteger $ length gm]
 
 
 {-|
@@ -366,7 +368,7 @@ getVerticesGM (GraphMatrix gm) = Vertices [1 .. length gm]
     The function takes one argument, which is of type 'GraphMatrix'.
 
     For example:
-		
+
     >>> gm
     1	2	5
     3	5	7
@@ -389,7 +391,7 @@ weight (GraphMatrix gm) i j = (gm !! i) !! j
     The function takes one argument, which is of type 'GraphMatrix'.
 
     For example:
-		
+
     >>> gm
     1	2	5
     3	5	7
@@ -398,10 +400,10 @@ weight (GraphMatrix gm) i j = (gm !! i) !! j
 	>>> getEdgesGM gm
 	{(1,1,1),(1,2,2),(1,3,5),(2,1,3),(2,2,5),(2,3,7),(3,3,4)}
 -}
-getEdgesGM :: Integral a => GraphMatrix a -> Edges Int
-getEdgesGM (GraphMatrix gm) = Edges [(i + 1, j + 1, w i j) | i <- [0 .. fromIntegral $ length (graphToMatrix (GraphMatrix gm)) - 1], j <- [0 .. fromIntegral (length (graphToMatrix (GraphMatrix gm)) - 1)], weight (GraphMatrix gm) i j /= 0]
+getEdgesGM :: GraphMatrix Integer -> Edges Integer
+getEdgesGM (GraphMatrix gm) = Edges [(i + 1, j + 1, fromInteger (w i j)) | i <- [0 .. toInteger $ length (graphToMatrix (GraphMatrix gm)) - 1], j <- [0 .. toInteger $  length (graphToMatrix (GraphMatrix gm)) - 1], weight (GraphMatrix gm) (fromInteger i) (fromInteger j) /= 0]
   where
-    w i j = fromIntegral $ weight (GraphMatrix gm) i j
+    w i j = weight (GraphMatrix gm) (fromInteger i) (fromInteger j)
 
 
 {-|
@@ -409,7 +411,7 @@ getEdgesGM (GraphMatrix gm) = Edges [(i + 1, j + 1, w i j) | i <- [0 .. fromInte
     The function takes one argument, which is of the type 'GraphMatrix'.
 
     For example:
-		
+
     >>> gm
     1	2	5
     3	5	7
@@ -418,16 +420,16 @@ getEdgesGM (GraphMatrix gm) = Edges [(i + 1, j + 1, w i j) | i <- [0 .. fromInte
 	>>> numEdgesGM gm
 	7
 -}
-numEdgesGM :: Integral a => GraphMatrix a -> Int
+numEdgesGM :: GraphMatrix Integer -> Int
 numEdgesGM (GraphMatrix gm) = length $ edgesToList $ getEdgesGM (GraphMatrix gm)
 
 
 {-|
     The 'convertGM2G' function returns a Graph representation as G(V,E) from its adjacency matrix representation.
     The function takes one argument, which is of type 'GraphMatrix' and returns a 'Graph'.
-    
+
     For example:
-		
+
     >>> gm
     1	2	5
     3	5	7
@@ -436,7 +438,7 @@ numEdgesGM (GraphMatrix gm) = length $ edgesToList $ getEdgesGM (GraphMatrix gm)
 	>>> convertGM2G gm
 	Graph ({1,2,3},{(1,1,1),(1,2,2),(1,3,5),(2,1,3),(2,2,5),(2,3,7),(3,3,4)})
 -}
-convertGM2G :: Integral a => GraphMatrix a -> Graph Int
+convertGM2G :: GraphMatrix Integer -> Graph Integer
 convertGM2G (GraphMatrix gm) = Graph (getVerticesGM (GraphMatrix gm), getEdgesGM (GraphMatrix gm))
 
 
@@ -445,7 +447,7 @@ convertGM2G (GraphMatrix gm) = Graph (getVerticesGM (GraphMatrix gm), getEdgesGM
     The function takes one argument, which is of type 'Graph' and returns a 'GraphMatrix'.
 
     For example:
-		
+
     >>> g
 	Graph ({1,2,3,4},{(1,2,5),(1,3,7),(2,4,3)})
 
@@ -455,18 +457,19 @@ convertGM2G (GraphMatrix gm) = Graph (getVerticesGM (GraphMatrix gm), getEdgesGM
 	0	0	0	0
 	0	0	0	0
 -}
-convertG2GM :: (Eq t, Num t) => Graph t -> GraphMatrix Int
+convertG2GM :: Graph Integer -> GraphMatrix Integer
 
-convertG2GM' (Graph g) = [f i j | i <- verticesToList $ getVerticesG (Graph g), j <- verticesToList $ getVerticesG (Graph g)]
+convertG2GM' :: Graph Integer -> [Integer]
+convertG2GM' (Graph g) = [toInteger (f i j) | i <- verticesToList $ getVerticesG (Graph g), j <- verticesToList $ getVerticesG (Graph g)]
   where
     edgeList = [(first e, second e) | e <- edgesToList (getEdgesG (Graph g))]
 
-    f i j = 
+    f i j =
       if (i, j) `elem` edgeList
       then third (w i j (Graph g))
       else 0
 
-    w i j (Graph g) = 
+    w i j (Graph g) =
       head [ (i, j, k) | k <- [0 .. (maxWeight (Graph g))], (i, j, k) `elem` edgesToList (snd g) ]
 
     maxWeight (Graph g) = fromIntegral $ L.minimumBy (flip compare) [ third x | x <- edgesToList (snd g) ]
@@ -494,7 +497,7 @@ convertG2GM (Graph g) = GraphMatrix $ chunk' (numVerticesG (Graph g)) (convertG2
 	2	5	0
 	5	7	4
 -}
-transposeGM :: Num a => GraphMatrix a -> GraphMatrix a
+transposeGM :: GraphMatrix Integer -> GraphMatrix Integer
 transposeGM (GraphMatrix []) = GraphMatrix []
 transposeGM (GraphMatrix [[]]) = GraphMatrix [[]]
 transposeGM (GraphMatrix xs) = GraphMatrix $ foldr (zipWith (:)) (repeat []) xs
@@ -512,7 +515,7 @@ transposeGM (GraphMatrix xs) = GraphMatrix $ foldr (zipWith (:)) (repeat []) xs
 	>>> transposeG g
 	Graph ({1,2,3,4},{(2,1,5),(3,1,7),(4,2,3)})
 -}
-transposeG :: (Eq t, Num t) => Graph t -> Graph Int
+transposeG :: Graph Integer -> Graph Integer
 transposeG (Graph g) = convertGM2G $ transposeGM $ convertG2GM (Graph g)
 
 
@@ -522,7 +525,7 @@ transposeG (Graph g) = convertGM2G $ transposeGM $ convertG2GM (Graph g)
     The function takes one argument, which is of type 'GraphMatrix'.
 
     Below are two examples:
-		
+
     >>> gm1
     1	2	5
     3	5	7
@@ -530,7 +533,7 @@ transposeG (Graph g) = convertGM2G $ transposeGM $ convertG2GM (Graph g)
 
 	>>> isUndirectedGM gm1
 	False
-	
+
 	>>> gm2
 	0	1	1
 	1	1	0
@@ -539,7 +542,7 @@ transposeG (Graph g) = convertGM2G $ transposeGM $ convertG2GM (Graph g)
 	>>> isUndirected gm2
 	True
 -}
-isUndirectedGM :: (Num a, Eq a) => GraphMatrix a -> Bool
+isUndirectedGM :: GraphMatrix Integer -> Bool
 isUndirectedGM (GraphMatrix gm) = GraphMatrix gm == transposeGM (GraphMatrix gm)
 
 
@@ -556,7 +559,7 @@ isUndirectedGM (GraphMatrix gm) = GraphMatrix gm == transposeGM (GraphMatrix gm)
 	>>> isUndirectedG g
 	False
 -}
-isUndirectedG :: (Num a, Eq a) => Graph a -> Bool
+isUndirectedG :: Graph Integer -> Bool
 isUndirectedG (Graph g) = isUndirectedGM (convertG2GM (Graph g))
 
 
@@ -566,14 +569,14 @@ isUndirectedG (Graph g) = isUndirectedGM (convertG2GM (Graph g))
     The function takes one argument, which is of type 'GraphMatrix'.
 
     Below are a few examples:
-		
+
     >>> gm1
     1	3
     0	5
 
 	>>> isDirected gm1
 	True
-	
+
 	>>> gm2
 	1	2	5
 	3	5	7
@@ -582,7 +585,7 @@ isUndirectedG (Graph g) = isUndirectedGM (convertG2GM (Graph g))
 	>>> isDirectedGM gm2
 	True
 -}
-isDirectedGM :: (Num a, Eq a) => GraphMatrix a -> Bool
+isDirectedGM :: GraphMatrix Integer -> Bool
 isDirectedGM (GraphMatrix gm) = not $ isUndirectedGM (GraphMatrix gm)
 
 
@@ -599,7 +602,7 @@ isDirectedGM (GraphMatrix gm) = not $ isUndirectedGM (GraphMatrix gm)
 	>>> isDirectedG g
 	True
 -}
-isDirectedG :: (Eq t, Num t) => Graph t -> Bool
+isDirectedG :: Graph Integer -> Bool
 isDirectedG (Graph g) = isDirectedGM $ convertG2GM (Graph g)
 
 
@@ -620,7 +623,7 @@ isDirectedG (Graph g) = isDirectedGM $ convertG2GM (Graph g)
 -}
 unionG :: (Num a, Ord a) => Graph a -> Graph a -> Graph a
 unionG (Graph g1) (Graph g2) = Graph (
-  Vertices $ L.sort $ verticesToList (getVerticesG (Graph g1)) `L.union` verticesToList (getVerticesG (Graph g2)), 
+  Vertices $ L.sort $ verticesToList (getVerticesG (Graph g1)) `L.union` verticesToList (getVerticesG (Graph g2)),
   Edges $ L.sort $ edgesToList (getEdgesG (Graph g1)) `L.union` edgesToList (getEdgesG (Graph g2)))
 
 
@@ -647,7 +650,7 @@ unionG (Graph g1) (Graph g2) = Graph (
 	0	0	0	0
 	0	0	0	0
 -}
-unionGM :: (Integral a, Integral a1) => GraphMatrix a -> GraphMatrix a1 -> GraphMatrix Int
+unionGM :: GraphMatrix Integer -> GraphMatrix Integer -> GraphMatrix Integer
 unionGM (GraphMatrix gm1) (GraphMatrix gm2) = convertG2GM (unionG (convertGM2G (GraphMatrix gm1)) (convertGM2G (GraphMatrix gm2)))
 
 
@@ -667,7 +670,8 @@ unionGM (GraphMatrix gm1) (GraphMatrix gm2) = convertG2GM (unionG (convertGM2G (
 	>>> addVerticesG g (Vertices [5..8])
 	Graph ({1,2,3,4,5,6,7,8},{(1,2,5),(1,3,7),(2,4,3)})
 -}
-addVerticesG :: (Num a, Eq a) => Graph a -> Vertices a -> Graph a
+--addVerticesG :: (Num a, Eq a) => Graph a -> Vertices a -> Graph a
+addVerticesG :: Graph Integer -> Vertices Integer -> Graph Integer
 addVerticesG (Graph g) (Vertices v) = Graph (
   Vertices $ verticesToList (getVerticesG (Graph g)) `L.union` verticesToList (Vertices v),
   getEdgesG (Graph g))
@@ -701,7 +705,7 @@ addVerticesG (Graph g) (Vertices v) = Graph (
 	0	0	0	0	0	0
 	0	0	0	0	0	0
 -}
-addVerticesGM :: Integral a => GraphMatrix a -> Vertices Int -> GraphMatrix Int
+addVerticesGM :: GraphMatrix Integer -> Vertices Integer -> GraphMatrix Integer
 addVerticesGM (GraphMatrix gm) (Vertices v) = convertG2GM $ addVerticesG (convertGM2G (GraphMatrix gm)) (Vertices v)
 
 
@@ -710,7 +714,7 @@ addVerticesGM (GraphMatrix gm) (Vertices v) = convertG2GM $ addVerticesG (conver
     The function takes one argument of type 'Edges' and retuns a list.
 
     For example:
-		
+
     >>> e
     {(1,2,5),(1,3,7),(2,4,3)}
 
@@ -739,7 +743,7 @@ getVerticesFromEdges (Edges e) = L.nub [first edge | edge <- edgesToList (Edges 
 	Graph *** Exception: Vertices in the edge(s) are not in the graph's set of vertices.
 -}
 addEdgesG :: (Num a, Eq a) => Graph a -> Edges a -> Graph a
-addEdgesG (Graph g) (Edges e) = 
+addEdgesG (Graph g) (Edges e) =
   if and [v `elem` verticesToList (getVerticesG (Graph g)) | v <- getVerticesFromEdges (Edges e)]
   then Graph (
     getVerticesG (Graph g),
@@ -768,7 +772,7 @@ addEdgesG (Graph g) (Edges e) =
 	0	0	0	0
 	0	0	1	0
 -}
-addEdgesGM :: Integral a => GraphMatrix a -> Edges Int -> GraphMatrix Int
+addEdgesGM :: GraphMatrix Integer -> Edges Integer -> GraphMatrix Integer
 addEdgesGM (GraphMatrix gm) (Edges e) = convertG2GM $ addEdgesG (convertGM2G (GraphMatrix gm)) (Edges e)
 
 
@@ -777,7 +781,7 @@ addEdgesGM (GraphMatrix gm) (Edges e) = convertG2GM $ addEdgesG (convertGM2G (Gr
 -- Multiplication of two matrices
 mMult' :: Num a => Matrix a -> Matrix a -> Matrix a
 mMult' (Matrix m1) (Matrix m2) = Matrix [ map (multRow' r) m2t | r <- m1 ]
-  where 
+  where
     (Matrix m2t) = mTranspose' (Matrix m2)
     multRow' r1 r2 = sum $ zipWith (*) r1 r2
 
@@ -886,10 +890,10 @@ numPathsBetweenGM (GraphMatrix g) (Vertices v1) (Vertices v2) =
     The function takes two arguments, the first is a 'Graph' and the second is a vertex of type 'Vertices'.
 
     For example:
-		
+
     >>> g
     Graph ({1,2,3,4},{(1,2,1),(1,3,4),(2,1,5),(2,4,1),(3,1,2),(3,4,4),(4,2,1),(4,3,1)})
-		
+
 	>>> adjacentNodes g (Vertices [1])
 	{2,3}
 
@@ -911,7 +915,7 @@ adjacentNodesG (Graph g) (Vertices v) = Vertices $ L.union [ second x | x <- edg
     The function takes two arguments, the first is a 'GraphMatrix' and the second is a vertex of type 'Vertices'.
 
     For example:
-		
+
     >>> gm
     0	1	4	0
     5	0	0	1
@@ -930,7 +934,7 @@ adjacentNodesG (Graph g) (Vertices v) = Vertices $ L.union [ second x | x <- edg
 	>>> adjacentNodesGM gm (Vertices [4])
 	{2,3}
 -}
-adjacentNodesGM :: Integral a => GraphMatrix a -> Vertices Int -> Vertices Int
+adjacentNodesGM :: GraphMatrix Integer -> Vertices Integer -> Vertices Integer
 adjacentNodesGM (GraphMatrix gm) (Vertices v) = adjacentNodesG (convertGM2G (GraphMatrix gm)) (Vertices v)
 
 
@@ -939,7 +943,7 @@ adjacentNodesGM (GraphMatrix gm) (Vertices v) = adjacentNodesG (convertGM2G (Gra
     The function takes two arguments, the first is a 'Graph' and the second is a vertex of type 'Vertices'
 
     For example:
-		
+
     >>> g
     Graph ({1,2,3,4},{(1,2,1),(1,3,4),(2,1,5),(2,4,1),(3,1,2),(3,4,4),(4,2,1),(4,3,1)})
 
@@ -955,7 +959,7 @@ inDegreeG (Graph g) (Vertices v) = length [ first y | y <- edgesToList $ getEdge
     The function takes two arguments, the first is a 'GraphMatrix' and the second is a vertex of type 'Vertices'
 
     For example:
-		
+
     >>> gm
     0	1	4	0
     5	0	0	1
@@ -965,7 +969,7 @@ inDegreeG (Graph g) (Vertices v) = length [ first y | y <- edgesToList $ getEdge
 	>>> inDegreeGM gm (Vertices [2])
 	2
 -}
-inDegreeGM :: Integral a => GraphMatrix a -> Vertices Int -> Int
+inDegreeGM :: GraphMatrix Integer -> Vertices Integer -> Int
 inDegreeGM (GraphMatrix gm) (Vertices v) = inDegreeG (convertGM2G (GraphMatrix gm)) (Vertices v)
 
 
@@ -977,7 +981,7 @@ inDegreeGM (GraphMatrix gm) (Vertices v) = inDegreeG (convertGM2G (GraphMatrix g
 
 	>>> g
 	Graph ({1,2,3,4},{(1,2,1),(1,3,4),(2,1,5),(2,4,1),(3,1,2),(3,4,4),(4,2,1),(4,3,1)})
-	
+
 	>>> outDegree g (Vertices [4])
 	2
 
@@ -1003,7 +1007,7 @@ outDegreeG (Graph g) (Vertices v) = length [ second y | y <- edgesToList $ getEd
 	>>> outDegreeGM gm (Vertices [3])
 	2
 -}
-outDegreeGM :: Integral a => GraphMatrix a -> Vertices Int -> Int
+outDegreeGM :: GraphMatrix Integer -> Vertices Integer -> Int
 outDegreeGM (GraphMatrix gm) (Vertices v) = outDegreeG (convertGM2G (GraphMatrix gm)) (Vertices v)
 
 
@@ -1012,14 +1016,14 @@ outDegreeGM (GraphMatrix gm) (Vertices v) = outDegreeG (convertGM2G (GraphMatrix
     The function takes two arguments, the first is the undirected 'Graph' and the second is a vertex of type 'Vertices'.
 
     For example:
-		
+
     >>> g
     Graph ({1,2,3,4},{(1,2,1),(1,3,4),(2,1,5),(2,4,1),(3,1,2),(3,4,4),(4,2,1),(4,3,1)})
 
 	>>> degreeG g (Vertices [4])
 	4
 -}
-degreeG :: (Eq a, Num a) => Graph a -> Vertices a -> Int
+degreeG :: Graph Integer -> Vertices Integer -> Int
 degreeG (Graph g) (Vertices v)
   | isUndirectedG (Graph g) = inDegreeG (Graph g) (Vertices v) + outDegreeG (Graph g) (Vertices v)
   | otherwise = error "The graph you mentioned is not an undirected graph."
@@ -1040,7 +1044,7 @@ degreeG (Graph g) (Vertices v)
 	>>> degreeGM gm (Vertices [2])
 	4
 -}
-degreeGM :: Integral a => GraphMatrix a -> Vertices Int -> Int
+degreeGM :: GraphMatrix Integer -> Vertices Integer -> Int
 degreeGM (GraphMatrix gm) (Vertices v)
   | isUndirectedGM (GraphMatrix gm) = inDegreeGM (GraphMatrix gm) (Vertices v) + outDegreeGM (GraphMatrix gm) (Vertices v)
   | otherwise = error "The graph you mentioned is not an undirected graph."
@@ -1050,14 +1054,14 @@ degreeGM (GraphMatrix gm) (Vertices v)
     The 'hasEulerCircuitG' function checks if a specified graph conrtains a Euler Circuit.
 
     For example:
-		
+
     >>> g
     Graph ({1,2,3,4,5},{(1,2,1),(1,5,1),(2,1,1),(2,5,1),(3,4,1),(3,5,1),(4,3,1),(4,5,1),(5,1,1),(5,2,1),(5,3,1),(5,4,1)})
 
 	>>> hasEulerCircuitG g
 	True
 -}
-hasEulerCircuitG :: (Eq a, Num a) => Graph a -> Bool
+hasEulerCircuitG :: Graph Integer -> Bool
 hasEulerCircuitG (Graph g) = and [ even $ degreeG (Graph g) (Vertices [v]) | v <- verticesToList $ getVerticesG (Graph g)]
 
 
@@ -1065,7 +1069,7 @@ hasEulerCircuitG (Graph g) = and [ even $ degreeG (Graph g) (Vertices [v]) | v <
     The 'hasEulerCircuitGM' function checks if a specified graph (adjacency matrix representation) conrtains a Euler Circuit.
 
     For example:
-		
+
     >>> gm
     0	1	0	0	1
     1	0	0	0	1
@@ -1076,7 +1080,7 @@ hasEulerCircuitG (Graph g) = and [ even $ degreeG (Graph g) (Vertices [v]) | v <
 	>>> hasEulerCircuitGM gm
 	True
 -}
-hasEulerCircuitGM :: Integral a => GraphMatrix a -> Bool
+hasEulerCircuitGM :: GraphMatrix Integer -> Bool
 hasEulerCircuitGM (GraphMatrix gm) = hasEulerCircuitG (convertGM2G (GraphMatrix gm))
 
 
@@ -1091,7 +1095,7 @@ hasEulerCircuitGM (GraphMatrix gm) = hasEulerCircuitG (convertGM2G (GraphMatrix 
 	>>> hasEulerPathG g
 	True
 -}
-hasEulerPathG :: (Eq a, Num a) => Graph a -> Bool
+hasEulerPathG :: Graph Integer -> Bool
 hasEulerPathG (Graph g) = hasEulerCircuitG (Graph g)
 
 
@@ -1109,7 +1113,7 @@ hasEulerPathG (Graph g) = hasEulerCircuitG (Graph g)
 	>>> hasEulerPathGM gm
 	True
 -}
-hasEulerPathGM :: Integral a => GraphMatrix a -> Bool
+hasEulerPathGM :: GraphMatrix Integer -> Bool
 hasEulerPathGM (GraphMatrix gm) = hasEulerCircuitGM (GraphMatrix gm)
 
 
@@ -1117,20 +1121,20 @@ hasEulerPathGM (GraphMatrix gm) = hasEulerCircuitGM (GraphMatrix gm)
     The 'countOddDegreeV' function returns the number of vertices in a graph that have an odd degree.
 
     For example:
-		
+
     >>> g
     Graph ({1,2,3,4},{(1,2,1),(1,4,1),(2,1,1),(2,3,1),(2,4,1),(3,2,1),(3,4,1),(4,1,1),(4,2,1),(4,3,1)})
 
 	>>> countOddDegreeV g
 	0
-	
+
 	>>> g1
 	Graph ({1,2,3,4},{(1,2,4),(1,3,1),(1,4,5),(3,2,6)})
 
 	>>> countOddDegreeV g1
 	2
 -}
-countOddDegreeV :: (Eq a1, Num a, Num a1) => Graph a1 -> a
+countOddDegreeV :: Graph Integer -> Int
 countOddDegreeV (Graph g) = sum [ 1 | v <- verticesToList $ getVerticesG (Graph g), odd $ degreeG (Graph g) (Vertices [v]) ]
 
 
@@ -1145,7 +1149,7 @@ countOddDegreeV (Graph g) = sum [ 1 | v <- verticesToList $ getVerticesG (Graph 
 	>>> countEvenDegreeV g1
 	2
 -}
-countEvenDegreeV :: (Eq a1, Num a, Num a1) => Graph a1 -> a
+countEvenDegreeV :: Graph Integer -> Int
 countEvenDegreeV (Graph g) = sum [ 1 | v <- verticesToList $ getVerticesG (Graph g), even $ degreeG (Graph g) (Vertices [v]) ]
 
 
@@ -1160,7 +1164,7 @@ countEvenDegreeV (Graph g) = sum [ 1 | v <- verticesToList $ getVerticesG (Graph
 	>>> hasEulerPathNotCircuitG g1
 	True
 -}
-hasEulerPathNotCircuitG :: (Eq a, Num a) => Graph a -> Bool
+hasEulerPathNotCircuitG :: Graph Integer -> Bool
 hasEulerPathNotCircuitG (Graph g) = countOddDegreeV (Graph g) == 2
 
 
@@ -1178,7 +1182,7 @@ hasEulerPathNotCircuitG (Graph g) = countOddDegreeV (Graph g) == 2
 	>>> hasEulerPathNotCircuitGM gm
 	True
 -}
-hasEulerPathNotCircuitGM :: Integral a => GraphMatrix a -> Bool
+hasEulerPathNotCircuitGM :: GraphMatrix Integer -> Bool
 hasEulerPathNotCircuitGM (GraphMatrix gm) = hasEulerPathNotCircuitG (convertGM2G (GraphMatrix gm))
 
 
@@ -1193,7 +1197,7 @@ hasEulerPathNotCircuitGM (GraphMatrix gm) = hasEulerPathNotCircuitG (convertGM2G
 	>>> hasHamiltonianCircuitG g2
 	True
 -}
-hasHamiltonianCircuitG :: (Eq a, Num a) => Graph a -> Bool
+hasHamiltonianCircuitG :: Graph Integer -> Bool
 hasHamiltonianCircuitG (Graph g) = and [degreeG (Graph g) (Vertices [v]) >= (numVerticesG (Graph g) `div` 2) | v <- verticesToList $ getVerticesG (Graph g), numVerticesG (Graph g) >= 3]
 
 
@@ -1201,7 +1205,7 @@ hasHamiltonianCircuitG (Graph g) = and [degreeG (Graph g) (Vertices [v]) >= (num
     The 'hasHamiltonianCircuitGM' function checks if a graph (adjacency matrix representation) contains a Hamiltonian Circuit.
 
     For example:
-		
+
     >>> gm
     0	1	1	0	1
     1	0	1	0	1
@@ -1212,7 +1216,7 @@ hasHamiltonianCircuitG (Graph g) = and [degreeG (Graph g) (Vertices [v]) >= (num
 	>>> hasHamiltonianCircuitGM gm
 	True
 -}
-hasHamiltonianCircuitGM :: Integral a => GraphMatrix a -> Bool
+hasHamiltonianCircuitGM :: GraphMatrix Integer -> Bool
 hasHamiltonianCircuitGM (GraphMatrix gm) = hasHamiltonianCircuitG (convertGM2G (GraphMatrix gm))
 
 
@@ -1247,7 +1251,7 @@ isSubgraphG (Graph g1) (Graph g2) = (e1 `isSubset` e2) && (v1 `isSubset` v2)
     The 'isSubgraphGM' function checks if a graph is a sub-graph if another specified graph (both graphs as 'GraphMatrix' - adjacency matrix representation).
 
     For example:
-		
+
     >>> grm1
     0	4	1	5
     0	0	0	0
@@ -1264,8 +1268,33 @@ isSubgraphG (Graph g1) (Graph g2) = (e1 `isSubset` e2) && (v1 `isSubset` v2)
 	>>> isSubgraphGM grm1 grm2
 	False
 -}
-isSubgraphGM :: (Integral a, Integral a1) => GraphMatrix a -> GraphMatrix a1 -> Bool
+isSubgraphGM :: GraphMatrix Integer -> GraphMatrix Integer -> Bool
 isSubgraphGM (GraphMatrix gm1) (GraphMatrix gm2) = isSubgraphG (convertGM2G (GraphMatrix gm1)) (convertGM2G (GraphMatrix gm2))
+
+
+directedEdgesG :: Graph Integer -> String
+directedEdgesG (Graph g) = foldl1 (++) [ (show x) ++ " -> " ++ (show y) ++ " [label = " ++ (show z) ++ "]\n" | (x,y,z) <- edgesToList $ getEdgesG (Graph g) ]
+
+
+undirectedEdgesG :: Graph Integer -> String
+undirectedEdgesG (Graph g) = foldl1 (++) [ (show x) ++ " -- " ++ (show y) ++ " [label = " ++ (show z) ++ "]\n" | (x,y,z) <- list ]
+  where
+    list = edgesToList $ getEdgesG (Graph g)
+
+
+addDigraphDotStructure :: String -> String
+addDigraphDotStructure s = "digraph G\n{\n" ++ s ++ "}"
+
+addGraphDotStructure :: String -> String
+addGraphDotStructure s = "graph G\n{\n" ++ s ++ "}"
+
+
+writeGraphToFile :: String -> Graph Integer -> IO()
+writeGraphToFile file (Graph g) = writeFile file (addDigraphDotStructure $ directedEdgesG (Graph g))
+
+
+writeGraphMatrixToFile :: String -> GraphMatrix Integer -> IO()
+writeGraphMatrixToFile file (GraphMatrix gm) = writeGraphToFile file (convertGM2G $ GraphMatrix gm)
 
 
 -- SAMPLE GRAPHS --

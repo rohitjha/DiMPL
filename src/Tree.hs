@@ -36,6 +36,8 @@ module Tree
 where
 
 
+import System.Environment
+
 {-|
     The 'BinTree' datatype is used for representing binary trees.
 -}
@@ -59,9 +61,9 @@ tree2 =
 
 {-|
     The 'inorder' function returns the nodes of a 'BinTree' after inorder traversal.
-    
+
     For example:
-        
+
     >>> tree2
     Node 4 (Node 2 (Node 1 Leaf Leaf) (Node 3 Leaf Leaf)) (Node 7 (Node 5 Leaf (Node 6 Leaf Leaf)) (Node 8 Leaf Leaf))
 
@@ -93,7 +95,7 @@ preorder (Node x t1 t2) = [x] ++ preorder t1 ++ preorder t2
     The 'postorder' function returns the nodes of a 'BinTree' after postorder traversal.
 
     For example:
-        
+
     >>> tree2
     Node 4 (Node 2 (Node 1 Leaf Leaf) (Node 3 Leaf Leaf)) (Node 7 (Node 5 Leaf (Node 6 Leaf Leaf)) (Node 8 Leaf Leaf))
 
@@ -159,7 +161,7 @@ addNode x ( Node a left right )
     False
 -}
 hasValue :: ( Ord a ) => a -> BinTree a -> Bool
-hasValue x Leaf = False 
+hasValue x Leaf = False
 hasValue x ( Node a left right )
     | x == a = True
     | x < a = hasValue x left
@@ -198,7 +200,7 @@ depth x (Node a left right) n
     The 'reflect' function returns the mirror reflect of a 'BinTree'.
 
     For example:
-    
+
     >>> tree2
     Node 4 (Node 2 (Node 1 Leaf Leaf) (Node 3 Leaf Leaf)) (Node 7 (Node 5 Leaf (Node 6 Leaf Leaf)) (Node 8 Leaf Leaf))
 
@@ -228,7 +230,7 @@ reflect (Node n l r) = Node n (reflect r) (reflect l)
     0
 
     >>> tree2
-    Node 4 (Node 2 (Node 1 Leaf Leaf) (Node 3 Leaf Leaf)) (Node 7 (Node 5 Leaf (Node 6 Leaf Leaf)) (Node 8 Leaf Leaf))    
+    Node 4 (Node 2 (Node 1 Leaf Leaf) (Node 3 Leaf Leaf)) (Node 7 (Node 5 Leaf (Node 6 Leaf Leaf)) (Node 8 Leaf Leaf))
 
     >>> height tree2
     4
@@ -274,3 +276,25 @@ size (Node x t1 t2) = 1 + size t1 + size t2
 isBalanced :: BinTree a -> Bool
 isBalanced Leaf = True
 isBalanced (Node x t1 t2) = isBalanced t1 && isBalanced t2 && (height t1 == height t2)
+
+
+edges :: BinTree a -> [(a,a)]
+edges Leaf = []
+edges (Node a Leaf Leaf) = []
+edges (Node a (Node b t1 t2) (Leaf)) = [(a,b)] ++ edges (Node b t1 t2)
+edges (Node a (Leaf) (Node b t1 t2)) = [(a,b)] ++ edges (Node b t1 t2)
+edges (Node a (Node b t1 t2) (Node c t3 t4)) = [(a,b), (a,c)] ++ edges (Node b t1 t2) ++ edges (Node c t3 t4)
+
+
+directedEdges :: Show a => BinTree a -> String
+directedEdges a
+  | (length (edges a) > 0) = foldl1 (++) [ (show x) ++ " -> " ++ (show y) ++ "\n" | (x,y) <- edges a ]
+  | otherwise = []
+
+
+addDigraphDotStructure :: String -> String
+addDigraphDotStructure s = "digraph G\n{\n" ++ s ++ "}"
+
+
+writeTreeToFile :: (Show a) => String -> BinTree a -> IO()
+writeTreeToFile file a = writeFile file (addDigraphDotStructure $ directedEdges a)

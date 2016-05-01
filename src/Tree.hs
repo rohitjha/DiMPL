@@ -31,7 +31,8 @@ module Tree
     height,
     depth,
     size,
-    isBalanced
+    isBalanced,
+    writeTreeToFile
 )
 where
 

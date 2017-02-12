@@ -1,7 +1,6 @@
-DiMPL
-=====
+#DiMPL
 
-Discrete Mathematics Programming Language - A Domain-Specific Language for Discrete Mathematics.
+##Discrete Mathematics Programming Language - A Domain-Specific Language for Discrete Mathematics.
 
 Current Version: 0.1
 
@@ -18,11 +17,11 @@ The library covers functions from the areas of:
 
 Apart from aiding mathematicians and physicists, DiMPL is useful in studying and describing objects and problems in branches of computer science, such as algorithms, programming languages, cryptography, and software development.
 
-Installation
-------------
+###Installation
 
 Run these commands from the command line to install the DSL library:
 
+```sh
 $ cabal configure
 
 $ cabal build
@@ -30,21 +29,23 @@ $ cabal build
 $ cabal install
 
 $ cabal clean (optional)
+```
 
 The Preprocessor is simply the file "preprocessor.sh", which uses sed scripts written in the file "script", so these can be added to PATH in order to be used for all programs. Both "preprocessor.sh" and "script" can be found in the "preprocessor" directory.
 
-Usage
------
+###Usage
 
+```sh
 $ ghc -F -pgmF preprocess.sh file.hs
+```
 
 This generates "file.o", "file.hi" and the executable "file". The executable can be run by typing:
 
+```sh
 $ ./file
-
+```
 The library can even be used in GHCi (without the preprocessor) just like any other package.
 
-Help
-----
+###Help
 
 E-mail: rohit305jha@gmail.com
